@@ -1,103 +1,253 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
-  <!-- Outer light blue circle background -->
-  <circle cx="200" cy="200" r="195" fill="#e8f4ff" stroke="#c0d8f0" stroke-width="2"/>
-  
-  <!-- ── GOLD PAPER TUBES (bar chart style) ── -->
-  <!-- Tube 1 - far left short -->
-  <ellipse cx="100" cy="148" rx="18" ry="9" fill="#d4a020"/>
-  <rect x="82" y="148" width="36" height="70" fill="#e8b830"/>
-  <ellipse cx="100" cy="218" rx="18" ry="9" fill="#c89010"/>
-  <!-- Tube 2 -->
-  <ellipse cx="138" cy="128" rx="18" ry="9" fill="#d4a020"/>
-  <rect x="120" y="128" width="36" height="90" fill="#f0c840"/>
-  <ellipse cx="138" cy="218" rx="18" ry="9" fill="#c89010"/>
-  <!-- Tube 3 center-left tall -->
-  <ellipse cx="176" cy="100" rx="18" ry="9" fill="#d4a020"/>
-  <rect x="158" y="100" width="36" height="118" fill="#e8b830"/>
-  <ellipse cx="176" cy="218" rx="18" ry="9" fill="#c89010"/>
-  <!-- Tube 4 center tall -->
-  <ellipse cx="214" cy="88" rx="18" ry="9" fill="#d4a020"/>
-  <rect x="196" y="88" width="36" height="130" fill="#f0c840"/>
-  <ellipse cx="214" cy="218" rx="18" ry="9" fill="#c89010"/>
-  <!-- Tube 5 -->
-  <ellipse cx="252" cy="110" rx="18" ry="9" fill="#d4a020"/>
-  <rect x="234" y="110" width="36" height="108" fill="#e8b830"/>
-  <ellipse cx="252" cy="218" rx="18" ry="9" fill="#c89010"/>
-  <!-- Tube 6 right -->
-  <ellipse cx="290" cy="135" rx="18" ry="9" fill="#d4a020"/>
-  <rect x="272" y="135" width="36" height="83" fill="#f0c840"/>
-  <ellipse cx="290" cy="218" rx="18" ry="9" fill="#c89010"/>
-
-  <!-- ── BLUE GROWTH ARROW ── -->
-  <polyline points="88,210 140,175 190,150 240,120 295,85" 
-    stroke="#1a5fbf" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Arrow head -->
-  <polygon points="295,85 278,88 285,105" fill="#1a5fbf"/>
-
-  <!-- ── BLUE BOWL / BASE PLATFORM ── -->
-  <path d="M70,222 Q195,260 330,222" stroke="#1a5fbf" stroke-width="5" fill="none"/>
-  <path d="M70,222 Q90,250 110,255 Q195,275 290,255 Q310,250 330,222 Q270,238 195,238 Q120,238 70,222 Z" fill="#1a5fbf" opacity="0.15"/>
-
-  <!-- ── TWO BLUE CARTOON FIGURES ── -->
-  <!-- Left figure -->
-  <!-- Head -->
-  <circle cx="158" cy="270" r="22" fill="#2266cc"/>
-  <!-- Smile -->
-  <path d="M148,275 Q158,284 168,275" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <!-- Eyes -->
-  <ellipse cx="151" cy="267" rx="4" ry="4.5" fill="white"/>
-  <ellipse cx="165" cy="267" rx="4" ry="4.5" fill="white"/>
-  <circle cx="152" cy="268" r="2.5" fill="#1a1a6e"/>
-  <circle cx="166" cy="268" r="2.5" fill="#1a1a6e"/>
-  <!-- Eyebrows happy arch -->
-  <path d="M147,262 Q151,258 155,262" stroke="#1a1a6e" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M161,262 Q165,258 169,262" stroke="#1a1a6e" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- Body -->
-  <path d="M138,292 Q120,320 125,350 L192,350 Q196,320 178,292 Z" fill="#2266cc"/>
-  <!-- Thumbs up arm -->
-  <path d="M138,292 Q115,285 105,275" stroke="#2266cc" stroke-width="14" fill="none" stroke-linecap="round"/>
-  <!-- Thumb up hand -->
-  <circle cx="103" cy="272" r="10" fill="#2266cc"/>
-  <rect x="97" y="255" width="10" height="18" rx="5" fill="#2266cc"/>
-
-  <!-- Right figure (with tie) -->
-  <!-- Head -->
-  <circle cx="242" cy="270" r="22" fill="#2266cc"/>
-  <!-- Smile -->
-  <path d="M232,275 Q242,284 252,275" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <!-- Eyes -->
-  <ellipse cx="235" cy="267" rx="4" ry="4.5" fill="white"/>
-  <ellipse cx="249" cy="267" rx="4" ry="4.5" fill="white"/>
-  <circle cx="236" cy="268" r="2.5" fill="#1a1a6e"/>
-  <circle cx="250" cy="268" r="2.5" fill="#1a1a6e"/>
-  <!-- Eyebrows happy -->
-  <path d="M231,262 Q235,258 239,262" stroke="#1a1a6e" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M245,262 Q249,258 253,262" stroke="#1a1a6e" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- Body -->
-  <path d="M222,292 Q204,320 208,350 L276,350 Q280,320 262,292 Z" fill="#2266cc"/>
-  <!-- Tie -->
-  <polygon points="242,295 237,308 242,340 247,308" fill="#1a3a8a"/>
-  <polygon points="237,295 247,295 245,303 239,303" fill="#1a3a8a"/>
-  <!-- Handshake arm -->
-  <path d="M262,292 Q285,285 295,275" stroke="#2266cc" stroke-width="14" fill="none" stroke-linecap="round"/>
-  <circle cx="297" cy="272" r="10" fill="#2266cc"/>
-
-  <!-- ── HANDSHAKE HANDS IN CENTER ── -->
-  <ellipse cx="200" cy="300" rx="20" ry="12" fill="#2266cc" opacity="0.8"/>
-  <path d="M180,300 Q200,290 220,300" stroke="#3377dd" stroke-width="3" fill="none"/>
-
-  <!-- ── FAB TEXT ── -->
-  <text x="200" y="375" font-family="Arial Black, Arial" font-weight="900" font-size="42" fill="#1a3a8a" text-anchor="middle" letter-spacing="3">FAB</text>
-  <text x="200" y="393" font-family="Arial, sans-serif" font-weight="700" font-size="14" fill="#1a3a8a" text-anchor="middle" letter-spacing="2">PAPER TUBE</text>
-
-  <!-- ── CURVED TAGLINE AT BOTTOM ── -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 560" width="500" height="560">
   <defs>
-    <path id="bottomArc" d="M 55,200 A 145,145 0 0,0 345,200"/>
+    <!-- Gold tube gradient -->
+    <linearGradient id="goldTube" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#b8780a"/>
+      <stop offset="25%"  stop-color="#f5c842"/>
+      <stop offset="50%"  stop-color="#e8a820"/>
+      <stop offset="75%"  stop-color="#f5c842"/>
+      <stop offset="100%" stop-color="#b8780a"/>
+    </linearGradient>
+    <!-- Gold top ellipse -->
+    <linearGradient id="goldTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#f8d860"/>
+      <stop offset="100%" stop-color="#c89018"/>
+    </linearGradient>
+    <!-- Gold bottom ellipse -->
+    <linearGradient id="goldBot" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#a06010"/>
+      <stop offset="100%" stop-color="#7a4808"/>
+    </linearGradient>
+    <!-- Blue figure gradient -->
+    <linearGradient id="blueFig" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#4fb8ff"/>
+      <stop offset="50%"  stop-color="#1a7ee0"/>
+      <stop offset="100%" stop-color="#0d4aaa"/>
+    </linearGradient>
+    <!-- Blue figure highlight -->
+    <linearGradient id="blueFigHi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#80d0ff"/>
+      <stop offset="60%"  stop-color="#2a9af0"/>
+      <stop offset="100%" stop-color="#1060c8"/>
+    </linearGradient>
+    <!-- Blue arrow gradient -->
+    <linearGradient id="arrowGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#1a5abf"/>
+      <stop offset="100%" stop-color="#3a8fff"/>
+    </linearGradient>
+    <!-- Background circle gradient -->
+    <radialGradient id="bgCircle" cx="40%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#e8f6ff"/>
+      <stop offset="60%"  stop-color="#c0dff8"/>
+      <stop offset="100%" stop-color="#90bfe8"/>
+    </radialGradient>
+    <!-- Bowl gradient -->
+    <linearGradient id="bowlGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#2060c8"/>
+      <stop offset="100%" stop-color="#0a2a7a"/>
+    </linearGradient>
+    <!-- FAB text gradient -->
+    <linearGradient id="fabText" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#1a5abf"/>
+      <stop offset="100%" stop-color="#0a2878"/>
+    </linearGradient>
   </defs>
-  <text font-family="Arial, sans-serif" font-size="11" fill="#1a3a8a" font-style="italic">
-    <textPath href="#bottomArc" startOffset="8%">"Premium and Sustainable Packaging Solutions"</textPath>
+
+  <!-- ═══════════════════════════════════════════════
+       BACKGROUND CIRCLE
+  ═══════════════════════════════════════════════ -->
+  <circle cx="250" cy="225" r="210" fill="url(#bgCircle)" stroke="#b0d0f0" stroke-width="2"/>
+  <!-- Inner subtle glow ring -->
+  <circle cx="250" cy="225" r="195" fill="none" stroke="white" stroke-width="4" opacity="0.6"/>
+
+  <!-- ═══════════════════════════════════════════════
+       GOLD PAPER TUBES (bar-chart style, 3D cylinders)
+       Heights: short → tall → tallest → tall → medium → short
+  ═══════════════════════════════════════════════ -->
+
+  <!-- Helper macro: each tube = top ellipse + rect body + bottom ellipse -->
+  <!-- Tube 1 — far left short -->
+  <rect x="78"  y="198" width="30" height="72"  fill="url(#goldTube)"/>
+  <ellipse cx="93"  cy="198" rx="15" ry="7"  fill="url(#goldTop)"/>
+  <ellipse cx="93"  cy="270" rx="15" ry="7"  fill="url(#goldBot)"/>
+  <ellipse cx="93"  cy="198" rx="8"  ry="3.5" fill="#3a1a00" opacity="0.7"/>
+
+  <!-- Tube 2 -->
+  <rect x="114" y="172" width="32" height="98"  fill="url(#goldTube)"/>
+  <ellipse cx="130" cy="172" rx="16" ry="7.5" fill="url(#goldTop)"/>
+  <ellipse cx="130" cy="270" rx="16" ry="7.5" fill="url(#goldBot)"/>
+  <ellipse cx="130" cy="172" rx="9"  ry="4"   fill="#3a1a00" opacity="0.7"/>
+
+  <!-- Tube 3 — tall -->
+  <rect x="152" y="138" width="34" height="132" fill="url(#goldTube)"/>
+  <ellipse cx="169" cy="138" rx="17" ry="8"  fill="url(#goldTop)"/>
+  <ellipse cx="169" cy="270" rx="17" ry="8"  fill="url(#goldBot)"/>
+  <ellipse cx="169" cy="138" rx="10" ry="4.5" fill="#3a1a00" opacity="0.7"/>
+
+  <!-- Tube 4 — tallest center -->
+  <rect x="192" y="105" width="36" height="165" fill="url(#goldTube)"/>
+  <ellipse cx="210" cy="105" rx="18" ry="9"  fill="url(#goldTop)"/>
+  <ellipse cx="210" cy="270" rx="18" ry="9"  fill="url(#goldBot)"/>
+  <ellipse cx="210" cy="105" rx="11" ry="5"   fill="#3a1a00" opacity="0.7"/>
+
+  <!-- Tube 5 — tall -->
+  <rect x="234" y="118" width="34" height="152" fill="url(#goldTube)"/>
+  <ellipse cx="251" cy="118" rx="17" ry="8"  fill="url(#goldTop)"/>
+  <ellipse cx="251" cy="270" rx="17" ry="8"  fill="url(#goldBot)"/>
+  <ellipse cx="251" cy="118" rx="10" ry="4.5" fill="#3a1a00" opacity="0.7"/>
+
+  <!-- Tube 6 — medium -->
+  <rect x="274" y="148" width="32" height="122" fill="url(#goldTube)"/>
+  <ellipse cx="290" cy="148" rx="16" ry="7.5" fill="url(#goldTop)"/>
+  <ellipse cx="290" cy="270" rx="16" ry="7.5" fill="url(#goldBot)"/>
+  <ellipse cx="290" cy="148" rx="9"  ry="4"   fill="#3a1a00" opacity="0.7"/>
+
+  <!-- Tube 7 — short right -->
+  <rect x="312" y="178" width="30" height="92"  fill="url(#goldTube)"/>
+  <ellipse cx="327" cy="178" rx="15" ry="7"  fill="url(#goldTop)"/>
+  <ellipse cx="327" cy="270" rx="15" ry="7"  fill="url(#goldBot)"/>
+  <ellipse cx="327" cy="178" rx="8"  ry="3.5" fill="#3a1a00" opacity="0.7"/>
+
+  <!-- Tube 8 — far right small (partial) -->
+  <rect x="348" y="200" width="26" height="70"  fill="url(#goldTube)"/>
+  <ellipse cx="361" cy="200" rx="13" ry="6"  fill="url(#goldTop)"/>
+  <ellipse cx="361" cy="270" rx="13" ry="6"  fill="url(#goldBot)"/>
+  <ellipse cx="361" cy="200" rx="7"  ry="3"   fill="#3a1a00" opacity="0.7"/>
+
+  <!-- ═══════════════════════════════════════════════
+       BLUE GROWTH ARROW (bold, with white border)
+  ═══════════════════════════════════════════════ -->
+  <!-- Shadow/outline -->
+  <polyline points="82,262 130,225 185,200 240,168 300,135 360,88"
+    stroke="#0a2060" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+  <!-- Main arrow line -->
+  <polyline points="82,262 130,225 185,200 240,168 300,135 360,88"
+    stroke="url(#arrowGrad)" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- White inner line for 3D effect -->
+  <polyline points="82,262 130,225 185,200 240,168 300,135 360,88"
+    stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+  <!-- Arrow head -->
+  <polygon points="360,88 340,98 350,112" fill="url(#arrowGrad)" stroke="white" stroke-width="1.5"/>
+
+  <!-- ═══════════════════════════════════════════════
+       BLUE 3D BOWL / PLATFORM BASE
+  ═══════════════════════════════════════════════ -->
+  <path d="M 60,278 Q 250,330 440,278 Q 380,310 250,318 Q 120,310 60,278 Z"
+    fill="url(#bowlGrad)" opacity="0.92"/>
+  <!-- Bowl rim highlight -->
+  <path d="M 62,276 Q 250,325 438,276" stroke="#4a8fff" stroke-width="3" fill="none" opacity="0.7"/>
+  <path d="M 62,276 Q 250,325 438,276" stroke="white"  stroke-width="1" fill="none" opacity="0.4"/>
+
+  <!-- ═══════════════════════════════════════════════
+       LEFT BLUE FIGURE — happy, thumbs up
+  ═══════════════════════════════════════════════ -->
+  <!-- Body -->
+  <ellipse cx="158" cy="316" rx="38" ry="52" fill="url(#blueFig)"/>
+  <!-- Body highlight -->
+  <ellipse cx="148" cy="300" rx="16" ry="24" fill="url(#blueFigHi)" opacity="0.35"/>
+  <!-- Head -->
+  <circle cx="158" cy="258" r="35" fill="url(#blueFigHi)"/>
+  <!-- Head highlight -->
+  <circle cx="145" cy="248" r="14" fill="white" opacity="0.2"/>
+  <!-- Eyes (closed happy crescents) -->
+  <path d="M 146,256 Q 150,251 154,256" stroke="#0a1a4a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 162,256 Q 166,251 170,256" stroke="#0a1a4a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Big smile -->
+  <path d="M 145,268 Q 158,280 171,268" stroke="#0a1a4a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Cheek blush -->
+  <ellipse cx="136" cy="266" rx="8" ry="5" fill="#ff8888" opacity="0.35"/>
+  <ellipse cx="180" cy="266" rx="8" ry="5" fill="#ff8888" opacity="0.35"/>
+  <!-- LEFT ARM raised — thumbs up -->
+  <ellipse cx="108" cy="298" rx="16" ry="28" fill="url(#blueFig)" transform="rotate(-35,108,298)"/>
+  <!-- Hand circle -->
+  <circle cx="90" cy="272" r="16" fill="url(#blueFigHi)"/>
+  <!-- Thumb up -->
+  <rect x="82" y="252" width="14" height="22" rx="7" fill="url(#blueFigHi)"/>
+  <!-- Thumb highlight -->
+  <rect x="84" y="254" width="5" height="10" rx="2.5" fill="white" opacity="0.3"/>
+  <!-- RIGHT ARM going to shake -->
+  <ellipse cx="196" cy="318" rx="14" ry="26" fill="url(#blueFig)" transform="rotate(30,196,318)"/>
+
+  <!-- ═══════════════════════════════════════════════
+       RIGHT BLUE FIGURE — with tie, happy
+  ═══════════════════════════════════════════════ -->
+  <!-- Body -->
+  <ellipse cx="342" cy="316" rx="38" ry="52" fill="url(#blueFig)"/>
+  <!-- Body highlight -->
+  <ellipse cx="332" cy="300" rx="16" ry="24" fill="url(#blueFigHi)" opacity="0.35"/>
+  <!-- Tie -->
+  <polygon points="342,280 337,295 342,335 347,295" fill="#1a3a9a"/>
+  <polygon points="337,280 347,280 345,290 339,290" fill="#0d2060"/>
+  <!-- Head -->
+  <circle cx="342" cy="258" r="35" fill="url(#blueFigHi)"/>
+  <!-- Head highlight -->
+  <circle cx="330" cy="248" r="14" fill="white" opacity="0.2"/>
+  <!-- Eyes (closed happy) -->
+  <path d="M 330,256 Q 334,251 338,256" stroke="#0a1a4a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 346,256 Q 350,251 354,256" stroke="#0a1a4a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Smile -->
+  <path d="M 329,268 Q 342,280 355,268" stroke="#0a1a4a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Cheeks -->
+  <ellipse cx="320" cy="266" rx="8" ry="5" fill="#ff8888" opacity="0.35"/>
+  <ellipse cx="364" cy="266" rx="8" ry="5" fill="#ff8888" opacity="0.35"/>
+  <!-- LEFT ARM going to shake -->
+  <ellipse cx="304" cy="318" rx="14" ry="26" fill="url(#blueFig)" transform="rotate(-30,304,318)"/>
+  <!-- RIGHT ARM -->
+  <ellipse cx="392" cy="298" rx="16" ry="28" fill="url(#blueFig)" transform="rotate(35,392,298)"/>
+
+  <!-- ═══════════════════════════════════════════════
+       HANDSHAKE — center hands
+  ═══════════════════════════════════════════════ -->
+  <!-- Left hand -->
+  <circle cx="218" cy="334" r="18" fill="url(#blueFigHi)"/>
+  <!-- Right hand -->
+  <circle cx="282" cy="334" r="18" fill="url(#blueFigHi)"/>
+  <!-- Overlap / clasp -->
+  <ellipse cx="250" cy="334" rx="32" ry="16" fill="url(#blueFig)"/>
+  <!-- Knuckle lines -->
+  <path d="M 230,328 Q 250,322 270,328" stroke="white" stroke-width="1.5" fill="none" opacity="0.4"/>
+  <path d="M 228,334 Q 250,328 272,334" stroke="white" stroke-width="1.5" fill="none" opacity="0.3"/>
+
+  <!-- ═══════════════════════════════════════════════
+       FAB  TEXT
+  ═══════════════════════════════════════════════ -->
+  <!-- Shadow -->
+  <text x="252" y="397" font-family="Arial Black, Impact, sans-serif" font-weight="900"
+    font-size="78" fill="#08154a" text-anchor="middle" opacity="0.35" dx="3" dy="3">FAB</text>
+  <!-- Main FAB -->
+  <text x="250" y="394" font-family="Arial Black, Impact, sans-serif" font-weight="900"
+    font-size="78" fill="url(#fabText)" text-anchor="middle">FAB</text>
+  <!-- White stroke outline -->
+  <text x="250" y="394" font-family="Arial Black, Impact, sans-serif" font-weight="900"
+    font-size="78" fill="none" stroke="white" stroke-width="1.5" text-anchor="middle" opacity="0.5">FAB</text>
+
+  <!-- PAPER TUBE sub-text -->
+  <text x="250" y="420" font-family="Arial, sans-serif" font-weight="700"
+    font-size="20" fill="#1a4aaa" text-anchor="middle" letter-spacing="5">PAPER TUBE</text>
+
+  <!-- ═══════════════════════════════════════════════
+       CURVED TAGLINE at bottom
+  ═══════════════════════════════════════════════ -->
+  <defs>
+    <path id="curveTag" d="M 68,460 Q 250,540 432,460"/>
+  </defs>
+  <!-- Tagline band background -->
+  <path d="M 62,448 Q 250,535 438,448 Q 440,465 432,470 Q 250,552 68,470 Q 60,465 62,448 Z"
+    fill="#1a4aaa" opacity="0.10"/>
+  <!-- Tagline text -->
+  <text font-family="Georgia, serif" font-size="15" fill="#1a3a8a" font-style="italic" font-weight="600">
+    <textPath href="#curveTag" startOffset="6%">
+      "Premium and Sustainable Packaging Solutions"
+    </textPath>
   </text>
 
-  <!-- Outer ring border -->
-  <circle cx="200" cy="200" r="193" fill="none" stroke="#1a5fbf" stroke-width="3"/>
+  <!-- ═══════════════════════════════════════════════
+       OUTER RING (dark blue arc, bottom half like logo)
+  ═══════════════════════════════════════════════ -->
+  <!-- Top arc (light) -->
+  <path d="M 42,225 A 210,210 0 0,1 458,225" fill="none" stroke="#b0cce8" stroke-width="2.5" opacity="0.6"/>
+  <!-- Bottom arc (dark blue) matching logo -->
+  <path d="M 42,225 A 210,210 0 0,0 458,225" fill="none" stroke="#0a2878" stroke-width="3"/>
+  <!-- Outer dark border full circle -->
+  <circle cx="250" cy="225" r="208" fill="none" stroke="#0a2060" stroke-width="1.5" opacity="0.5"/>
 </svg>
