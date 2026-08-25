@@ -55,7 +55,7 @@ export default function Header() {
               transition={{ duration: 0.45, delay: 0.1 }}
               className={cn(
                 'relative transition-all duration-300',
-                scrolled ? 'w-[52px] h-[52px]' : 'w-[60px] h-[60px]'
+                scrolled ? 'w-[56px] h-[56px]' : 'w-[64px] h-[64px]'
               )}
             >
               <Image
