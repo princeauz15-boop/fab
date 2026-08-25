@@ -17,44 +17,45 @@ export default function HeroSection() {
     <section
       className="relative overflow-hidden"
       style={{
-        /* Deep royal blue — matching the original website exactly */
-        background:
-          'linear-gradient(135deg, #0b1d6e 0%, #0f2fa0 35%, #1848c0 65%, #0d268a 100%)',
+        /* Exact deep royal blue from the original FAB website screenshot */
+        backgroundColor: '#1a3bc1',
+        background: 'radial-gradient(ellipse at 60% 40%, #2850d8 0%, #1a3bc1 40%, #122da0 70%, #0d2080 100%)',
         minHeight: '100vh',
       }}
       aria-label="Hero section"
     >
-      {/* Subtle circular watermark overlay */}
+      {/* Paper tube circular watermark — same as original site */}
       <div
-        className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='12' fill='none' stroke='white' stroke-width='0.6'/%3E%3C/svg%3E")`,
-          backgroundSize: '90px 90px',
+          opacity: 0.07,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Ccircle cx='45' cy='45' r='32' fill='none' stroke='white' stroke-width='1.2'/%3E%3Ccircle cx='45' cy='45' r='14' fill='none' stroke='white' stroke-width='0.7'/%3E%3C/svg%3E")`,
+          backgroundSize: '95px 95px',
         }}
       />
 
-      {/* Content */}
+      {/* Main content */}
       <div
         className="container-custom relative z-10 flex items-center"
-        style={{ minHeight: '100vh', paddingTop: '80px' }}
+        style={{ minHeight: '100vh', paddingTop: '76px' }}
       >
-        <div className="grid lg:grid-cols-2 gap-6 items-center w-full py-16">
+        <div className="grid lg:grid-cols-2 gap-8 items-center w-full py-14">
 
-          {/* ── LEFT: Text ── */}
+          {/* ════════════ LEFT TEXT ════════════ */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
             className="flex flex-col gap-5 max-w-xl"
           >
-            {/* Heading — white + gold exactly like original site */}
+            {/* H1 — white "FAB Paper Tube." + gold "Premium..." */}
             <motion.h1
               variants={heroHeading}
-              className="font-black leading-[1.08] tracking-tight"
-              style={{ fontSize: 'clamp(1.9rem, 3.8vw, 2.9rem)' }}
+              className="font-black leading-[1.1] tracking-tight"
+              style={{ fontSize: 'clamp(1.85rem, 3.6vw, 2.85rem)' }}
             >
               <span className="text-white">FAB Paper Tube. </span>
-              <span style={{ color: '#f0b830' }}>
+              <span style={{ color: '#f5be30' }}>
                 Premium<br />
                 and Sustainable<br />
                 Packaging<br />
@@ -62,30 +63,28 @@ export default function HeroSection() {
               </span>
             </motion.h1>
 
-            {/* Gold underline */}
-            <motion.div variants={heroSubheading} className="flex items-center gap-1">
+            {/* Amber/gold underline */}
+            <motion.div variants={heroSubheading}>
               <span
-                className="block h-1 w-20 rounded-sm"
-                style={{ background: '#f0b830' }}
+                className="block h-[4px] w-20 rounded-sm"
+                style={{ background: '#f5be30' }}
               />
-              <span className="block h-1 w-10 rounded-sm bg-white/20" />
             </motion.div>
 
-            {/* Bold sub-heading */}
+            {/* Bold white sub-text */}
             <motion.p
               variants={heroSubheading}
-              className="text-white font-bold leading-snug"
+              className="font-bold leading-snug text-white"
               style={{ fontSize: '15px' }}
             >
-              High Quality Paper Tubes &amp; Paper Cores for Textile, Packaging,<br />
+              High Quality Paper Tubes &amp; Paper Cores for Textile, Packaging,
               Stationery, Paper Converting and Industrial Applications.
             </motion.p>
 
-            {/* Body copy */}
+            {/* Light body text */}
             <motion.p
               variants={heroSubheading}
-              className="text-blue-100 leading-relaxed"
-              style={{ fontSize: '14px', opacity: 0.92 }}
+              style={{ fontSize: '14px', color: 'rgba(220,235,255,0.92)', lineHeight: '1.65' }}
             >
               FAB Paper Tube is a leading manufacturer of premium quality paper
               tubes, paper cores, and customized packaging solutions. We manufacture
@@ -93,32 +92,26 @@ export default function HeroSection() {
               to customer requirements, ensuring consistent quality and timely delivery.
             </motion.p>
 
-            {/* CTA Buttons — outlined white, exactly like original */}
+            {/* CTA buttons — white outlined, matching original exactly */}
             <motion.div variants={heroButtons} className="flex flex-wrap gap-4 pt-1">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 border-2 border-white bg-transparent text-white font-bold px-6 py-3 rounded-sm text-sm hover:bg-white hover:text-[#0f2fa0] transition-all duration-300"
+                className="group inline-flex items-center gap-2 bg-transparent border-2 border-white text-white font-bold px-6 py-3 rounded-sm text-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300"
               >
                 Get Free Quote
-                <ArrowRight
-                  size={14}
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
               <Link
                 href="/products"
-                className="group inline-flex items-center gap-2 border-2 border-white bg-transparent text-white font-bold px-6 py-3 rounded-sm text-sm hover:bg-white hover:text-[#0f2fa0] transition-all duration-300"
+                className="group inline-flex items-center gap-2 bg-transparent border-2 border-white text-white font-bold px-6 py-3 rounded-sm text-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300"
               >
                 View Products
-                <ArrowRight
-                  size={14}
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
             </motion.div>
           </motion.div>
 
-          {/* ── RIGHT: Real hero character PNG ── */}
+          {/* ════════════ RIGHT CHARACTER ════════════ */}
           <motion.div
             variants={heroImage}
             initial="hidden"
@@ -126,108 +119,72 @@ export default function HeroSection() {
             className="relative flex items-center justify-center lg:justify-end"
           >
             <motion.div
-              animate={{ y: [0, -14, 0] }}
+              animate={{ y: [0, -12, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
               className="relative w-full"
               style={{ maxWidth: '500px' }}
             >
-              {/* Soft glow under character */}
-              <div
-                className="absolute bottom-0 inset-x-16 blur-3xl rounded-full opacity-20 pointer-events-none"
-                style={{
-                  height: '140px',
-                  background:
-                    'radial-gradient(ellipse, #90c8ff 0%, transparent 70%)',
-                }}
-              />
-
-              {/* ── Real character image ── */}
+              {/* Real character PNG — black bg will be transparent via mix-blend */}
               <Image
                 src="/images/hero-character.png"
                 alt="Person holding FAB paper tubes"
                 width={600}
                 height={540}
                 priority
-                className="w-full h-auto relative z-10 drop-shadow-2xl"
-                style={{ objectFit: 'contain' }}
+                className="w-full h-auto relative z-10"
+                style={{
+                  objectFit: 'contain',
+                  /* Remove black background from PNG using mix-blend-mode */
+                  mixBlendMode: 'screen',
+                  filter: 'drop-shadow(0 20px 40px rgba(0,80,200,0.35))',
+                }}
               />
 
-              {/* Floating badge — 10+ Years */}
+              {/* Badge — 10+ Years Manufacturing */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.7, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  delay: 1.1,
-                  duration: 0.45,
-                  type: 'spring',
-                  stiffness: 200,
-                }}
-                className="absolute top-8 left-0 lg:-left-4 bg-white rounded-lg shadow-2xl flex items-center gap-2.5 z-20"
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.1, type: 'spring', stiffness: 200 }}
+                className="absolute top-6 left-0 lg:-left-2 bg-white rounded-xl shadow-2xl flex items-center gap-2.5 z-20"
                 style={{ padding: '8px 14px' }}
               >
                 <div
                   className="w-9 h-9 rounded-full flex items-center justify-center text-white font-black flex-shrink-0"
-                  style={{
-                    fontSize: '11px',
-                    background: 'linear-gradient(135deg,#f0b830,#c88010)',
-                  }}
+                  style={{ fontSize: '11px', background: 'linear-gradient(135deg,#f5be30,#c88010)' }}
                 >
                   10+
                 </div>
                 <div>
-                  <div
-                    className="font-black text-[#0b1d6e] leading-tight"
-                    style={{ fontSize: '11px' }}
-                  >
-                    Years
-                  </div>
-                  <div className="text-gray-500 leading-tight" style={{ fontSize: '9px' }}>
-                    Manufacturing
-                  </div>
+                  <div className="font-black text-[#0d2080] leading-tight" style={{ fontSize: '11px' }}>Years</div>
+                  <div className="text-gray-400 leading-tight" style={{ fontSize: '9px' }}>Manufacturing</div>
                 </div>
               </motion.div>
 
-              {/* Floating badge — ISO Quality */}
+              {/* Badge — ISO Quality */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.7, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  delay: 1.45,
-                  duration: 0.45,
-                  type: 'spring',
-                  stiffness: 200,
-                }}
-                className="absolute bottom-24 right-0 lg:-right-4 bg-white rounded-lg shadow-2xl flex items-center gap-2.5 z-20"
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.4, type: 'spring', stiffness: 200 }}
+                className="absolute bottom-20 right-0 lg:-right-2 bg-white rounded-xl shadow-2xl flex items-center gap-2.5 z-20"
                 style={{ padding: '8px 14px' }}
               >
                 <div
                   className="w-9 h-9 rounded-full flex items-center justify-center text-white font-black flex-shrink-0"
-                  style={{ fontSize: '14px', background: '#0a2878' }}
+                  style={{ fontSize: '15px', background: '#0d2080' }}
                 >
                   ✓
                 </div>
                 <div>
-                  <div
-                    className="font-black text-[#0b1d6e] leading-tight"
-                    style={{ fontSize: '11px' }}
-                  >
-                    ISO Quality
-                  </div>
-                  <div className="text-gray-500 leading-tight" style={{ fontSize: '9px' }}>
-                    Assured Products
-                  </div>
+                  <div className="font-black text-[#0d2080] leading-tight" style={{ fontSize: '11px' }}>ISO Quality</div>
+                  <div className="text-gray-400 leading-tight" style={{ fontSize: '9px' }}>Assured Products</div>
                 </div>
               </motion.div>
             </motion.div>
           </motion.div>
+
         </div>
       </div>
-
-      {/* Bottom fade to white */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, white, transparent)' }}
-      />
+      {/* NO bottom fade — clean edge to next section */}
     </section>
   );
 }
