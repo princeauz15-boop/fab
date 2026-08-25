@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" width="560" height="500">
+
+  <!-- ── DESK ── -->
+  <rect x="60" y="340" width="380" height="12" rx="4" fill="#f0ece4" stroke="#d0c8b8" stroke-width="1.5"/>
+  <rect x="75" y="352" width="14" height="80" rx="3" fill="#d8d0c0"/>
+  <rect x="410" y="352" width="14" height="80" rx="3" fill="#d8d0c0"/>
+
+  <!-- ── LAPTOP ── -->
+  <g transform="translate(85,258)">
+    <!-- Screen -->
+    <rect x="0" y="0" width="130" height="85" rx="6" fill="#2a2a2a"/>
+    <rect x="4" y="4" width="122" height="77" rx="4" fill="#6aaeff"/>
+    <!-- Screen content -->
+    <rect x="10" y="14" width="80" height="5" rx="2" fill="white" opacity="0.7"/>
+    <rect x="10" y="24" width="60" height="4" rx="2" fill="white" opacity="0.4"/>
+    <rect x="10" y="33" width="70" height="4" rx="2" fill="white" opacity="0.4"/>
+    <circle cx="95" cy="42" r="15" fill="white" opacity="0.15"/>
+    <!-- Webcam dot -->
+    <circle cx="65" cy="5" r="2" fill="#555"/>
+    <!-- Base -->
+    <path d="M0,85 L-15,92 L145,92 L130,85 Z" fill="#3a3a3a"/>
+  </g>
+
+  <!-- ── DESK ITEMS (pencils + plant) ── -->
+  <!-- Pencil cup -->
+  <rect x="400" y="308" width="26" height="34" rx="3" fill="white" stroke="#ddd" stroke-width="1"/>
+  <!-- Pencils -->
+  <rect x="405" y="294" width="4" height="20" rx="2" fill="#f5c000"/>
+  <polygon points="405,294 409,294 407,288" fill="#f0a000"/>
+  <rect x="411" y="290" width="4" height="24" rx="2" fill="#e06060"/>
+  <polygon points="411,290 415,290 413,284" fill="#c04040"/>
+  <rect x="417" y="296" width="4" height="18" rx="2" fill="#60b060"/>
+  <polygon points="417,296 421,296 419,290" fill="#408040"/>
+  <!-- Small plant -->
+  <rect x="432" y="316" width="20" height="26" rx="3" fill="white" stroke="#ddd" stroke-width="1"/>
+  <ellipse cx="436" cy="310" rx="7" ry="10" fill="#3a9a3a" transform="rotate(-20, 436, 310)"/>
+  <ellipse cx="448" cy="308" rx="7" ry="10" fill="#2a8a2a" transform="rotate(15, 448, 308)"/>
+  <rect x="441" y="312" width="3" height="8" fill="#5a3a1a"/>
+
+  <!-- ── CHAIR ── -->
+  <!-- Chair back -->
+  <rect x="200" y="278" width="120" height="110" rx="10" fill="#2255aa"/>
+  <rect x="208" y="286" width="104" height="94" rx="7" fill="#2a60c0"/>
+  <!-- Chair seat -->
+  <rect x="190" y="348" width="140" height="25" rx="8" fill="#2255aa"/>
+  <!-- Chair post -->
+  <rect x="248" y="373" width="24" height="35" fill="#1a3a7a"/>
+  <!-- Chair base star -->
+  <ellipse cx="260" cy="415" rx="50" ry="10" fill="#1a3a7a"/>
+  <rect x="215" y="408" width="90" height="8" rx="4" fill="#1a3a7a"/>
+  <rect x="234" y="405" width="52" height="8" rx="4" fill="#1a3a7a" transform="rotate(90,260,409)"/>
+  <!-- Wheels -->
+  <circle cx="220" cy="422" r="8" fill="#222"/>
+  <circle cx="300" cy="422" r="8" fill="#222"/>
+  <circle cx="260" cy="428" r="8" fill="#222"/>
+
+  <!-- ── PERSON BODY (blue shirt) ── -->
+  <!-- Torso -->
+  <path d="M188,295 Q165,330 170,370 L350,370 Q355,330 332,295 Q305,310 260,312 Q215,310 188,295 Z" fill="#3377cc"/>
+  <!-- Shirt collar V -->
+  <path d="M245,288 L260,310 L275,288" fill="#f0d0b0" stroke="#ddb890" stroke-width="1"/>
+  <!-- White stripe on pants -->
+  <rect x="238" y="360" width="6" height="30" rx="2" fill="white" opacity="0.4"/>
+  <rect x="276" y="360" width="6" height="30" rx="2" fill="white" opacity="0.4"/>
+
+  <!-- ── NECK ── -->
+  <rect x="248" y="258" width="24" height="32" rx="8" fill="#f0c890"/>
+
+  <!-- ── HEAD ── -->
+  <ellipse cx="260" cy="232" rx="46" ry="50" fill="#f0c890"/>
+
+  <!-- ── HAIR (dark navy) ── -->
+  <path d="M214,218 Q218,172 260,168 Q302,172 306,218 Q298,196 260,192 Q222,196 214,218 Z" fill="#1a2040"/>
+  <!-- Hair side sweep -->
+  <path d="M214,218 Q210,208 212,195 Q216,178 225,172" stroke="#1a2040" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M306,218 Q310,208 308,195 Q304,178 295,172" stroke="#1a2040" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <!-- Front hair tuft -->
+  <path d="M235,172 Q260,162 285,172 Q270,168 260,170 Q250,168 235,172" fill="#1a2040"/>
+
+  <!-- ── FACE FEATURES ── -->
+  <!-- Eyes white -->
+  <ellipse cx="244" cy="230" rx="9" ry="10" fill="white"/>
+  <ellipse cx="276" cy="230" rx="9" ry="10" fill="white"/>
+  <!-- Iris -->
+  <circle cx="245" cy="231" r="6" fill="#1a2040"/>
+  <circle cx="277" cy="231" r="6" fill="#1a2040"/>
+  <!-- Pupils -->
+  <circle cx="246" cy="232" r="3" fill="#0a0a20"/>
+  <circle cx="278" cy="232" r="3" fill="#0a0a20"/>
+  <!-- Eye shine -->
+  <circle cx="248" cy="229" r="2" fill="white"/>
+  <circle cx="280" cy="229" r="2" fill="white"/>
+  <!-- Eyebrows raised happy -->
+  <path d="M235,219 Q244,213 253,218" stroke="#1a2040" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M267,218 Q276,213 285,219" stroke="#1a2040" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Big smile -->
+  <path d="M244,248 Q260,262 276,248" stroke="#c06030" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Smile teeth hint -->
+  <path d="M247,250 Q260,260 273,250" fill="white" stroke="#e8a870" stroke-width="0.5"/>
+  <!-- Rosy cheeks -->
+  <ellipse cx="228" cy="245" rx="10" ry="7" fill="#f08060" opacity="0.3"/>
+  <ellipse cx="292" cy="245" rx="10" ry="7" fill="#f08060" opacity="0.3"/>
+  <!-- Ear -->
+  <ellipse cx="214" cy="234" rx="9" ry="13" fill="#f0c890"/>
+  <ellipse cx="306" cy="234" rx="9" ry="13" fill="#f0c890"/>
+
+  <!-- ── LEFT ARM raising paper tubes ── -->
+  <!-- Upper arm -->
+  <path d="M190,295 Q158,270 135,235 Q122,215 128,195" stroke="#3377cc" stroke-width="30" fill="none" stroke-linecap="round"/>
+  <!-- Forearm skin -->
+  <path d="M132,200 Q125,188 122,175" stroke="#f0c890" stroke-width="22" fill="none" stroke-linecap="round"/>
+  <!-- Hand -->
+  <ellipse cx="122" cy="168" rx="18" ry="16" fill="#f0c890"/>
+  <!-- Fingers gripping tubes -->
+  <rect x="112" y="152" width="8" height="20" rx="4" fill="#f0c890"/>
+  <rect x="122" y="150" width="8" height="22" rx="4" fill="#f0c890"/>
+  <rect x="132" y="152" width="8" height="20" rx="4" fill="#f0c890"/>
+
+  <!-- ── BROWN PAPER TUBES BUNDLE ── -->
+  <g transform="translate(80, 30) rotate(-12, 120, 165)">
+    <!-- Back row tubes -->
+    <ellipse cx="108" cy="72" rx="7" ry="4" fill="#7a5030"/>
+    <rect x="101" y="72" width="14" height="95" fill="#9a6840"/>
+    <ellipse cx="108" cy="167" rx="7" ry="4" fill="#6a4020"/>
+
+    <ellipse cx="122" cy="68" rx="7" ry="4" fill="#8a5828"/>
+    <rect x="115" y="68" width="14" height="99" fill="#b07848"/>
+    <ellipse cx="122" cy="167" rx="7" ry="4" fill="#7a4818"/>
+
+    <ellipse cx="136" cy="70" rx="7" ry="4" fill="#7a5030"/>
+    <rect x="129" y="70" width="14" height="97" fill="#9a6840"/>
+    <ellipse cx="136" cy="167" rx="7" ry="4" fill="#6a4020"/>
+
+    <!-- Middle row tubes -->
+    <ellipse cx="115" cy="62" rx="7" ry="4" fill="#c08848"/>
+    <rect x="108" y="62" width="14" height="105" fill="#d09858"/>
+    <ellipse cx="115" cy="167" rx="7" ry="4" fill="#b07838"/>
+
+    <ellipse cx="129" cy="60" rx="7" ry="4" fill="#8a5828"/>
+    <rect x="122" y="60" width="14" height="107" fill="#b07848"/>
+    <ellipse cx="129" cy="167" rx="7" ry="4" fill="#7a4818"/>
+
+    <!-- Front center tube highlighted -->
+    <ellipse cx="122" cy="55" rx="7" ry="4" fill="#e0a868"/>
+    <rect x="115" y="55" width="14" height="112" fill="#d89858"/>
+    <ellipse cx="122" cy="167" rx="7" ry="4" fill="#c08848"/>
+
+    <!-- Tube ends top (brown hollow circles) -->
+    <ellipse cx="108" cy="72" rx="5" ry="2.5" fill="#3a1a08"/>
+    <ellipse cx="122" cy="68" rx="5" ry="2.5" fill="#3a1a08"/>
+    <ellipse cx="136" cy="70" rx="5" ry="2.5" fill="#3a1a08"/>
+    <ellipse cx="115" cy="62" rx="5" ry="2.5" fill="#3a1a08"/>
+    <ellipse cx="129" cy="60" rx="5" ry="2.5" fill="#3a1a08"/>
+    <ellipse cx="122" cy="55" rx="5" ry="2.5" fill="#3a1a08"/>
+  </g>
+
+  <!-- ── SPARKLE / ATTENTION MARKS ── -->
+  <!-- Gold sparkles near tubes -->
+  <g fill="none" stroke="#f5a800" stroke-width="3" stroke-linecap="round">
+    <line x1="62" y1="95" x2="52" y2="82"/>
+    <line x1="55" y1="98" x2="40" y2="95"/>
+    <line x1="60" y1="108" x2="46" y2="112"/>
+  </g>
+  <!-- Blue sparkles -->
+  <g fill="none" stroke="#3388ff" stroke-width="2.5" stroke-linecap="round">
+    <line x1="182" y1="88" x2="192" y2="76"/>
+    <line x1="188" y1="82" x2="202" y2="80"/>
+  </g>
+
+  <!-- ── RIGHT ARM pointing ── -->
+  <path d="M332,295 Q362,278 388,262 Q402,254 412,248" stroke="#3377cc" stroke-width="28" fill="none" stroke-linecap="round"/>
+  <!-- Right hand -->
+  <ellipse cx="418" cy="244" rx="17" ry="15" fill="#f0c890"/>
+  <!-- Pointing finger extended -->
+  <path d="M428,238 Q446,228 455,222" stroke="#f0c890" stroke-width="10" fill="none" stroke-linecap="round"/>
+
+  <!-- ── LEGS (dark navy pants) ── -->
+  <path d="M195,368 L178,440 L205,440 L228,380" fill="#1a2a5a"/>
+  <path d="M325,368 L342,440 L315,440 L292,380" fill="#1a2a5a"/>
+
+  <!-- White stripe on pants (Adidas-like) -->
+  <path d="M183,380 L178,415" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M330,380 L338,415" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- ── SHOES ── -->
+  <!-- Left shoe -->
+  <path d="M175,436 Q162,450 160,456 L215,456 L215,440 Q198,436 175,436 Z" fill="#1a1a38"/>
+  <path d="M162,453 L213,453" stroke="white" stroke-width="1.5" opacity="0.4"/>
+  <!-- Right shoe -->
+  <path d="M345,436 Q358,450 360,456 L305,456 L305,440 Q322,436 345,436 Z" fill="#1a1a38"/>
+  <path d="M358,453 L307,453" stroke="white" stroke-width="1.5" opacity="0.4"/>
+</svg>

@@ -2,174 +2,138 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Phone, ArrowRight } from 'lucide-react';
+import { Menu, X, Phone, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Products', href: '/products' },
-  { label: 'Applications', href: '/applications' },
-  { label: 'Why Choose Us', href: '/why-choose-us' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'HOME', href: '/' },
+  { label: 'ABOUT US', href: '/about' },
+  { label: 'WHY US?', href: '/why-choose-us' },
+  { label: 'PRODUCTS', href: '/products' },
+  { label: 'CONTACT US', href: '/contact' },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-
-  // Determine if we're on the home page for transparent header
   const isHome = pathname === '/';
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const fn = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
 
-  const headerScrolled = scrolled || !isHome;
-
+  /* Header is always white/solid — matching screenshot */
   return (
     <>
       <motion.header
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-400',
-          headerScrolled
-            ? 'bg-white shadow-[0_1px_20px_rgba(0,0,0,0.08)] py-3'
-            : 'bg-transparent py-5'
+          'fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300',
+          scrolled
+            ? 'shadow-[0_2px_24px_rgba(0,0,0,0.12)] py-2'
+            : 'shadow-[0_1px_8px_rgba(0,0,0,0.07)] py-2.5'
         )}
       >
         <div className="container-custom flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group" aria-label="FAB Paper Tube Home">
+
+          {/* ── LOGO ── */}
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label="FAB Paper Tube Home">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-center gap-3"
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className={cn('relative transition-all duration-300', scrolled ? 'w-12 h-12' : 'w-14 h-14')}
             >
-              {/* Logo Mark */}
-              <div className="w-9 h-9 bg-[#c8922a] flex items-center justify-center rounded-sm flex-shrink-0">
-                <span className="text-white font-black text-lg leading-none">F</span>
-              </div>
-              <div className="flex flex-col">
-                <span
-                  className={cn(
-                    'font-black text-base leading-none tracking-tight transition-colors duration-300',
-                    headerScrolled ? 'text-[#1a1a1a]' : 'text-white'
-                  )}
-                >
-                  FAB PAPER TUBE
-                </span>
-                <span
-                  className={cn(
-                    'text-[10px] font-medium tracking-[0.15em] uppercase transition-colors duration-300',
-                    headerScrolled ? 'text-[#c8922a]' : 'text-[#c8922a]'
-                  )}
-                >
-                  Since 2013
-                </span>
-              </div>
+              <Image
+                src="/images/fab-logo.svg"
+                alt="FAB Paper Tube Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </motion.div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
-            {navItems.map((item, i) => (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
-              >
-                <Link
-                  href={item.href}
-                  className={cn(
-                    'relative px-3 py-2 text-sm font-medium transition-colors duration-200 group',
-                    headerScrolled ? 'text-[#1a1a1a]' : 'text-white',
-                    pathname === item.href && 'text-[#c8922a]'
-                  )}
+          {/* ── DESKTOP NAV — matches screenshot exactly ── */}
+          <nav className="hidden lg:flex items-center gap-0" aria-label="Main navigation">
+            {navItems.map((item, i) => {
+              const active = pathname === item.href;
+              return (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + i * 0.05 }}
                 >
-                  {item.label}
-                  <span
+                  <Link
+                    href={item.href}
                     className={cn(
-                      'absolute bottom-0 left-3 right-3 h-0.5 bg-[#c8922a] transition-all duration-300 origin-left',
-                      pathname === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                      'relative px-4 py-2.5 text-[13px] font-bold tracking-wide transition-colors duration-200',
+                      active
+                        ? 'text-[#1a4a9e]'
+                        : 'text-[#1a1a1a] hover:text-[#1a4a9e]'
                     )}
-                  />
-                </Link>
-              </motion.div>
-            ))}
+                  >
+                    {item.label}
+                    {active && (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#1a4a9e] rounded-full"
+                      />
+                    )}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </nav>
 
-          {/* Desktop CTA */}
+          {/* ── DESKTOP CTA ── */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
+            transition={{ delay: 0.35, duration: 0.45 }}
             className="hidden lg:flex items-center gap-3"
           >
             <a
               href="tel:+918238074700"
-              className={cn(
-                'flex items-center gap-1.5 text-sm font-medium transition-colors duration-200',
-                headerScrolled ? 'text-[#6b6b6b] hover:text-[#1a1a1a]' : 'text-white/80 hover:text-white'
-              )}
+              className="flex items-center gap-1.5 text-sm font-medium text-[#6b6b6b] hover:text-[#1a4a9e] transition-colors"
             >
-              <Phone size={14} />
+              <Phone size={14} className="text-[#1a4a9e]" />
               <span>+91 82380 74700</span>
             </a>
             <Link
               href="/contact"
-              className="bg-[#c8922a] text-white text-sm font-semibold px-5 py-2.5 rounded-sm hover:bg-[#a67520] transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg flex items-center gap-2 group"
+              className="bg-[#1a4a9e] text-white text-[13px] font-bold px-5 py-2.5 rounded-sm hover:bg-[#0d2b6b] transition-all duration-300 flex items-center gap-1.5 group shadow-md"
             >
               Get a Quote
-              <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </motion.div>
 
-          {/* Mobile Menu Toggle */}
+          {/* ── MOBILE TOGGLE ── */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className={cn(
-              'lg:hidden p-2 rounded transition-colors duration-200',
-              headerScrolled
-                ? 'text-[#1a1a1a] hover:bg-gray-100'
-                : 'text-white hover:bg-white/10'
-            )}
+            className="lg:hidden p-2 rounded text-[#1a1a1a] hover:bg-gray-100 transition-colors"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
           >
             <AnimatePresence mode="wait">
               {mobileOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
+                <motion.div key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18 }}>
                   <X size={22} />
                 </motion.div>
               ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
+                <motion.div key="m" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.18 }}>
                   <Menu size={22} />
                 </motion.div>
               )}
@@ -178,87 +142,55 @@ export default function Header() {
         </div>
       </motion.header>
 
-      {/* Mobile Menu Overlay */}
+      {/* ── MOBILE MENU ── */}
       <AnimatePresence>
         {mobileOpen && (
           <>
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/40 z-40 lg:hidden"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[90vw] bg-white z-50 flex flex-col shadow-2xl"
+              initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-0 right-0 bottom-0 w-72 bg-white z-50 flex flex-col shadow-2xl"
             >
-              {/* Mobile Header */}
-              <div className="flex items-center justify-between p-5 border-b border-[#e5e5e5]">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-[#c8922a] flex items-center justify-center rounded-sm">
-                    <span className="text-white font-black text-base leading-none">F</span>
-                  </div>
-                  <div>
-                    <div className="font-black text-sm text-[#1a1a1a]">FAB PAPER TUBE</div>
-                    <div className="text-[9px] font-medium tracking-widest uppercase text-[#c8922a]">Since 2013</div>
-                  </div>
+              {/* Mobile logo */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-100">
+                <div className="relative w-11 h-11">
+                  <Image src="/images/fab-logo.svg" alt="FAB Paper Tube" fill className="object-contain" />
                 </div>
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="p-1.5 rounded hover:bg-gray-100 transition-colors"
-                  aria-label="Close menu"
-                >
-                  <X size={20} className="text-[#1a1a1a]" />
+                <button onClick={() => setMobileOpen(false)} className="p-1.5 rounded hover:bg-gray-100">
+                  <X size={20} />
                 </button>
               </div>
 
-              {/* Mobile Nav Links */}
-              <nav className="flex-1 overflow-y-auto py-4" aria-label="Mobile navigation">
+              {/* Mobile nav */}
+              <nav className="flex-1 overflow-y-auto py-2">
                 {navItems.map((item, i) => (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 + 0.1 }}
-                  >
+                  <motion.div key={item.href} initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.05 + 0.08 }}>
                     <Link
                       href={item.href}
                       className={cn(
-                        'flex items-center justify-between px-5 py-3.5 text-sm font-medium border-b border-[#f5f5f5] transition-colors duration-200',
-                        pathname === item.href
-                          ? 'text-[#c8922a] bg-[#c8922a]/5'
-                          : 'text-[#1a1a1a] hover:text-[#c8922a] hover:bg-[#f5f5f5]'
+                        'flex items-center justify-between px-5 py-3.5 text-sm font-bold border-b border-gray-50 transition-colors',
+                        pathname === item.href ? 'text-[#1a4a9e] bg-blue-50' : 'text-[#1a1a1a] hover:text-[#1a4a9e] hover:bg-gray-50'
                       )}
                     >
                       {item.label}
-                      {pathname === item.href && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#c8922a]" />
-                      )}
+                      {pathname === item.href && <span className="w-1.5 h-1.5 rounded-full bg-[#1a4a9e]" />}
                     </Link>
                   </motion.div>
                 ))}
               </nav>
 
               {/* Mobile CTA */}
-              <div className="p-5 border-t border-[#e5e5e5] space-y-3">
-                <a
-                  href="tel:+918238074700"
-                  className="flex items-center gap-2 text-sm text-[#6b6b6b] hover:text-[#1a1a1a] transition-colors"
-                >
-                  <Phone size={14} className="text-[#c8922a]" />
-                  +91 82380 74700
+              <div className="p-4 border-t border-gray-100 space-y-3">
+                <a href="tel:+918238074700" className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#1a4a9e]">
+                  <Phone size={13} className="text-[#1a4a9e]" /> +91 82380 74700
                 </a>
-                <Link
-                  href="/contact"
-                  className="w-full bg-[#c8922a] text-white text-sm font-semibold px-5 py-3 rounded-sm hover:bg-[#a67520] transition-colors flex items-center justify-center gap-2"
-                >
-                  Get a Quote
-                  <ArrowRight size={14} />
+                <Link href="/contact" className="w-full bg-[#1a4a9e] text-white text-sm font-bold py-3 rounded-sm flex items-center justify-center gap-2 hover:bg-[#0d2b6b] transition-colors">
+                  Get a Quote <ArrowRight size={13} />
                 </Link>
               </div>
             </motion.div>

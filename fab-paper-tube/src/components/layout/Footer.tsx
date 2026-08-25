@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, ArrowRight, ExternalLink } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import { staggerContainer, fadeUp, viewportConfig } from '@/lib/animations';
 
 const quickLinks = [
@@ -52,8 +53,13 @@ export default function Footer() {
           <motion.div variants={fadeUp} className="lg:col-span-1">
             {/* Logo */}
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 bg-[#c8922a] flex items-center justify-center rounded-sm flex-shrink-0">
-                <span className="text-white font-black text-xl leading-none">F</span>
+              <div className="relative w-12 h-12 flex-shrink-0">
+                <Image
+                  src="/images/fab-logo.svg"
+                  alt="FAB Paper Tube Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div>
                 <div className="font-black text-base text-white">FAB PAPER TUBE</div>
