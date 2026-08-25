@@ -59,7 +59,7 @@ export default function Header() {
               )}
             >
               <Image
-                src="/images/fab-logo.svg"
+                src="/images/fab-logo.png"
                 alt="FAB Paper Tube Logo"
                 fill
                 className="object-contain"
@@ -178,7 +178,7 @@ export default function Header() {
               {/* mobile logo */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
                 <div className="relative w-12 h-12">
-                  <Image src="/images/fab-logo.svg" alt="FAB Paper Tube" fill className="object-contain" />
+                  <Image src="/images/fab-logo.png" alt="FAB Paper Tube" fill className="object-contain" />
                 </div>
                 <button onClick={() => setMobileOpen(false)} className="p-1.5 rounded hover:bg-gray-100" aria-label="Close">
                   <X size={20} />

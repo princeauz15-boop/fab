@@ -55,7 +55,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-5">
               <div className="relative w-12 h-12 flex-shrink-0">
                 <Image
-                  src="/images/fab-logo.svg"
+                  src="/images/fab-logo.png"
                   alt="FAB Paper Tube Logo"
                   fill
                   className="object-contain"
