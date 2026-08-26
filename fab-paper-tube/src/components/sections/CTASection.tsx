@@ -137,85 +137,26 @@ export default function CTASection() {
             </motion.div>
           </motion.div>
 
-          {/* ── Right: Highlight card ── */}
+          {/* ── Right: Product image ── */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
             variants={slideRight}
+            className="relative"
           >
             <div
-              className="rounded-2xl overflow-hidden"
-              style={{
-                background: 'linear-gradient(155deg, #0d2240 0%, #1a4a9e 100%)',
-                boxShadow: '0 20px 60px rgba(26,74,158,0.22)',
-              }}
+              className="relative rounded-2xl overflow-hidden"
+              style={{ boxShadow: '0 20px 60px rgba(26,74,158,0.15)' }}
             >
-              {/* Card top accent */}
-              <div
-                className="h-[4px] w-full"
-                style={{
-                  background: 'linear-gradient(90deg, #c8922a, #e0a83b, #c8922a)',
-                }}
+              <Image
+                src="/images/Right_Paper_Tube.png"
+                alt="FAB Paper Tube products"
+                width={600}
+                height={440}
+                className="w-full h-auto object-cover"
+                style={{ display: 'block' }}
               />
-
-              <div className="p-8 md:p-10">
-                {/* Card heading */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: 'rgba(200,146,42,0.18)' }}
-                  >
-                    <Zap size={20} style={{ color: '#e0a83b' }} />
-                  </div>
-                  <div>
-                    <div className="font-black text-white text-lg leading-tight">Quick Response</div>
-                    <div className="text-sm" style={{ color: 'rgba(180,210,255,0.65)' }}>We reply within 24 hours</div>
-                  </div>
-                </div>
-
-                {/* Stat row */}
-                <div className="grid grid-cols-3 gap-4 mb-8 py-6 border-y" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-                  {[
-                    { value: '10+', label: 'Years' },
-                    { value: '500+', label: 'Clients' },
-                    { value: '100%', label: 'Quality' },
-                  ].map((s) => (
-                    <div key={s.label} className="text-center">
-                      <div
-                        className="font-black text-white leading-none mb-1"
-                        style={{ fontSize: '1.6rem' }}
-                      >
-                        {s.value}
-                      </div>
-                      <div className="text-xs font-medium" style={{ color: 'rgba(180,210,255,0.60)' }}>
-                        {s.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center gap-1.5 font-medium"
-                      style={{
-                        color: 'rgba(200,218,245,0.80)',
-                        border: '1px solid rgba(255,255,255,0.12)',
-                        borderRadius: '999px',
-                        padding: '5px 14px',
-                        fontSize: '12px',
-                        background: 'rgba(255,255,255,0.05)',
-                      }}
-                    >
-                      <CheckCircle2 size={10} style={{ color: '#e0a83b' }} />
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </div>
           </motion.div>
 
