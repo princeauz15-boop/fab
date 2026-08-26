@@ -93,25 +93,54 @@ export default function WhyChooseUsPageClient() {
       />
 
       {/* Quick differentiators */}
-      <section className="py-10 bg-white border-b border-[#e5e5e5]">
+      <section className="bg-white border-b border-[#e5e5e5]" style={{ padding: '0' }}>
         <div className="container-custom">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
             variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-5"
+            className="grid grid-cols-2 md:grid-cols-4"
           >
             {differentiators.map((d, i) => {
               const Icon = d.icon;
+              const colors = ['#1a4a9e', '#c8922a', '#1a4a9e', '#c8922a'];
+              const color = colors[i];
               return (
-                <motion.div key={d.title} variants={fadeUp} custom={i} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(30,78,118,0.10)' }}>
-                    <Icon size={18} style={{ color: '#1E4E76' }} />
+                <motion.div
+                  key={d.title}
+                  variants={fadeUp}
+                  custom={i}
+                  className="group relative flex flex-col items-center text-center px-6 py-8 cursor-default"
+                  style={{
+                    borderRight: i < 3 ? '1px solid #e8edf5' : 'none',
+                  }}
+                >
+                  {/* Top color bar */}
+                  <div
+                    className="absolute top-0 left-6 right-6 h-[3px] rounded-b-full transition-all duration-300 group-hover:left-0 group-hover:right-0"
+                    style={{ background: color }}
+                  />
+
+                  {/* Icon circle */}
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
+                    style={{
+                      background: `${color}12`,
+                      border: `1.5px solid ${color}25`,
+                    }}
+                  >
+                    <Icon size={22} style={{ color }} />
                   </div>
-                  <div>
-                    <div className="font-bold text-[#1a1a1a] text-sm">{d.title}</div>
-                    <div className="text-xs text-[#9a9a9a]">{d.description}</div>
+
+                  <div
+                    className="font-black text-[#0d1f3c] text-base mb-1 leading-tight transition-colors duration-200"
+                    style={{ color: '#0d1f3c' }}
+                  >
+                    {d.title}
+                  </div>
+                  <div className="text-xs leading-snug" style={{ color: '#7a8aaa' }}>
+                    {d.description}
                   </div>
                 </motion.div>
               );
