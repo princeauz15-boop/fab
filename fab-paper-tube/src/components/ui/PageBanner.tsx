@@ -50,7 +50,7 @@ export default function PageBanner({
       {/* ── Real product photo as background ── */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/1 product.jpeg"
+          src="/images/banner section All pages1.jpeg"
           alt=""
           fill
           priority
