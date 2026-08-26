@@ -81,50 +81,13 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 export default function ProductsPageClient({ products }: Props) {
   return (
     <div className="pt-20">
-      {/* Page Header */}
-      <section className="bg-[#0f0f0f] relative overflow-hidden py-20 md:py-28">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(200,146,42,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,146,42,1) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
-        <div className="container-custom relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.1 } },
-            }}
-            className="max-w-2xl"
-          >
-            <motion.div
-              variants={fadeUp}
-              className="flex items-center gap-3 mb-4"
-            >
-              <span className="w-8 h-0.5 bg-[#c8922a]" />
-              <span className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase">What We Make</span>
-            </motion.div>
-            <motion.h1
-              variants={fadeUp}
-              className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight mb-4"
-            >
-              Our Paper Tube{' '}
-              <span className="text-[#c8922a]">Products</span>
-            </motion.h1>
-            <motion.p variants={fadeUp} className="text-gray-400 text-base md:text-lg leading-relaxed">
-              Reliable paper tube solutions for textile, packaging, cracker, candle and industrial applications. All manufactured to your specific requirements.
-            </motion.p>
-            <motion.nav variants={fadeUp} aria-label="Breadcrumb" className="flex items-center gap-2 mt-6 text-xs text-gray-600">
-              <Link href="/" className="hover:text-[#c8922a] transition-colors">Home</Link>
-              <span>/</span>
-              <span className="text-gray-400">Products</span>
-            </motion.nav>
-          </motion.div>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="What We Make"
+        title="Our Paper Tube Products"
+        highlight="Products"
+        description="Reliable paper tube solutions for textile, packaging, cracker, candle and industrial applications. All manufactured to your specific requirements."
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Products' }]}
+      />
 
       {/* Products Grid */}
       <section className="section-padding bg-[#f5f4f0]">
