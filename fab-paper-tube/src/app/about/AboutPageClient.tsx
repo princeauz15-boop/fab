@@ -191,146 +191,136 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* Manufacturing Process — Horizontal Timeline Design */}
-      <section className="section-padding" style={{ background: 'linear-gradient(160deg, #1a3d60 0%, #1E4E76 50%, #1a3d60 100%)' }}>
+      {/* ══ Manufacturing Process — Clean Premium Design ══ */}
+      <section className="section-padding" style={{ background: '#f0f5ff' }}>
         <div className="container-custom">
 
           {/* Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-14">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportConfig}
-              className="inline-flex items-center gap-3 mb-5"
+              className="inline-flex items-center gap-3 mb-4"
             >
-              <span className="block h-[2px] w-10 rounded" style={{ background: '#4db8ff' }} />
-              <span className="font-bold tracking-[0.25em] uppercase" style={{ color: '#4db8ff', fontSize: '13px' }}>
+              <span className="block h-[2px] w-10 rounded" style={{ background: '#1E4E76' }} />
+              <span className="font-bold tracking-[0.22em] uppercase" style={{ color: '#1E4E76', fontSize: '12px' }}>
                 How We Work
               </span>
-              <span className="block h-[2px] w-10 rounded" style={{ background: '#4db8ff' }} />
+              <span className="block h-[2px] w-10 rounded" style={{ background: '#1E4E76' }} />
             </motion.div>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportConfig}
-              transition={{ delay: 0.1 }}
-              className="font-black text-white mb-4"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.15 }}
+              transition={{ delay: 0.08 }}
+              className="font-black mb-3"
+              style={{ color: '#0d2a4a', fontSize: 'clamp(1.9rem, 3.8vw, 2.9rem)', lineHeight: 1.15 }}
             >
               Our Manufacturing Process
             </motion.h2>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportConfig}
-              transition={{ delay: 0.15 }}
-              className="max-w-lg mx-auto"
-              style={{ color: 'rgba(180,210,240,0.85)', fontSize: '16px', lineHeight: '1.7' }}
+              transition={{ delay: 0.14 }}
+              className="max-w-xl mx-auto"
+              style={{ color: '#4a6080', fontSize: '16px', lineHeight: '1.7' }}
             >
               From your requirement to final delivery — a structured and quality-focused approach.
             </motion.p>
           </div>
 
-          {/* Timeline Steps */}
+          {/* Steps — numbered vertical list with left accent */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
             variants={staggerContainer}
-            className="relative"
+            className="max-w-3xl mx-auto space-y-4"
           >
-            {/* Horizontal connector line — desktop only */}
-            <div className="hidden lg:block absolute top-[52px] left-0 right-0 h-[2px] z-0"
-              style={{ background: 'linear-gradient(90deg, transparent 4%, rgba(77,184,255,0.25) 20%, rgba(77,184,255,0.25) 80%, transparent 96%)' }}
-            />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4 relative z-10">
-              {processSteps.map((step, i) => {
-                const Icon = step.icon;
-                return (
-                  <motion.div
-                    key={step.number}
-                    variants={fadeUp}
-                    custom={i}
-                    className="process-step-card flex flex-col items-center text-center group cursor-default"
-                  >
-                    {/* Icon circle — hover turns gold #c8922a */}
+            {processSteps.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={step.number}
+                  variants={fadeUp}
+                  custom={i}
+                  className="proc-card flex items-start gap-5 p-6 rounded-xl bg-white cursor-default"
+                  style={{
+                    border: '1.5px solid #dde8f5',
+                    boxShadow: '0 2px 12px rgba(30,78,118,0.07)',
+                    transition: 'all 0.32s ease',
+                  }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.borderColor = '#c8922a';
+                    el.style.boxShadow = '0 8px 32px rgba(200,146,42,0.18)';
+                    el.style.transform = 'translateY(-3px)';
+                    const icon = el.querySelector('.proc-icon') as SVGElement | null;
+                    const iconWrap = el.querySelector('.proc-icon-wrap') as HTMLElement | null;
+                    const num = el.querySelector('.proc-num') as HTMLElement | null;
+                    if (icon) icon.style.color = '#c8922a';
+                    if (iconWrap) { iconWrap.style.background = 'rgba(200,146,42,0.12)'; iconWrap.style.borderColor = '#c8922a'; }
+                    if (num) num.style.color = '#c8922a';
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.borderColor = '#dde8f5';
+                    el.style.boxShadow = '0 2px 12px rgba(30,78,118,0.07)';
+                    el.style.transform = 'translateY(0)';
+                    const icon = el.querySelector('.proc-icon') as SVGElement | null;
+                    const iconWrap = el.querySelector('.proc-icon-wrap') as HTMLElement | null;
+                    const num = el.querySelector('.proc-num') as HTMLElement | null;
+                    if (icon) icon.style.color = '#1E4E76';
+                    if (iconWrap) { iconWrap.style.background = 'rgba(30,78,118,0.08)'; iconWrap.style.borderColor = 'rgba(30,78,118,0.18)'; }
+                    if (num) num.style.color = '#1E4E76';
+                  }}
+                >
+                  {/* Left: number + icon stacked */}
+                  <div className="flex flex-col items-center gap-2 flex-shrink-0" style={{ minWidth: '64px' }}>
+                    {/* Step number */}
+                    <span
+                      className="proc-num font-black leading-none transition-colors duration-300"
+                      style={{ fontSize: '2.2rem', color: '#1E4E76', lineHeight: 1 }}
+                    >
+                      {step.number}
+                    </span>
+                    {/* Icon circle */}
                     <div
-                      className="process-icon-wrap relative z-10 flex items-center justify-center rounded-full mb-5 transition-all duration-400"
+                      className="proc-icon-wrap flex items-center justify-center rounded-full transition-all duration-300"
                       style={{
-                        width: '104px',
-                        height: '104px',
-                        background: 'rgba(255,255,255,0.07)',
-                        border: '2px solid rgba(77,184,255,0.30)',
+                        width: '48px',
+                        height: '48px',
+                        background: 'rgba(30,78,118,0.08)',
+                        border: '1.5px solid rgba(30,78,118,0.18)',
                       }}
                     >
-                      {/* Inner circle */}
-                      <div
-                        className="process-icon-inner flex items-center justify-center rounded-full transition-all duration-400"
-                        style={{
-                          width: '72px',
-                          height: '72px',
-                          background: 'rgba(77,184,255,0.12)',
-                        }}
-                      >
-                        <Icon
-                          size={30}
-                          className="process-icon transition-all duration-400"
-                          style={{ color: '#4db8ff' }}
-                        />
-                      </div>
-
-                      {/* Step number badge */}
-                      <div
-                        className="absolute -top-2 -right-2 flex items-center justify-center rounded-full font-black transition-all duration-400"
-                        style={{
-                          width: '28px',
-                          height: '28px',
-                          background: '#1E4E76',
-                          border: '2px solid rgba(77,184,255,0.40)',
-                          fontSize: '11px',
-                          color: '#4db8ff',
-                        }}
-                      >
-                        {step.number}
-                      </div>
+                      <Icon
+                        size={22}
+                        className="proc-icon transition-colors duration-300"
+                        style={{ color: '#1E4E76' }}
+                      />
                     </div>
+                  </div>
 
-                    {/* Title */}
+                  {/* Right: content */}
+                  <div className="flex-1 pt-1">
                     <h3
-                      className="font-black mb-2 transition-colors duration-300"
-                      style={{ color: '#ffffff', fontSize: '15px', lineHeight: '1.3' }}
+                      className="font-black mb-1.5"
+                      style={{ color: '#0d2a4a', fontSize: '17px', lineHeight: '1.3' }}
                     >
                       {step.title}
                     </h3>
-
-                    {/* Description */}
-                    <p style={{ color: 'rgba(180,215,245,0.75)', fontSize: '13px', lineHeight: '1.6' }}>
+                    <p style={{ color: '#5a7090', fontSize: '14px', lineHeight: '1.65' }}>
                       {step.description}
                     </p>
-                  </motion.div>
-                );
-              })}
-            </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
-
-        {/* Hover styles via style tag */}
-        <style>{`
-          .process-step-card:hover .process-icon-wrap {
-            border-color: #c8922a;
-            box-shadow: 0 0 28px rgba(200,146,42,0.35);
-          }
-          .process-step-card:hover .process-icon-inner {
-            background: rgba(200,146,42,0.18);
-          }
-          .process-step-card:hover .process-icon {
-            color: #c8922a !important;
-          }
-          .process-step-card:hover h3 {
-            color: #f5be30 !important;
-          }
-        `}</style>
       </section>
 
       {/* CTA */}

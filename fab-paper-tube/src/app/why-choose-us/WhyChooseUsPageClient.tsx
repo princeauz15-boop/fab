@@ -106,8 +106,8 @@ export default function WhyChooseUsPageClient() {
               const Icon = d.icon;
               return (
                 <motion.div key={d.title} variants={fadeUp} custom={i} className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#c8922a]/10 rounded flex items-center justify-center flex-shrink-0">
-                    <Icon size={18} className="text-[#c8922a]" />
+                  <div className="w-10 h-10 rounded flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(30,78,118,0.10)' }}>
+                    <Icon size={18} style={{ color: '#1E4E76' }} />
                   </div>
                   <div>
                     <div className="font-bold text-[#1a1a1a] text-sm">{d.title}</div>
@@ -141,7 +141,7 @@ export default function WhyChooseUsPageClient() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={viewportConfig}
                   transition={{ duration: 0.6, delay: i * 0.05 }}
-                  className="bg-white rounded border border-[#e5e5e5] p-6 md:p-8 relative overflow-hidden group hover:border-[#c8922a]/30 hover:shadow-md transition-all duration-300"
+                  className="bg-white rounded border border-[#e5e5e5] p-6 md:p-8 relative overflow-hidden group hover:border-[#1E4E76]/30 hover:shadow-md transition-all duration-300"
                 >
                   {/* Background number */}
                   <div
@@ -154,11 +154,11 @@ export default function WhyChooseUsPageClient() {
                   <div className="relative z-10 grid md:grid-cols-2 gap-6 items-start">
                     <div>
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-11 h-11 bg-[#c8922a]/10 rounded flex items-center justify-center">
-                          <Icon size={20} className="text-[#c8922a]" />
+                        <div className="w-11 h-11 rounded flex items-center justify-center" style={{ background: 'rgba(30,78,118,0.10)' }}>
+                          <Icon size={20} style={{ color: '#1E4E76' }} />
                         </div>
                         <div>
-                          <div className="text-[#c8922a] text-xs font-bold">{reason.number}</div>
+                          <div className="text-xs font-bold" style={{ color: '#1E4E76' }}>{reason.number}</div>
                           <h2 className="font-black text-[#1a1a1a] text-xl leading-tight">{reason.title}</h2>
                         </div>
                       </div>
@@ -168,7 +168,7 @@ export default function WhyChooseUsPageClient() {
                     <div className="space-y-2.5">
                       {reason.points.map((point) => (
                         <div key={point} className="flex items-start gap-2.5">
-                          <CheckCircle2 size={15} className="text-[#c8922a] flex-shrink-0 mt-0.5" />
+                          <CheckCircle2 size={15} style={{ color: '#1E4E76' }} className="flex-shrink-0 mt-0.5" />
                           <span className="text-[#4a4a4a] text-sm">{point}</span>
                         </div>
                       ))}
@@ -182,8 +182,29 @@ export default function WhyChooseUsPageClient() {
       </section>
 
       {/* The Brand Promise */}
-      <section className="section-padding bg-[#1a1a1a]">
-        <div className="container-custom">
+      <section
+        className="section-padding relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #0e2a45 0%, #1E4E76 50%, #0e2a45 100%)' }}
+      >
+        {/* Subtle dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+          }}
+        />
+        {/* Sky blue glow */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+          style={{
+            width: '600px',
+            height: '600px',
+            background: 'radial-gradient(circle, rgba(77,184,255,0.08) 0%, transparent 70%)',
+          }}
+        />
+
+        <div className="container-custom relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -191,29 +212,57 @@ export default function WhyChooseUsPageClient() {
             variants={staggerContainer}
             className="max-w-3xl mx-auto text-center"
           >
-            <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-6">
-              <span className="w-8 h-0.5 bg-[#c8922a]" />
-              <span className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase">Our Brand Promise</span>
-              <span className="w-8 h-0.5 bg-[#c8922a]" />
+            {/* Eyebrow */}
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-6">
+              <span className="block h-[2px] w-10 rounded" style={{ background: '#4db8ff' }} />
+              <span className="font-bold tracking-[0.25em] uppercase" style={{ color: '#4db8ff', fontSize: '13px' }}>
+                Our Brand Promise
+              </span>
+              <span className="block h-[2px] w-10 rounded" style={{ background: '#4db8ff' }} />
             </motion.div>
-            <motion.div variants={fadeUp} className="text-5xl md:text-7xl font-black text-white mb-5 tracking-tight">
+
+            {/* Big tagline */}
+            <motion.div
+              variants={fadeUp}
+              className="font-black text-white mb-5 tracking-tight leading-none"
+              style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)' }}
+            >
               Small Size.{' '}
-              <span className="text-[#c8922a]">Big Precision.</span>
+              <span style={{ color: '#4db8ff' }}>Big Precision.</span>
             </motion.div>
-            <motion.p variants={fadeUp} className="text-gray-400 text-base md:text-lg leading-relaxed mb-8">
-              This is not just a tagline. It is our manufacturing promise. Every paper tube that leaves our facility reflects our commitment to precision, quality and consistency.
+
+            <motion.p
+              variants={fadeUp}
+              className="leading-relaxed mb-10 mx-auto"
+              style={{ color: 'rgba(195,225,250,0.85)', fontSize: '17px', maxWidth: '560px', lineHeight: '1.7' }}
+            >
+              This is not just a tagline. It is our manufacturing promise. Every paper tube that
+              leaves our facility reflects our commitment to precision, quality and consistency.
             </motion.p>
+
             <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 bg-[#c8922a] text-white font-semibold px-7 py-3.5 rounded-sm hover:bg-[#a67520] transition-all text-sm"
+                className="group inline-flex items-center gap-2 text-white font-bold rounded-sm hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+                style={{
+                  background: 'linear-gradient(135deg, #1a7ec8, #4db8ff)',
+                  fontSize: '15px',
+                  padding: '13px 28px',
+                }}
               >
                 Start Your Requirement
-                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 border border-white/20 text-white font-semibold px-7 py-3.5 rounded-sm hover:border-[#c8922a] hover:text-[#c8922a] transition-all text-sm"
+                className="inline-flex items-center gap-2 font-bold rounded-sm transition-all duration-300 hover:-translate-y-0.5"
+                style={{
+                  border: '2px solid rgba(77,184,255,0.35)',
+                  color: '#ffffff',
+                  fontSize: '15px',
+                  padding: '13px 28px',
+                  background: 'rgba(77,184,255,0.07)',
+                }}
               >
                 View Products
               </Link>
