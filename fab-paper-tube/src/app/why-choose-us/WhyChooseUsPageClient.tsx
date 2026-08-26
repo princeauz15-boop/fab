@@ -184,23 +184,14 @@ export default function WhyChooseUsPageClient() {
       {/* The Brand Promise */}
       <section
         className="section-padding relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #0e2a45 0%, #1E4E76 50%, #0e2a45 100%)' }}
+        style={{ background: '#F0F5FF' }}
       >
         {/* Subtle dot pattern */}
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.5]"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, rgba(26,74,158,0.06) 1px, transparent 1px)',
             backgroundSize: '28px 28px',
-          }}
-        />
-        {/* Sky blue glow */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-          style={{
-            width: '600px',
-            height: '600px',
-            background: 'radial-gradient(circle, rgba(77,184,255,0.08) 0%, transparent 70%)',
           }}
         />
 
@@ -214,23 +205,23 @@ export default function WhyChooseUsPageClient() {
           >
             {/* Eyebrow */}
             <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-6">
-              <span className="block h-[2px] w-10 rounded" style={{ background: '#4db8ff' }} />
-              <span className="font-bold tracking-[0.25em] uppercase" style={{ color: '#4db8ff', fontSize: '13px' }}>
+              <span className="block h-[2px] w-10 rounded" style={{ background: '#1a4a9e' }} />
+              <span className="font-bold tracking-[0.25em] uppercase" style={{ color: '#1a4a9e', fontSize: '13px' }}>
                 Our Brand Promise
               </span>
-              <span className="block h-[2px] w-10 rounded" style={{ background: '#4db8ff' }} />
+              <span className="block h-[2px] w-10 rounded" style={{ background: '#1a4a9e' }} />
             </motion.div>
 
             {/* Big tagline */}
             <motion.div
               variants={fadeUp}
-              className="font-black text-white mb-5 tracking-tight leading-none"
-              style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)' }}
+              className="font-black mb-5 tracking-tight leading-none"
+              style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', color: '#0d1f3c' }}
             >
               Small Size.{' '}
               <span
                 style={{
-                  background: 'linear-gradient(135deg, #e0a83b 0%, #f5c96a 50%, #c8922a 100%)',
+                  background: 'linear-gradient(135deg, #c8922a 0%, #e0a83b 50%, #c8922a 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -243,7 +234,7 @@ export default function WhyChooseUsPageClient() {
             <motion.p
               variants={fadeUp}
               className="leading-relaxed mb-10 mx-auto"
-              style={{ color: 'rgba(195,225,250,0.85)', fontSize: '17px', maxWidth: '560px', lineHeight: '1.7' }}
+              style={{ color: '#5a6a8a', fontSize: '17px', maxWidth: '560px', lineHeight: '1.7' }}
             >
               This is not just a tagline. It is our manufacturing promise. Every paper tube that
               leaves our facility reflects our commitment to precision, quality and consistency.
@@ -252,12 +243,12 @@ export default function WhyChooseUsPageClient() {
             <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 text-white font-bold rounded-sm hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+                className="group inline-flex items-center gap-2 text-white font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300"
                 style={{
                   background: 'linear-gradient(135deg, #c8922a, #e0a83b)',
                   fontSize: '15px',
                   padding: '13px 28px',
-                  boxShadow: '0 4px 20px rgba(200,146,42,0.35)',
+                  boxShadow: '0 4px 20px rgba(200,146,42,0.30)',
                 }}
               >
                 Start Your Requirement
@@ -265,13 +256,13 @@ export default function WhyChooseUsPageClient() {
               </Link>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 font-bold rounded-sm transition-all duration-300 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 font-bold rounded-md transition-all duration-300 hover:-translate-y-0.5"
                 style={{
-                  border: '2px solid rgba(77,184,255,0.35)',
-                  color: '#ffffff',
+                  border: '2px solid rgba(26,74,158,0.30)',
+                  color: '#1a4a9e',
                   fontSize: '15px',
                   padding: '13px 28px',
-                  background: 'rgba(77,184,255,0.07)',
+                  background: 'rgba(26,74,158,0.06)',
                 }}
               >
                 View Products
