@@ -185,7 +185,7 @@ export default function WhyChooseUsPageClient() {
       <section
         className="relative overflow-hidden"
         style={{
-          background: 'linear-gradient(160deg, #0b1e3d 0%, #122d5a 50%, #0b1e3d 100%)',
+          background: 'linear-gradient(160deg, #1a3a6b 0%, #1E4E76 50%, #1a3a6b 100%)',
           padding: '100px 0',
         }}
       >
@@ -242,7 +242,7 @@ export default function WhyChooseUsPageClient() {
             <motion.div
               variants={fadeUp}
               className="font-black text-white tracking-tight leading-tight mb-6"
-              style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)' }}
+              style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)' }}
             >
               Small Size.{' '}
               <span
