@@ -89,7 +89,7 @@ const differentiators = [
 /* ─── Component ─────────────────────────────────────────────────────────────── */
 export default function WhyChooseUsPageClient() {
   return (
-    <div>
+    <div className="pt-20">
 
       <PageBanner
         eyebrow="The FAB Advantage"
