@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import PageBanner from '@/components/ui/PageBanner';
 import { Phone, Mail, MapPin, CheckCircle2, ArrowRight, Send } from 'lucide-react';
 import { staggerContainer, fadeUp, slideLeft, slideRight, viewportConfig } from '@/lib/animations';
 

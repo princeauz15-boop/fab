@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import PageBanner from '@/components/ui/PageBanner';
 import {
   CheckCircle2, Ruler, Cog, UserCheck, Truck,
   ArrowRight, Shield, Award, Target, RefreshCw,

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import PageBanner from '@/components/ui/PageBanner';
 import { ArrowRight } from 'lucide-react';
 import { staggerContainer, fadeUp, viewportConfig } from '@/lib/animations';
 import SectionHeading from '@/components/ui/SectionHeading';

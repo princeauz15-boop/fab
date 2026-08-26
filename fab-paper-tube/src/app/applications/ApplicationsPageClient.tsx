@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import PageBanner from '@/components/ui/PageBanner';
 import {
   Shirt, BookOpen, FileText, Package, Flame, Zap, Factory, Wind,
   ArrowRight, CheckCircle2,
