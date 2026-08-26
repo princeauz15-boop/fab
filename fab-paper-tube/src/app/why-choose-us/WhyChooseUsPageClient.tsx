@@ -185,36 +185,32 @@ export default function WhyChooseUsPageClient() {
       <section
         className="relative overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #071628 0%, #0d2240 50%, #071628 100%)',
+          background: 'linear-gradient(160deg, #0b1e3d 0%, #122d5a 50%, #0b1e3d 100%)',
           padding: '100px 0',
         }}
       >
-        {/* Animated gold orb */}
-        <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.10, 0.18, 0.10] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -left-40 top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-          style={{
-            width: '600px', height: '600px',
-            background: 'radial-gradient(circle, rgba(200,146,42,0.9) 0%, transparent 70%)',
-          }}
-        />
-        {/* Animated blue orb */}
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.15, 0.08] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-          className="absolute -right-40 top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+        {/* Gold orb — left */}
+        <div
+          className="absolute -left-32 top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
           style={{
             width: '500px', height: '500px',
-            background: 'radial-gradient(circle, rgba(77,148,255,0.8) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(200,146,42,0.14) 0%, transparent 65%)',
+          }}
+        />
+        {/* Blue orb — right */}
+        <div
+          className="absolute -right-32 top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+          style={{
+            width: '420px', height: '420px',
+            background: 'radial-gradient(circle, rgba(77,148,255,0.10) 0%, transparent 65%)',
           }}
         />
         {/* Dot grid */}
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.035]"
           style={{
             backgroundImage: 'radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)',
-            backgroundSize: '30px 30px',
+            backgroundSize: '32px 32px',
           }}
         />
         {/* Gold top line */}
@@ -245,7 +241,7 @@ export default function WhyChooseUsPageClient() {
             {/* Big tagline */}
             <motion.div
               variants={fadeUp}
-              className="font-black text-white tracking-tight leading-none mb-6"
+              className="font-black text-white tracking-tight leading-tight mb-6"
               style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)' }}
             >
               Small Size.{' '}
@@ -264,35 +260,37 @@ export default function WhyChooseUsPageClient() {
             <motion.p
               variants={fadeUp}
               className="leading-relaxed mb-10 mx-auto"
-              style={{ color: 'rgba(180,210,255,0.75)', fontSize: '17px', maxWidth: '560px', lineHeight: '1.8' }}
+              style={{ color: 'rgba(185,210,250,0.70)', fontSize: '17px', maxWidth: '560px', lineHeight: '1.8' }}
             >
               This is not just a tagline. It is our manufacturing promise. Every paper tube that
               leaves our facility reflects our commitment to precision, quality and consistency.
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
+              {/* Primary — Gold */}
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 text-white font-bold rounded-md hover:-translate-y-1 transition-all duration-300"
+                className="group inline-flex items-center gap-2 text-white font-bold rounded-lg hover:-translate-y-1 transition-all duration-300"
                 style={{
-                  background: 'linear-gradient(135deg, #c8922a, #e0a83b)',
+                  background: 'linear-gradient(135deg, #c8922a 0%, #e0a83b 100%)',
                   fontSize: '15px',
                   padding: '14px 32px',
-                  boxShadow: '0 6px 28px rgba(200,146,42,0.40)',
+                  boxShadow: '0 6px 24px rgba(200,146,42,0.38)',
                 }}
               >
                 Start Your Requirement
                 <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
               </Link>
+              {/* Secondary — white outline, clearly visible */}
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 font-bold rounded-md transition-all duration-300 hover:-translate-y-1"
+                className="inline-flex items-center gap-2 font-bold rounded-lg transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-[#0b1e3d]"
                 style={{
-                  border: '2px solid rgba(255,255,255,0.20)',
+                  border: '2px solid rgba(255,255,255,0.55)',
                   color: '#ffffff',
                   fontSize: '15px',
                   padding: '14px 32px',
-                  background: 'rgba(255,255,255,0.07)',
+                  background: 'transparent',
                 }}
               >
                 View Products
