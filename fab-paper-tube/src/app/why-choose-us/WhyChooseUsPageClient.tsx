@@ -228,7 +228,16 @@ export default function WhyChooseUsPageClient() {
               style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)' }}
             >
               Small Size.{' '}
-              <span style={{ color: '#4db8ff' }}>Big Precision.</span>
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #e0a83b 0%, #f5c96a 50%, #c8922a 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Big Precision.
+              </span>
             </motion.div>
 
             <motion.p
@@ -245,9 +254,10 @@ export default function WhyChooseUsPageClient() {
                 href="/contact"
                 className="group inline-flex items-center gap-2 text-white font-bold rounded-sm hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
                 style={{
-                  background: 'linear-gradient(135deg, #1a7ec8, #4db8ff)',
+                  background: 'linear-gradient(135deg, #c8922a, #e0a83b)',
                   fontSize: '15px',
                   padding: '13px 28px',
+                  boxShadow: '0 4px 20px rgba(200,146,42,0.35)',
                 }}
               >
                 Start Your Requirement
