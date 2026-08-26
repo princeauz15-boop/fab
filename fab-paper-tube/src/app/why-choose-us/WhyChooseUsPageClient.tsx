@@ -7,10 +7,10 @@ import {
   CheckCircle2, Ruler, Cog, UserCheck, Truck,
   ArrowRight, Shield, Award, Target, RefreshCw,
 } from 'lucide-react';
-import { staggerContainer, fadeUp, viewportConfig } from '@/lib/animations';
-import SectionHeading from '@/components/ui/SectionHeading';
+import { staggerContainer, fadeUp, slideLeft, slideRight, viewportConfig } from '@/lib/animations';
 import CTASection from '@/components/sections/CTASection';
 
+/* ─── Data ──────────────────────────────────────────────────────────────────── */
 const reasons = [
   {
     number: '01',
@@ -23,67 +23,74 @@ const reasons = [
       'Quality checks before every dispatch',
       'No compromise on manufacturing standards',
     ],
+    color: '#1a4a9e',
   },
   {
     number: '02',
     icon: Ruler,
     title: 'Small Size Expertise',
-    description: 'Manufacturing small-diameter paper tubes requires a level of precision that larger tube manufacturers often do not focus on. We have developed specific expertise in small-size tube production — where dimensional accuracy and wall thickness consistency are critical.',
+    description: 'Manufacturing small-diameter paper tubes requires a level of precision that larger tube manufacturers often do not focus on. We have developed specific expertise in small-size tube production.',
     points: [
       'Specialised in small diameter tubes',
-      'Higher precision requirement for smaller sizes',
+      'Higher precision for smaller sizes',
       'Deep manufacturing expertise in this segment',
       'Optimised for your winding and production needs',
     ],
+    color: '#c8922a',
   },
   {
     number: '03',
     icon: Cog,
     title: 'Precision Manufacturing',
-    description: 'In paper tube manufacturing, precision is not optional. Your winding machine, your production line and your final product all depend on the paper tube performing consistently. We manufacture with precision as our core objective.',
+    description: 'In paper tube manufacturing, precision is not optional. Your winding machine, your production line and your final product all depend on the paper tube performing consistently.',
     points: [
       'Tight dimensional tolerances',
       'Consistent inner diameter for smooth winding',
       'Precise length cutting',
       'Clean finishing on both tube ends',
     ],
+    color: '#1a4a9e',
   },
   {
     number: '04',
     icon: UserCheck,
     title: 'Customer-Specific Requirements',
-    description: "Not every paper tube requirement is standard. Different applications need different specifications. We understand this and manufacture exactly to your requirements — whether it's a specific diameter, a custom length, a particular wall thickness or a specific paper grade.",
+    description: "Not every paper tube requirement is standard. We manufacture exactly to your requirements — whether it's a specific diameter, a custom length, a particular wall thickness or a specific paper grade.",
     points: [
       'Custom diameter as per your requirement',
       'Custom length cutting',
       'Custom wall thickness',
       'Paper grade selection based on application',
     ],
+    color: '#c8922a',
   },
   {
     number: '05',
     icon: Truck,
     title: 'Reliable Supply',
-    description: 'A paper tube supplier you can depend on makes a real difference to your production planning. Since 2013, we have built a reputation for reliable, on-time supply. We understand that your production schedule depends on our delivery.',
+    description: 'Since 2013, we have built a reputation for reliable, on-time supply. We understand that your production schedule depends on our delivery commitment.',
     points: [
       'On-time delivery commitment',
       'Consistent production capacity',
       'Reliable supply chain management',
       'Pan-India supply capabilities',
     ],
+    color: '#1a4a9e',
   },
 ];
 
 const differentiators = [
-  { icon: Shield, title: 'Quality First', description: 'Quality checking before every dispatch' },
-  { icon: Target, title: 'Precision Focus', description: 'Tight dimensional tolerances' },
-  { icon: Award, title: 'Industry Experience', description: '10+ years of manufacturing expertise' },
-  { icon: RefreshCw, title: 'Consistency', description: 'Same quality, batch after batch' },
+  { icon: Shield,    title: 'Quality First',        description: 'Quality checking before every dispatch',    stat: '100%',  statLabel: 'Quality Rate' },
+  { icon: Target,    title: 'Precision Focus',       description: 'Tight dimensional tolerances',              stat: '±0.1mm', statLabel: 'Tolerance' },
+  { icon: Award,     title: 'Industry Experience',   description: '10+ years of manufacturing expertise',      stat: '10+',   statLabel: 'Years' },
+  { icon: RefreshCw, title: 'Consistency',           description: 'Same quality, batch after batch',           stat: '500+',  statLabel: 'Happy Clients' },
 ];
 
+/* ─── Component ─────────────────────────────────────────────────────────────── */
 export default function WhyChooseUsPageClient() {
   return (
     <div className="pt-20">
+
       <PageBanner
         eyebrow="The FAB Advantage"
         title="Why Choose FAB Paper Tube?"
@@ -92,56 +99,100 @@ export default function WhyChooseUsPageClient() {
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Why Choose Us' }]}
       />
 
-      {/* Quick differentiators */}
-      <section className="bg-white border-b border-[#e5e5e5]" style={{ padding: '0' }}>
+      {/* ══════════════════════════════════════════════════════════════════════
+          SECTION 1 — Stats / Differentiators — Dark navy cards on white bg
+      ══════════════════════════════════════════════════════════════════════ */}
+      <section style={{ background: '#ffffff', padding: '72px 0' }}>
         <div className="container-custom">
+
+          {/* Heading */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
             variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4"
+            className="text-center mb-12"
+          >
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-3">
+              <span className="block h-[2px] w-8 rounded" style={{ background: '#c8922a' }} />
+              <span className="font-bold tracking-[0.22em] uppercase text-xs" style={{ color: '#c8922a' }}>
+                The FAB Advantage
+              </span>
+              <span className="block h-[2px] w-8 rounded" style={{ background: '#c8922a' }} />
+            </motion.div>
+            <motion.h2
+              variants={fadeUp}
+              className="font-black leading-tight"
+              style={{ fontSize: 'clamp(1.7rem, 3vw, 2.5rem)', color: '#0d1f3c' }}
+            >
+              Numbers That Define{' '}
+              <span style={{ color: '#1a4a9e' }}>Our Promise</span>
+            </motion.h2>
+          </motion.div>
+
+          {/* 4 cards */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {differentiators.map((d, i) => {
               const Icon = d.icon;
-              const colors = ['#1a4a9e', '#c8922a', '#1a4a9e', '#c8922a'];
-              const color = colors[i];
+              const isGold = i % 2 === 1;
               return (
                 <motion.div
                   key={d.title}
                   variants={fadeUp}
                   custom={i}
-                  className="group relative flex flex-col items-center text-center px-6 py-8 cursor-default"
+                  className="group relative rounded-2xl overflow-hidden cursor-default"
                   style={{
-                    borderRight: i < 3 ? '1px solid #e8edf5' : 'none',
+                    background: isGold
+                      ? 'linear-gradient(155deg, #c8922a 0%, #e0a83b 100%)'
+                      : 'linear-gradient(155deg, #1a4a9e 0%, #2a5fc0 100%)',
+                    boxShadow: isGold
+                      ? '0 8px 32px rgba(200,146,42,0.20)'
+                      : '0 8px 32px rgba(26,74,158,0.18)',
+                    padding: '32px 28px',
                   }}
+                  whileHover={{ y: -6, transition: { duration: 0.28 } }}
                 >
-                  {/* Top color bar */}
-                  <div
-                    className="absolute top-0 left-6 right-6 h-[3px] rounded-b-full transition-all duration-300 group-hover:left-0 group-hover:right-0"
-                    style={{ background: color }}
-                  />
-
-                  {/* Icon circle */}
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
-                    style={{
-                      background: `${color}12`,
-                      border: `1.5px solid ${color}25`,
-                    }}
-                  >
-                    <Icon size={22} style={{ color }} />
+                  {/* Watermark icon */}
+                  <div className="absolute -bottom-4 -right-4 opacity-[0.08]">
+                    <Icon size={100} className="text-white" />
                   </div>
 
+                  {/* Stat */}
                   <div
-                    className="font-black text-[#0d1f3c] text-base mb-1 leading-tight transition-colors duration-200"
-                    style={{ color: '#0d1f3c' }}
+                    className="font-black text-white leading-none mb-2"
+                    style={{ fontSize: '2.6rem' }}
                   >
-                    {d.title}
+                    {d.stat}
                   </div>
-                  <div className="text-xs leading-snug" style={{ color: '#7a8aaa' }}>
+                  <div
+                    className="text-xs font-bold tracking-widest uppercase mb-5"
+                    style={{ color: 'rgba(255,255,255,0.60)' }}
+                  >
+                    {d.statLabel}
+                  </div>
+
+                  {/* Divider */}
+                  <div className="mb-4" style={{ height: '1px', background: 'rgba(255,255,255,0.18)' }} />
+
+                  {/* Icon + title */}
+                  <div className="flex items-center gap-3 mb-2">
+                    <div
+                      className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ background: 'rgba(255,255,255,0.15)' }}
+                    >
+                      <Icon size={18} className="text-white" />
+                    </div>
+                    <div className="font-bold text-white text-sm leading-tight">{d.title}</div>
+                  </div>
+                  <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)' }}>
                     {d.description}
-                  </div>
+                  </p>
                 </motion.div>
               );
             })}
@@ -149,60 +200,137 @@ export default function WhyChooseUsPageClient() {
         </div>
       </section>
 
-      {/* Detailed Reasons */}
-      <section className="section-padding bg-[#f5f4f0]">
+      {/* ══════════════════════════════════════════════════════════════════════
+          SECTION 2 — 5 Reasons — Timeline / alternating layout on light bg
+      ══════════════════════════════════════════════════════════════════════ */}
+      <section style={{ background: '#f4f6fb', padding: '88px 0' }}>
         <div className="container-custom">
-          <div className="mb-12">
-            <SectionHeading
-              eyebrow="5 Strong Reasons"
-              title="Why Manufacturers Choose FAB"
-              description="Here is what makes FAB Paper Tube the right manufacturing partner for your paper tube requirements."
-            />
-          </div>
 
-          <div className="space-y-8">
+          {/* Heading */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+            className="text-center mb-16"
+          >
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-3">
+              <span className="block h-[2px] w-8 rounded" style={{ background: '#1a4a9e' }} />
+              <span className="font-bold tracking-[0.22em] uppercase text-xs" style={{ color: '#1a4a9e' }}>
+                5 Strong Reasons
+              </span>
+              <span className="block h-[2px] w-8 rounded" style={{ background: '#1a4a9e' }} />
+            </motion.div>
+            <motion.h2
+              variants={fadeUp}
+              className="font-black leading-tight"
+              style={{ fontSize: 'clamp(1.7rem, 3vw, 2.5rem)', color: '#0d1f3c' }}
+            >
+              Why Manufacturers Choose{' '}
+              <span style={{ color: '#1a4a9e' }}>FAB</span>
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="mt-3 mx-auto"
+              style={{ color: '#6a7a9a', fontSize: '16px', maxWidth: '520px', lineHeight: '1.7' }}
+            >
+              Here is what makes FAB Paper Tube the right manufacturing partner for your requirements.
+            </motion.p>
+          </motion.div>
+
+          {/* Alternating left/right cards */}
+          <div className="space-y-10 max-w-5xl mx-auto">
             {reasons.map((reason, i) => {
               const Icon = reason.icon;
+              const isEven = i % 2 === 1;
               return (
                 <motion.div
                   key={reason.number}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 36 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={viewportConfig}
-                  transition={{ duration: 0.6, delay: i * 0.05 }}
-                  className="bg-white rounded border border-[#e5e5e5] p-6 md:p-8 relative overflow-hidden group hover:border-[#1E4E76]/30 hover:shadow-md transition-all duration-300"
+                  transition={{ duration: 0.6, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                  className={`grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden ${isEven ? '' : ''}`}
+                  style={{ boxShadow: '0 4px 28px rgba(26,74,158,0.08)' }}
                 >
-                  {/* Background number */}
+                  {/* Coloured side */}
                   <div
-                    className="absolute top-0 right-6 text-[8rem] font-black text-[#f5f4f0] group-hover:text-[#c8922a]/5 transition-colors duration-300 leading-none select-none"
-                    aria-hidden="true"
+                    className={`relative flex flex-col justify-center px-8 py-10 ${isEven ? 'md:order-2' : 'md:order-1'}`}
+                    style={{
+                      background: reason.color === '#1a4a9e'
+                        ? 'linear-gradient(155deg, #1a4a9e 0%, #2a5fc0 100%)'
+                        : 'linear-gradient(155deg, #b87d20 0%, #e0a83b 100%)',
+                    }}
                   >
-                    {reason.number}
-                  </div>
-
-                  <div className="relative z-10 grid md:grid-cols-2 gap-6 items-start">
-                    <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-11 h-11 rounded flex items-center justify-center" style={{ background: 'rgba(30,78,118,0.10)' }}>
-                          <Icon size={20} style={{ color: '#1E4E76' }} />
-                        </div>
-                        <div>
-                          <div className="text-xs font-bold" style={{ color: '#1E4E76' }}>{reason.number}</div>
-                          <h2 className="font-black text-[#1a1a1a] text-xl leading-tight">{reason.title}</h2>
-                        </div>
-                      </div>
-                      <p className="text-[#6b6b6b] text-sm leading-relaxed">{reason.description}</p>
+                    {/* Big watermark number */}
+                    <div
+                      className="absolute bottom-0 right-4 font-black select-none pointer-events-none leading-none"
+                      style={{ fontSize: '9rem', color: 'rgba(255,255,255,0.06)' }}
+                      aria-hidden
+                    >
+                      {reason.number}
                     </div>
 
-                    <div className="space-y-2.5">
-                      {reason.points.map((point) => (
-                        <div key={point} className="flex items-start gap-2.5">
-                          <CheckCircle2 size={15} style={{ color: '#1E4E76' }} className="flex-shrink-0 mt-0.5" />
-                          <span className="text-[#4a4a4a] text-sm">{point}</span>
+                    <div className="relative z-10">
+                      {/* Number badge */}
+                      <div
+                        className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-5"
+                        style={{ background: 'rgba(255,255,255,0.15)', width: 'fit-content' }}
+                      >
+                        <Icon size={14} className="text-white" />
+                        <span className="text-white font-bold text-xs">{reason.number}</span>
+                      </div>
+
+                      <h2
+                        className="font-black text-white leading-tight mb-4"
+                        style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)' }}
+                      >
+                        {reason.title}
+                      </h2>
+                      <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '14px', lineHeight: '1.75' }}>
+                        {reason.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* White side — bullet points */}
+                  <div
+                    className={`flex flex-col justify-center px-8 py-10 bg-white ${isEven ? 'md:order-1' : 'md:order-2'}`}
+                  >
+                    <div
+                      className="text-xs font-bold tracking-widest uppercase mb-5"
+                      style={{ color: reason.color }}
+                    >
+                      Key Highlights
+                    </div>
+                    <div className="space-y-4">
+                      {reason.points.map((point, pi) => (
+                        <div key={point} className="flex items-start gap-3">
+                          <div
+                            className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                            style={{
+                              background: `${reason.color}12`,
+                              border: `1.5px solid ${reason.color}30`,
+                            }}
+                          >
+                            <span
+                              className="font-black"
+                              style={{ fontSize: '10px', color: reason.color }}
+                            >
+                              {String(pi + 1).padStart(2, '0')}
+                            </span>
+                          </div>
+                          <span
+                            className="font-medium leading-snug"
+                            style={{ color: '#2a3a5a', fontSize: '14px', paddingTop: '4px' }}
+                          >
+                            {point}
+                          </span>
                         </div>
                       ))}
                     </div>
                   </div>
+
                 </motion.div>
               );
             })}
@@ -210,7 +338,7 @@ export default function WhyChooseUsPageClient() {
         </div>
       </section>
 
-      {/* ── Brand Promise — dark navy, full contrast ── */}
+      {/* ── Brand Promise ─────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden"
         style={{
@@ -218,36 +346,21 @@ export default function WhyChooseUsPageClient() {
           padding: '100px 0',
         }}
       >
-        {/* Gold orb — left */}
         <div
           className="absolute -left-32 top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-          style={{
-            width: '500px', height: '500px',
-            background: 'radial-gradient(circle, rgba(200,146,42,0.14) 0%, transparent 65%)',
-          }}
+          style={{ width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(200,146,42,0.14) 0%, transparent 65%)' }}
         />
-        {/* Blue orb — right */}
         <div
           className="absolute -right-32 top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-          style={{
-            width: '420px', height: '420px',
-            background: 'radial-gradient(circle, rgba(77,148,255,0.10) 0%, transparent 65%)',
-          }}
+          style={{ width: '420px', height: '420px', background: 'radial-gradient(circle, rgba(77,148,255,0.10) 0%, transparent 65%)' }}
         />
-        {/* Dot grid */}
         <div
           className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)',
-            backgroundSize: '32px 32px',
-          }}
+          style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '32px 32px' }}
         />
-        {/* Gold top line */}
         <div
           className="absolute top-0 left-0 right-0 h-[3px]"
-          style={{
-            background: 'linear-gradient(90deg, transparent, #c8922a 30%, #e0a83b 50%, #c8922a 70%, transparent)',
-          }}
+          style={{ background: 'linear-gradient(90deg, transparent, #c8922a 30%, #e0a83b 50%, #c8922a 70%, transparent)' }}
         />
 
         <div className="container-custom relative z-10">
@@ -258,7 +371,6 @@ export default function WhyChooseUsPageClient() {
             variants={staggerContainer}
             className="max-w-3xl mx-auto text-center"
           >
-            {/* Eyebrow */}
             <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-7">
               <span className="block h-[2px] w-10 rounded" style={{ background: '#e0a83b' }} />
               <span className="font-bold tracking-[0.28em] uppercase" style={{ color: '#e0a83b', fontSize: '12px' }}>
@@ -267,21 +379,13 @@ export default function WhyChooseUsPageClient() {
               <span className="block h-[2px] w-10 rounded" style={{ background: '#e0a83b' }} />
             </motion.div>
 
-            {/* Big tagline */}
             <motion.div
               variants={fadeUp}
               className="font-black text-white tracking-tight leading-tight mb-6"
               style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)' }}
             >
               Small Size.{' '}
-              <span
-                style={{
-                  background: 'linear-gradient(135deg, #e0a83b 0%, #f5c96a 50%, #c8922a 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
+              <span style={{ background: 'linear-gradient(135deg, #e0a83b 0%, #f5c96a 50%, #c8922a 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Big Precision.
               </span>
             </motion.div>
@@ -296,31 +400,18 @@ export default function WhyChooseUsPageClient() {
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
-              {/* Primary — Gold */}
               <Link
                 href="/contact"
                 className="group inline-flex items-center gap-2 text-white font-bold rounded-lg hover:-translate-y-1 transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, #c8922a 0%, #e0a83b 100%)',
-                  fontSize: '15px',
-                  padding: '14px 32px',
-                  boxShadow: '0 6px 24px rgba(200,146,42,0.38)',
-                }}
+                style={{ background: 'linear-gradient(135deg, #c8922a 0%, #e0a83b 100%)', fontSize: '15px', padding: '14px 32px', boxShadow: '0 6px 24px rgba(200,146,42,0.38)' }}
               >
                 Start Your Requirement
                 <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
               </Link>
-              {/* Secondary — white outline, clearly visible */}
               <Link
                 href="/products"
                 className="inline-flex items-center gap-2 font-bold rounded-lg transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-[#0b1e3d]"
-                style={{
-                  border: '2px solid rgba(255,255,255,0.55)',
-                  color: '#ffffff',
-                  fontSize: '15px',
-                  padding: '14px 32px',
-                  background: 'transparent',
-                }}
+                style={{ border: '2px solid rgba(255,255,255,0.55)', color: '#ffffff', fontSize: '15px', padding: '14px 32px', background: 'transparent' }}
               >
                 View Products
               </Link>
