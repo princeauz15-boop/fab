@@ -16,9 +16,9 @@ const highlights = [
 
 export default function TrustedManufacturerSection() {
   return (
-    <section className="section-padding" style={{ background: '#f0f4f8' }}>
+    <section className="section-padding bg-white">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* LEFT: Content */}
           <motion.div
@@ -29,38 +29,58 @@ export default function TrustedManufacturerSection() {
             className="flex flex-col gap-5"
           >
             <motion.div variants={slideLeft} className="flex items-center gap-3">
-              <span className="w-8 h-0.5 bg-[#1a4a9e]" />
-              <span className="text-[#1a4a9e] text-xs font-bold tracking-[0.2em] uppercase">About Us</span>
+              <span className="w-8 h-0.5 bg-[#c8922a]" />
+              <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: '#c8922a' }}>
+                About Us
+              </span>
             </motion.div>
 
-            <motion.h2 variants={slideLeft} className="text-3xl md:text-4xl font-black text-[#1a1a1a] leading-tight">
-              Trusted Paper Tube<br />
-              Manufacturer{' '}
-              <span className="text-[#1a4a9e]">Since 2013</span>
+            <motion.h2
+              variants={slideLeft}
+              className="font-black leading-tight"
+              style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', color: '#0d1f3c' }}
+            >
+              Trusted Paper Tube Manufacturer{' '}
+              <span style={{ color: '#1a4a9e' }}>Since 2013</span>
             </motion.h2>
 
-            <motion.p variants={slideLeft} className="text-[#4a4a4a] leading-relaxed">
-              FAB Paper Tube is a trusted manufacturer of premium quality paper tubes and paper cores, established in 2013 in Ahmedabad, Gujarat. We have been delivering consistent, high-quality products to industries across India for over a decade.
+            <motion.p variants={slideLeft} style={{ color: '#4a5a7a', lineHeight: '1.75', fontSize: '15px' }}>
+              FAB Paper Tube is a trusted manufacturer of premium quality paper tubes and paper cores,
+              established in 2013 in Ahmedabad, Gujarat. We have been delivering consistent,
+              high-quality products to industries across India for over a decade.
             </motion.p>
 
-            <motion.p variants={slideLeft} className="text-[#6b6b6b] leading-relaxed">
-              Our manufacturing excellence is built on advanced production processes, stringent quality control and a dedicated team that understands the exact requirements of each industry we serve. From small-diameter sewing thread tubes to heavy-duty stretch film cores — we manufacture them all with equal precision.
+            <motion.p variants={slideLeft} style={{ color: '#6a7a9a', lineHeight: '1.75', fontSize: '14.5px' }}>
+              Our manufacturing excellence is built on advanced production processes, stringent quality
+              control and a dedicated team. From small-diameter sewing thread tubes to heavy-duty
+              stretch film cores — we manufacture them all with equal precision.
             </motion.p>
 
             {/* Highlights */}
-            <motion.ul variants={staggerContainer} className="space-y-2.5">
+            <motion.ul variants={staggerContainer} className="space-y-2.5 mt-1">
               {highlights.map((item) => (
-                <motion.li key={item} variants={fadeUp} className="flex items-start gap-2.5">
-                  <CheckCircle2 size={16} className="text-[#1a4a9e] flex-shrink-0 mt-0.5" />
-                  <span className="text-[#4a4a4a] text-sm">{item}</span>
+                <motion.li key={item} variants={fadeUp} className="flex items-start gap-3">
+                  <div
+                    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                    style={{ background: 'rgba(26,74,158,0.10)' }}
+                  >
+                    <CheckCircle2 size={12} style={{ color: '#1a4a9e' }} />
+                  </div>
+                  <span style={{ color: '#3a4a6a', fontSize: '14px', lineHeight: '1.6' }}>{item}</span>
                 </motion.li>
               ))}
             </motion.ul>
 
-            <motion.div variants={fadeUp}>
+            <motion.div variants={fadeUp} className="mt-2">
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-2 bg-[#1a4a9e] text-white font-semibold px-6 py-3 rounded-sm hover:bg-[#0d2b6b] transition-all duration-300 text-sm mt-2"
+                className="group inline-flex items-center gap-2 text-white font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, #1a4a9e, #2a5fc0)',
+                  fontSize: '14px',
+                  padding: '13px 26px',
+                  boxShadow: '0 4px 18px rgba(26,74,158,0.28)',
+                }}
               >
                 Learn More About Us
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -68,7 +88,7 @@ export default function TrustedManufacturerSection() {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT: Factory / product image */}
+          {/* RIGHT: Image */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -76,7 +96,20 @@ export default function TrustedManufacturerSection() {
             variants={slideRight}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            {/* Decorative offset border behind */}
+            <div
+              className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl -z-10"
+              style={{ border: '2px solid rgba(200,146,42,0.30)', borderRadius: '16px' }}
+            />
+
+            {/* Image */}
+            <div
+              className="relative rounded-2xl overflow-hidden"
+              style={{
+                boxShadow: '0 12px 48px rgba(26,74,158,0.14)',
+                border: '1px solid #e8edf5',
+              }}
+            >
               <Image
                 src="/images/Trusted_Paper_Tube.jpeg"
                 alt="FAB Paper Tube manufacturing facility"
@@ -85,13 +118,15 @@ export default function TrustedManufacturerSection() {
                 className="w-full h-auto object-cover"
                 style={{ display: 'block' }}
               />
-            </div>
 
-            {/* Decorative corner */}
-            <div
-              className="absolute -top-3 -right-3 w-full h-full rounded-2xl -z-10"
-              style={{ border: '2px solid rgba(26,74,158,0.18)' }}
-            />
+              {/* Subtle overlay gradient at bottom */}
+              <div
+                className="absolute bottom-0 left-0 right-0 h-16"
+                style={{
+                  background: 'linear-gradient(to top, rgba(13,31,60,0.18), transparent)',
+                }}
+              />
+            </div>
           </motion.div>
 
         </div>
