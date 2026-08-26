@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageSquare, Phone, CheckCircle2, Zap } from 'lucide-react';
-import { staggerContainer, fadeUp, slideLeft, slideRight, viewportConfig } from '@/lib/animations';
+import { ArrowRight, MessageSquare, Phone, CheckCircle2 } from 'lucide-react';
+import { staggerContainer, fadeUp, slideRight, viewportConfig } from '@/lib/animations';
 
 const tags = ['Custom Sizes', 'Small Diameter Tubes', 'Fast Delivery', 'Pan India Supply'];
 
