@@ -44,7 +44,7 @@ export default function PageBanner({
   return (
     <section
       className="relative overflow-hidden flex items-center"
-      style={{ minHeight: '280px', backgroundColor: '#1E4E76' }}
+      style={{ minHeight: '420px', backgroundColor: '#1E4E76' }}
       aria-label={`${title} page banner`}
     >
       {/* ── Real product photo as background ── */}
@@ -68,7 +68,7 @@ export default function PageBanner({
       </div>
 
       {/* ── Content ── */}
-      <div className="container-custom relative z-10 w-full py-20 pt-32">
+      <div className="container-custom relative z-10 w-full py-24 pt-36">
         <motion.div
           initial="hidden"
           animate="visible"
