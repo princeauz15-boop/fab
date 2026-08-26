@@ -105,7 +105,7 @@ export default function WhyChooseUsPageClient() {
       <section style={{ background: '#ffffff', padding: '24px 0 56px' }}>
         <div className="container-custom">
 
-          {/* 4 cards */}
+          {/* 4 stat cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {differentiators.map((d, i) => {
               const Icon = d.icon;
@@ -119,48 +119,57 @@ export default function WhyChooseUsPageClient() {
                   className="group relative rounded-2xl overflow-hidden cursor-default"
                   style={{
                     background: isGold
-                      ? 'linear-gradient(155deg, #c8922a 0%, #e0a83b 100%)'
+                      ? 'linear-gradient(155deg, #b87d20 0%, #e0a83b 100%)'
                       : 'linear-gradient(155deg, #1a4a9e 0%, #2a5fc0 100%)',
                     boxShadow: isGold
-                      ? '0 8px 32px rgba(200,146,42,0.20)'
-                      : '0 8px 32px rgba(26,74,158,0.18)',
-                    padding: '32px 28px',
+                      ? '0 8px 32px rgba(200,146,42,0.22)'
+                      : '0 8px 32px rgba(26,74,158,0.20)',
+                    padding: '28px 24px',
+                    transition: 'transform 0.28s ease, box-shadow 0.28s ease',
                   }}
-                  whileHover={{ y: -6, transition: { duration: 0.28 } }}
+                  whileHover={{
+                    y: -8,
+                    boxShadow: isGold
+                      ? '0 20px 48px rgba(200,146,42,0.35)'
+                      : '0 20px 48px rgba(26,74,158,0.32)',
+                    transition: { duration: 0.28 },
+                  }}
                 >
                   {/* Watermark icon */}
-                  <div className="absolute -bottom-4 -right-4 opacity-[0.08]">
-                    <Icon size={100} className="text-white" />
+                  <div className="absolute -bottom-3 -right-3 opacity-[0.10] pointer-events-none">
+                    <Icon size={90} strokeWidth={1.5} className="text-white" />
                   </div>
 
-                  {/* Stat */}
+                  {/* Stat number */}
                   <div
-                    className="font-black text-white leading-none mb-2"
-                    style={{ fontSize: '2.6rem' }}
+                    className="font-black text-white leading-none mb-1"
+                    style={{ fontSize: '2.4rem' }}
                   >
                     {d.stat}
                   </div>
                   <div
-                    className="text-xs font-bold tracking-widest uppercase mb-5"
-                    style={{ color: 'rgba(255,255,255,0.60)' }}
+                    className="font-bold tracking-widest uppercase mb-5"
+                    style={{ color: 'rgba(255,255,255,0.55)', fontSize: '10px' }}
                   >
                     {d.statLabel}
                   </div>
 
                   {/* Divider */}
-                  <div className="mb-4" style={{ height: '1px', background: 'rgba(255,255,255,0.18)' }} />
+                  <div className="mb-4" style={{ height: '1px', background: 'rgba(255,255,255,0.20)' }} />
 
                   {/* Icon + title */}
                   <div className="flex items-center gap-3 mb-2">
                     <div
                       className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ background: 'rgba(255,255,255,0.15)' }}
+                      style={{ background: 'rgba(255,255,255,0.18)' }}
                     >
-                      <Icon size={18} className="text-white" />
+                      <Icon size={17} strokeWidth={2.5} className="text-white" />
                     </div>
-                    <div className="font-bold text-white text-sm leading-tight">{d.title}</div>
+                    <div className="font-bold text-white leading-tight" style={{ fontSize: '13px' }}>
+                      {d.title}
+                    </div>
                   </div>
-                  <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)' }}>
+                  <p style={{ color: 'rgba(255,255,255,0.68)', fontSize: '12px', lineHeight: '1.6' }}>
                     {d.description}
                   </p>
                 </motion.div>
@@ -209,7 +218,7 @@ export default function WhyChooseUsPageClient() {
           </motion.div>
 
           {/* Alternating left/right cards */}
-          <div className="space-y-10 max-w-5xl mx-auto">
+          <div className="space-y-8 max-w-5xl mx-auto">
             {reasons.map((reason, i) => {
               const Icon = reason.icon;
               const isEven = i % 2 === 1;
@@ -220,8 +229,18 @@ export default function WhyChooseUsPageClient() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={viewportConfig}
                   transition={{ duration: 0.6, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                  className={`grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden ${isEven ? '' : ''}`}
-                  style={{ boxShadow: '0 4px 28px rgba(26,74,158,0.08)' }}
+                  className={`grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden group`}
+                  style={{
+                    boxShadow: '0 4px 24px rgba(26,74,158,0.08)',
+                    transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+                  }}
+                  whileHover={{
+                    y: -4,
+                    boxShadow: reason.color === '#1a4a9e'
+                      ? '0 16px 48px rgba(26,74,158,0.20)'
+                      : '0 16px 48px rgba(200,146,42,0.22)',
+                    transition: { duration: 0.28 },
+                  }}
                 >
                   {/* Coloured side */}
                   <div
@@ -230,31 +249,30 @@ export default function WhyChooseUsPageClient() {
                       background: reason.color === '#1a4a9e'
                         ? 'linear-gradient(155deg, #1a4a9e 0%, #2a5fc0 100%)'
                         : 'linear-gradient(155deg, #b87d20 0%, #e0a83b 100%)',
+                      transition: 'filter 0.3s ease',
                     }}
                   >
                     {/* Big watermark number */}
                     <div
                       className="absolute bottom-0 right-4 font-black select-none pointer-events-none leading-none"
-                      style={{ fontSize: '7rem', color: 'rgba(255,255,255,0.06)' }}
+                      style={{ fontSize: '6.5rem', color: 'rgba(255,255,255,0.07)' }}
                       aria-hidden
                     >
                       {reason.number}
                     </div>
 
                     <div className="relative z-10">
-                      {/* Step number + icon row */}
+                      {/* Icon + number row */}
                       <div className="flex items-center gap-3 mb-5">
-                        {/* Icon box */}
                         <div
-                          className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                          style={{ background: 'rgba(255,255,255,0.18)' }}
+                          className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                          style={{ background: 'rgba(255,255,255,0.20)' }}
                         >
-                          <Icon size={18} className="text-white" />
+                          <Icon size={22} strokeWidth={2.5} className="text-white" />
                         </div>
-                        {/* Step number */}
                         <span
-                          className="font-black text-white leading-none"
-                          style={{ fontSize: '1rem', opacity: 0.7, letterSpacing: '0.05em' }}
+                          className="font-black text-white"
+                          style={{ fontSize: '0.95rem', opacity: 0.65, letterSpacing: '0.08em' }}
                         >
                           {reason.number}
                         </span>
@@ -262,11 +280,11 @@ export default function WhyChooseUsPageClient() {
 
                       <h2
                         className="font-black text-white leading-tight mb-3"
-                        style={{ fontSize: '1.25rem' }}
+                        style={{ fontSize: '1.2rem' }}
                       >
                         {reason.title}
                       </h2>
-                      <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '13.5px', lineHeight: '1.75' }}>
+                      <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '13.5px', lineHeight: '1.75' }}>
                         {reason.description}
                       </p>
                     </div>
@@ -275,33 +293,36 @@ export default function WhyChooseUsPageClient() {
                   {/* White side — bullet points */}
                   <div
                     className={`flex flex-col justify-center px-8 py-10 bg-white ${isEven ? 'md:order-1' : 'md:order-2'}`}
+                    style={{ transition: 'background 0.3s ease' }}
                   >
                     <div
-                      className="text-xs font-bold tracking-widest uppercase mb-4"
-                      style={{ color: reason.color }}
+                      className="font-bold tracking-widest uppercase mb-4"
+                      style={{ color: reason.color, fontSize: '10px' }}
                     >
                       Key Highlights
                     </div>
                     <div className="space-y-3">
                       {reason.points.map((point, pi) => (
                         <div key={point} className="flex items-start gap-3">
+                          {/* Numbered circle */}
                           <div
                             className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                             style={{
-                              background: `${reason.color}14`,
-                              border: `1.5px solid ${reason.color}28`,
+                              background: reason.color === '#1a4a9e'
+                                ? 'rgba(26,74,158,0.10)'
+                                : 'rgba(200,146,42,0.12)',
+                              border: `1.5px solid ${reason.color}35`,
                             }}
                           >
                             <span
-                              className="font-bold"
+                              className="font-black"
                               style={{ fontSize: '9px', color: reason.color }}
                             >
-                              {String(pi + 1).padStart(2, '0')}
+                              {pi + 1}
                             </span>
                           </div>
                           <span
-                            className="leading-snug"
-                            style={{ color: '#3a4a6a', fontSize: '13.5px', paddingTop: '3px' }}
+                            style={{ color: '#3a4a6a', fontSize: '13.5px', lineHeight: '1.6', paddingTop: '2px' }}
                           >
                             {point}
                           </span>
