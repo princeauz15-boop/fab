@@ -102,33 +102,8 @@ export default function WhyChooseUsPageClient() {
       {/* ══════════════════════════════════════════════════════════════════════
           SECTION 1 — Stats / Differentiators — Dark navy cards on white bg
       ══════════════════════════════════════════════════════════════════════ */}
-      <section style={{ background: '#ffffff', padding: '72px 0' }}>
+      <section style={{ background: '#ffffff', padding: '40px 0 64px' }}>
         <div className="container-custom">
-
-          {/* Heading */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            variants={staggerContainer}
-            className="text-center mb-12"
-          >
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-3">
-              <span className="block h-[2px] w-8 rounded" style={{ background: '#c8922a' }} />
-              <span className="font-bold tracking-[0.22em] uppercase text-xs" style={{ color: '#c8922a' }}>
-                The FAB Advantage
-              </span>
-              <span className="block h-[2px] w-8 rounded" style={{ background: '#c8922a' }} />
-            </motion.div>
-            <motion.h2
-              variants={fadeUp}
-              className="font-black leading-tight"
-              style={{ fontSize: 'clamp(1.7rem, 3vw, 2.5rem)', color: '#0d1f3c' }}
-            >
-              Numbers That Define{' '}
-              <span style={{ color: '#1a4a9e' }}>Our Promise</span>
-            </motion.h2>
-          </motion.div>
 
           {/* 4 cards */}
           <motion.div
