@@ -16,18 +16,26 @@ export default function HeroSection() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ minHeight: '100vh', backgroundColor: '#1e3fbe' }}
+      style={{ minHeight: '100vh', backgroundColor: '#1E4E76' }}
       aria-label="Hero section"
     >
-      {/* ── Background: scattered paper-tubes pattern (matches screenshot 2) ── */}
+      {/* ── Real product photo as background ── */}
       <div className="absolute inset-0 z-0">
-        {/* Tube shapes as repeating SVG pattern — visual match to the photo bg */}
+        {/* Actual paper tubes photo */}
+        <Image
+          src="/images/1 product.jpeg"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          style={{ objectPosition: 'center' }}
+        />
+        {/* Blue overlay — same as original website */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Crect width='320' height='320' fill='none'/%3E%3Cellipse cx='40' cy='30' rx='8' ry='22' fill='rgba(255,255,255,0.13)' transform='rotate(25,40,30)'/%3E%3Cellipse cx='100' cy='80' rx='8' ry='28' fill='rgba(255,255,255,0.10)' transform='rotate(-15,100,80)'/%3E%3Cellipse cx='170' cy='40' rx='7' ry='24' fill='rgba(255,255,255,0.12)' transform='rotate(40,170,40)'/%3E%3Cellipse cx='240' cy='90' rx='8' ry='26' fill='rgba(255,255,255,0.09)' transform='rotate(-30,240,90)'/%3E%3Cellipse cx='290' cy='30' rx='7' ry='20' fill='rgba(255,255,255,0.11)' transform='rotate(10,290,30)'/%3E%3Cellipse cx='60' cy='160' rx='8' ry='25' fill='rgba(255,255,255,0.10)' transform='rotate(-40,60,160)'/%3E%3Cellipse cx='130' cy='200' rx='7' ry='22' fill='rgba(255,255,255,0.13)' transform='rotate(55,130,200)'/%3E%3Cellipse cx='210' cy='170' rx='8' ry='28' fill='rgba(255,255,255,0.09)' transform='rotate(-20,210,170)'/%3E%3Cellipse cx='275' cy='220' rx='7' ry='24' fill='rgba(255,255,255,0.11)' transform='rotate(35,275,220)'/%3E%3Cellipse cx='30' cy='280' rx='8' ry='26' fill='rgba(255,255,255,0.10)' transform='rotate(-10,30,280)'/%3E%3Cellipse cx='160' cy='290' rx='7' ry='22' fill='rgba(255,255,255,0.12)' transform='rotate(45,160,290)'/%3E%3Cellipse cx='300' cy='300' rx='8' ry='24' fill='rgba(255,255,255,0.09)' transform='rotate(-35,300,300)'/%3E%3C/svg%3E")`,
-            backgroundSize: '320px 320px',
-            opacity: 1,
+            background:
+              'linear-gradient(135deg, rgba(30,78,118,0.90) 0%, rgba(30,78,118,0.85) 50%, rgba(24,64,100,0.90) 100%)',
           }}
         />
       </div>
@@ -47,18 +55,14 @@ export default function HeroSection() {
             className="flex flex-col max-w-xl"
             style={{ gap: '20px' }}
           >
-            {/* H1 — 2 lines exactly like screenshot */}
-            {/* Line 1: "FAB Paper Tube." white + "Premium" sky-blue */}
-            {/* Line 2: "and Sustainable Packaging Solutions" sky-blue */}
+            {/* H1 — "FAB Paper Tube." white + rest sky-blue, no forced breaks */}
             <motion.h1
               variants={heroHeading}
               className="font-black leading-tight tracking-tight"
               style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)' }}
             >
               <span style={{ color: '#ffffff' }}>FAB Paper Tube. </span>
-              <span style={{ color: '#4db8ff' }}>Premium</span>
-              <br />
-              <span style={{ color: '#4db8ff' }}>and Sustainable Packaging Solutions</span>
+              <span style={{ color: '#4db8ff' }}>Premium and Sustainable Packaging Solutions</span>
             </motion.h1>
 
             {/* Blue underline bar — matches screenshot */}
