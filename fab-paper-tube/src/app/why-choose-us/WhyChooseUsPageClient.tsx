@@ -102,7 +102,7 @@ export default function WhyChooseUsPageClient() {
       {/* ══════════════════════════════════════════════════════════════════════
           SECTION 1 — Stats / Differentiators — Dark navy cards on white bg
       ══════════════════════════════════════════════════════════════════════ */}
-      <section style={{ background: '#ffffff', padding: '40px 0 64px' }}>
+      <section style={{ background: '#ffffff', padding: '24px 0 56px' }}>
         <div className="container-custom">
 
           {/* 4 cards */}
@@ -235,29 +235,38 @@ export default function WhyChooseUsPageClient() {
                     {/* Big watermark number */}
                     <div
                       className="absolute bottom-0 right-4 font-black select-none pointer-events-none leading-none"
-                      style={{ fontSize: '9rem', color: 'rgba(255,255,255,0.06)' }}
+                      style={{ fontSize: '7rem', color: 'rgba(255,255,255,0.06)' }}
                       aria-hidden
                     >
                       {reason.number}
                     </div>
 
                     <div className="relative z-10">
-                      {/* Number badge */}
-                      <div
-                        className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-5"
-                        style={{ background: 'rgba(255,255,255,0.15)', width: 'fit-content' }}
-                      >
-                        <Icon size={14} className="text-white" />
-                        <span className="text-white font-bold text-xs">{reason.number}</span>
+                      {/* Step number + icon row */}
+                      <div className="flex items-center gap-3 mb-5">
+                        {/* Icon box */}
+                        <div
+                          className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{ background: 'rgba(255,255,255,0.18)' }}
+                        >
+                          <Icon size={18} className="text-white" />
+                        </div>
+                        {/* Step number */}
+                        <span
+                          className="font-black text-white leading-none"
+                          style={{ fontSize: '1rem', opacity: 0.7, letterSpacing: '0.05em' }}
+                        >
+                          {reason.number}
+                        </span>
                       </div>
 
                       <h2
-                        className="font-black text-white leading-tight mb-4"
-                        style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)' }}
+                        className="font-black text-white leading-tight mb-3"
+                        style={{ fontSize: '1.25rem' }}
                       >
                         {reason.title}
                       </h2>
-                      <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '14px', lineHeight: '1.75' }}>
+                      <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '13.5px', lineHeight: '1.75' }}>
                         {reason.description}
                       </p>
                     </div>
@@ -268,31 +277,31 @@ export default function WhyChooseUsPageClient() {
                     className={`flex flex-col justify-center px-8 py-10 bg-white ${isEven ? 'md:order-1' : 'md:order-2'}`}
                   >
                     <div
-                      className="text-xs font-bold tracking-widest uppercase mb-5"
+                      className="text-xs font-bold tracking-widest uppercase mb-4"
                       style={{ color: reason.color }}
                     >
                       Key Highlights
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {reason.points.map((point, pi) => (
                         <div key={point} className="flex items-start gap-3">
                           <div
-                            className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                            className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                             style={{
-                              background: `${reason.color}12`,
-                              border: `1.5px solid ${reason.color}30`,
+                              background: `${reason.color}14`,
+                              border: `1.5px solid ${reason.color}28`,
                             }}
                           >
                             <span
-                              className="font-black"
-                              style={{ fontSize: '10px', color: reason.color }}
+                              className="font-bold"
+                              style={{ fontSize: '9px', color: reason.color }}
                             >
                               {String(pi + 1).padStart(2, '0')}
                             </span>
                           </div>
                           <span
-                            className="font-medium leading-snug"
-                            style={{ color: '#2a3a5a', fontSize: '14px', paddingTop: '4px' }}
+                            className="leading-snug"
+                            style={{ color: '#3a4a6a', fontSize: '13.5px', paddingTop: '3px' }}
                           >
                             {point}
                           </span>
