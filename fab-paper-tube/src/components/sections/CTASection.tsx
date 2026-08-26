@@ -2,92 +2,224 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageSquare, Phone } from 'lucide-react';
-import { staggerContainer, fadeUp, viewportConfig } from '@/lib/animations';
+import { ArrowRight, MessageSquare, Phone, CheckCircle2, Zap } from 'lucide-react';
+import { staggerContainer, fadeUp, slideLeft, slideRight, viewportConfig } from '@/lib/animations';
+
+const tags = ['Custom Sizes', 'Small Diameter Tubes', 'Fast Delivery', 'Pan India Supply'];
+
+const features = [
+  'Any diameter — small or large',
+  'Custom length cutting',
+  'Specific wall thickness',
+  'Pan-India delivery',
+];
 
 export default function CTASection() {
   return (
-    <section className="section-padding bg-[#0f0f0f] relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(200,146,42,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,146,42,1) 1px, transparent 1px)',
-            backgroundSize: '80px 80px',
-          }}
-        />
-        {/* Radial glow */}
-        <motion.div
-          animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.08, 0.05] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
-          style={{ background: 'radial-gradient(circle, #c8922a 0%, transparent 70%)' }}
-        />
-      </div>
+    <section
+      className="relative overflow-hidden"
+      style={{ background: '#ffffff', padding: '88px 0' }}
+    >
+      {/* Subtle top separator */}
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: '#e8edf5' }} />
+
+      {/* Light grid background */}
+      <div
+        className="absolute inset-0 opacity-[0.018]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(26,74,158,1) 1px, transparent 1px), linear-gradient(90deg, rgba(26,74,158,1) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
 
       <div className="container-custom relative z-10">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          variants={staggerContainer}
-          className="max-w-3xl mx-auto text-center"
-        >
-          <motion.span
-            variants={fadeUp}
-            className="text-[#c8922a] text-xs font-bold tracking-[0.25em] uppercase flex items-center justify-center gap-3 mb-5"
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* ── Left: Text content ── */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
           >
-            <span className="w-8 h-0.5 bg-[#c8922a]" />
-            Start Your Order
-            <span className="w-8 h-0.5 bg-[#c8922a]" />
-          </motion.span>
-
-          <motion.h2
-            variants={fadeUp}
-            className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-5"
-          >
-            Looking for the Right{' '}
-            <span className="text-[#c8922a]">Paper Tube?</span>
-          </motion.h2>
-
-          <motion.p
-            variants={fadeUp}
-            className="text-gray-400 text-base md:text-lg leading-relaxed mb-10"
-          >
-            Tell us your required <strong className="text-white font-medium">size, diameter, length, quantity and application</strong>. Our team will help you find the right paper tube solution for your manufacturing needs.
-          </motion.p>
-
-          <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2.5 bg-[#c8922a] text-white font-semibold px-8 py-4 rounded-sm hover:bg-[#a67520] transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl text-sm"
-            >
-              <MessageSquare size={16} />
-              Send Your Requirement
-              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <a
-              href="tel:+918238074700"
-              className="group inline-flex items-center gap-2.5 bg-transparent border-2 border-white/20 text-white font-semibold px-8 py-4 rounded-sm hover:border-[#c8922a] hover:text-[#c8922a] transition-all duration-300 text-sm"
-            >
-              <Phone size={16} />
-              Call Us Now
-            </a>
-          </motion.div>
-
-          {/* Info tags */}
-          <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-3 mt-10">
-            {['Custom Sizes', 'Small Diameter Tubes', 'Fast Delivery', 'Pan India Supply'].map((tag) => (
+            {/* Eyebrow */}
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-5">
+              <span className="block h-[2px] w-8 rounded" style={{ background: '#c8922a' }} />
               <span
-                key={tag}
-                className="text-xs text-gray-500 border border-white/10 px-3 py-1 rounded-full"
+                className="font-bold tracking-[0.25em] uppercase"
+                style={{ color: '#c8922a', fontSize: '12px' }}
               >
-                {tag}
+                Start Your Order
               </span>
-            ))}
+            </motion.div>
+
+            {/* Heading */}
+            <motion.h2
+              variants={fadeUp}
+              className="font-black leading-tight tracking-tight mb-5"
+              style={{ fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#0d1f3c' }}
+            >
+              Looking for the{' '}
+              <span style={{ color: '#1a4a9e' }}>Right Paper Tube</span>{' '}
+              for Your Production?
+            </motion.h2>
+
+            {/* Description */}
+            <motion.p
+              variants={fadeUp}
+              className="leading-relaxed mb-7"
+              style={{ color: '#5a6a8a', fontSize: '16px', lineHeight: '1.8', maxWidth: '460px' }}
+            >
+              Tell us your required{' '}
+              <strong className="font-semibold" style={{ color: '#0d1f3c' }}>
+                size, diameter, length, quantity and application
+              </strong>
+              . We manufacture exactly to your specs.
+            </motion.p>
+
+            {/* Feature list */}
+            <motion.div variants={fadeUp} className="space-y-2.5 mb-9">
+              {features.map((f) => (
+                <div key={f} className="flex items-center gap-2.5">
+                  <div
+                    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'rgba(26,74,158,0.10)' }}
+                  >
+                    <CheckCircle2 size={12} style={{ color: '#1a4a9e' }} />
+                  </div>
+                  <span className="font-medium" style={{ color: '#3a4a6a', fontSize: '14px' }}>{f}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Buttons */}
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2.5 text-white font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, #1a4a9e, #2a5fc0)',
+                  fontSize: '15px',
+                  padding: '14px 28px',
+                  boxShadow: '0 4px 18px rgba(26,74,158,0.30)',
+                }}
+              >
+                <MessageSquare size={16} />
+                Send Your Requirement
+                <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+
+              <a
+                href="tel:+918238074700"
+                className="group inline-flex items-center gap-2.5 font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300"
+                style={{
+                  background: 'transparent',
+                  border: '2px solid #c8922a',
+                  color: '#c8922a',
+                  fontSize: '15px',
+                  padding: '14px 28px',
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = '#c8922a';
+                  el.style.color = '#ffffff';
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = 'transparent';
+                  el.style.color = '#c8922a';
+                }}
+              >
+                <Phone size={16} />
+                Call Us Now
+              </a>
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          {/* ── Right: Highlight card ── */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={slideRight}
+          >
+            <div
+              className="rounded-2xl overflow-hidden"
+              style={{
+                background: 'linear-gradient(155deg, #0d2240 0%, #1a4a9e 100%)',
+                boxShadow: '0 20px 60px rgba(26,74,158,0.22)',
+              }}
+            >
+              {/* Card top accent */}
+              <div
+                className="h-[4px] w-full"
+                style={{
+                  background: 'linear-gradient(90deg, #c8922a, #e0a83b, #c8922a)',
+                }}
+              />
+
+              <div className="p-8 md:p-10">
+                {/* Card heading */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'rgba(200,146,42,0.18)' }}
+                  >
+                    <Zap size={20} style={{ color: '#e0a83b' }} />
+                  </div>
+                  <div>
+                    <div className="font-black text-white text-lg leading-tight">Quick Response</div>
+                    <div className="text-sm" style={{ color: 'rgba(180,210,255,0.65)' }}>We reply within 24 hours</div>
+                  </div>
+                </div>
+
+                {/* Stat row */}
+                <div className="grid grid-cols-3 gap-4 mb-8 py-6 border-y" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                  {[
+                    { value: '10+', label: 'Years' },
+                    { value: '500+', label: 'Clients' },
+                    { value: '100%', label: 'Quality' },
+                  ].map((s) => (
+                    <div key={s.label} className="text-center">
+                      <div
+                        className="font-black text-white leading-none mb-1"
+                        style={{ fontSize: '1.6rem' }}
+                      >
+                        {s.value}
+                      </div>
+                      <div className="text-xs font-medium" style={{ color: 'rgba(180,210,255,0.60)' }}>
+                        {s.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-flex items-center gap-1.5 font-medium"
+                      style={{
+                        color: 'rgba(200,218,245,0.80)',
+                        border: '1px solid rgba(255,255,255,0.12)',
+                        borderRadius: '999px',
+                        padding: '5px 14px',
+                        fontSize: '12px',
+                        background: 'rgba(255,255,255,0.05)',
+                      }}
+                    >
+                      <CheckCircle2 size={10} style={{ color: '#e0a83b' }} />
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );

@@ -181,17 +181,47 @@ export default function WhyChooseUsPageClient() {
         </div>
       </section>
 
-      {/* The Brand Promise */}
+      {/* ── Brand Promise — dark navy, full contrast ── */}
       <section
-        className="section-padding relative overflow-hidden"
-        style={{ background: '#F0F5FF' }}
+        className="relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #071628 0%, #0d2240 50%, #071628 100%)',
+          padding: '100px 0',
+        }}
       >
-        {/* Subtle dot pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.5]"
+        {/* Animated gold orb */}
+        <motion.div
+          animate={{ scale: [1, 1.3, 1], opacity: [0.10, 0.18, 0.10] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -left-40 top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(26,74,158,0.06) 1px, transparent 1px)',
-            backgroundSize: '28px 28px',
+            width: '600px', height: '600px',
+            background: 'radial-gradient(circle, rgba(200,146,42,0.9) 0%, transparent 70%)',
+          }}
+        />
+        {/* Animated blue orb */}
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.15, 0.08] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+          className="absolute -right-40 top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+          style={{
+            width: '500px', height: '500px',
+            background: 'radial-gradient(circle, rgba(77,148,255,0.8) 0%, transparent 70%)',
+          }}
+        />
+        {/* Dot grid */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)',
+            backgroundSize: '30px 30px',
+          }}
+        />
+        {/* Gold top line */}
+        <div
+          className="absolute top-0 left-0 right-0 h-[3px]"
+          style={{
+            background: 'linear-gradient(90deg, transparent, #c8922a 30%, #e0a83b 50%, #c8922a 70%, transparent)',
           }}
         />
 
@@ -204,24 +234,24 @@ export default function WhyChooseUsPageClient() {
             className="max-w-3xl mx-auto text-center"
           >
             {/* Eyebrow */}
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-6">
-              <span className="block h-[2px] w-10 rounded" style={{ background: '#1a4a9e' }} />
-              <span className="font-bold tracking-[0.25em] uppercase" style={{ color: '#1a4a9e', fontSize: '13px' }}>
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-7">
+              <span className="block h-[2px] w-10 rounded" style={{ background: '#e0a83b' }} />
+              <span className="font-bold tracking-[0.28em] uppercase" style={{ color: '#e0a83b', fontSize: '12px' }}>
                 Our Brand Promise
               </span>
-              <span className="block h-[2px] w-10 rounded" style={{ background: '#1a4a9e' }} />
+              <span className="block h-[2px] w-10 rounded" style={{ background: '#e0a83b' }} />
             </motion.div>
 
             {/* Big tagline */}
             <motion.div
               variants={fadeUp}
-              className="font-black mb-5 tracking-tight leading-none"
-              style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', color: '#0d1f3c' }}
+              className="font-black text-white tracking-tight leading-none mb-6"
+              style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)' }}
             >
               Small Size.{' '}
               <span
                 style={{
-                  background: 'linear-gradient(135deg, #c8922a 0%, #e0a83b 50%, #c8922a 100%)',
+                  background: 'linear-gradient(135deg, #e0a83b 0%, #f5c96a 50%, #c8922a 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -234,7 +264,7 @@ export default function WhyChooseUsPageClient() {
             <motion.p
               variants={fadeUp}
               className="leading-relaxed mb-10 mx-auto"
-              style={{ color: '#5a6a8a', fontSize: '17px', maxWidth: '560px', lineHeight: '1.7' }}
+              style={{ color: 'rgba(180,210,255,0.75)', fontSize: '17px', maxWidth: '560px', lineHeight: '1.8' }}
             >
               This is not just a tagline. It is our manufacturing promise. Every paper tube that
               leaves our facility reflects our commitment to precision, quality and consistency.
@@ -243,12 +273,12 @@ export default function WhyChooseUsPageClient() {
             <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 text-white font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300"
+                className="group inline-flex items-center gap-2 text-white font-bold rounded-md hover:-translate-y-1 transition-all duration-300"
                 style={{
                   background: 'linear-gradient(135deg, #c8922a, #e0a83b)',
                   fontSize: '15px',
-                  padding: '13px 28px',
-                  boxShadow: '0 4px 20px rgba(200,146,42,0.30)',
+                  padding: '14px 32px',
+                  boxShadow: '0 6px 28px rgba(200,146,42,0.40)',
                 }}
               >
                 Start Your Requirement
@@ -256,13 +286,13 @@ export default function WhyChooseUsPageClient() {
               </Link>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 font-bold rounded-md transition-all duration-300 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 font-bold rounded-md transition-all duration-300 hover:-translate-y-1"
                 style={{
-                  border: '2px solid rgba(26,74,158,0.30)',
-                  color: '#1a4a9e',
+                  border: '2px solid rgba(255,255,255,0.20)',
+                  color: '#ffffff',
                   fontSize: '15px',
-                  padding: '13px 28px',
-                  background: 'rgba(26,74,158,0.06)',
+                  padding: '14px 32px',
+                  background: 'rgba(255,255,255,0.07)',
                 }}
               >
                 View Products
