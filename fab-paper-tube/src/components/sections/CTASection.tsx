@@ -144,21 +144,15 @@ export default function CTASection() {
             whileInView="visible"
             viewport={viewportConfig}
             variants={slideRight}
-            className="relative"
           >
-            <div
-              className="relative rounded-2xl overflow-hidden"
-              style={{ boxShadow: '0 20px 60px rgba(26,74,158,0.15)' }}
-            >
-              <Image
-                src="/images/Right_Paper_Tube.png"
-                alt="FAB Paper Tube products"
-                width={600}
-                height={440}
-                className="w-full h-auto object-cover"
-                style={{ display: 'block' }}
-              />
-            </div>
+            <Image
+              src="/images/Right_Paper_Tube.png"
+              alt="FAB Paper Tube products"
+              width={600}
+              height={440}
+              className="w-full h-auto"
+              style={{ display: 'block' }}
+            />
           </motion.div>
 
         </div>
