@@ -52,8 +52,8 @@ export default function Footer() {
           {/* Brand Column */}
           <motion.div variants={fadeUp} className="lg:col-span-1">
             {/* Logo */}
-            <div className="flex items-center gap-3 mb-5">
-              <div className="relative w-12 h-12 flex-shrink-0">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="relative flex-shrink-0" style={{ width: '72px', height: '72px' }}>
                 <Image
                   src="/images/fab-logo.png"
                   alt="FAB Paper Tube Logo"
@@ -62,36 +62,43 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <div className="font-black text-base text-white">FAB PAPER TUBE</div>
-                <div className="text-[10px] font-medium tracking-[0.15em] uppercase text-[#c8922a]">Since 2013</div>
+                <div className="font-black text-white" style={{ fontSize: '17px', letterSpacing: '0.04em' }}>
+                  FAB PAPER TUBE
+                </div>
+                <div className="font-semibold tracking-[0.18em] uppercase mt-0.5" style={{ fontSize: '11px', color: '#c8922a' }}>
+                  Since 2013
+                </div>
               </div>
             </div>
 
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+            <p className="leading-relaxed mb-6" style={{ color: '#9a9a9a', fontSize: '14px' }}>
               Quality Paper Tubes manufactured with precision, consistency and customer-focused requirements. Specializing in small-size and small-diameter paper tube manufacturing.
             </p>
 
             {/* Tagline Badge */}
             <div className="inline-flex items-center gap-2 bg-[#c8922a]/10 border border-[#c8922a]/20 rounded px-3 py-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#c8922a]" />
-              <span className="text-[#c8922a] text-xs font-semibold tracking-wide">Small Size. Big Precision.</span>
+              <span className="font-semibold tracking-wide" style={{ color: '#c8922a', fontSize: '12px' }}>
+                Small Size. Big Precision.
+              </span>
             </div>
           </motion.div>
 
           {/* Quick Links */}
           <motion.div variants={fadeUp}>
-            <h3 className="text-white font-bold text-sm tracking-widest uppercase mb-5 flex items-center gap-2">
+            <h3 className="font-bold tracking-widest uppercase mb-5 flex items-center gap-2" style={{ color: '#ffffff', fontSize: '13px' }}>
               <span className="w-5 h-0.5 bg-[#c8922a]" />
               Quick Links
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-[#c8922a] text-sm transition-colors duration-200 flex items-center gap-2 group"
+                    className="hover:text-[#c8922a] transition-colors duration-200 flex items-center gap-2 group"
+                    style={{ color: '#a0a0a0', fontSize: '14px' }}
                   >
-                    <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-2 group-hover:translate-x-0" />
+                    <ArrowRight size={13} className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-2 group-hover:translate-x-0 flex-shrink-0" />
                     {link.label}
                   </Link>
                 </li>
@@ -101,18 +108,19 @@ export default function Footer() {
 
           {/* Products */}
           <motion.div variants={fadeUp}>
-            <h3 className="text-white font-bold text-sm tracking-widest uppercase mb-5 flex items-center gap-2">
+            <h3 className="font-bold tracking-widest uppercase mb-5 flex items-center gap-2" style={{ color: '#ffffff', fontSize: '13px' }}>
               <span className="w-5 h-0.5 bg-[#c8922a]" />
               Products
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {products.map((product) => (
                 <li key={product.href}>
                   <Link
                     href={product.href}
-                    className="text-gray-400 hover:text-[#c8922a] text-sm transition-colors duration-200 flex items-center gap-2 group"
+                    className="hover:text-[#c8922a] transition-colors duration-200 flex items-center gap-2 group"
+                    style={{ color: '#a0a0a0', fontSize: '14px' }}
                   >
-                    <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-2 group-hover:translate-x-0" />
+                    <ArrowRight size={13} className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-2 group-hover:translate-x-0 flex-shrink-0" />
                     {product.label}
                   </Link>
                 </li>
@@ -122,7 +130,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <motion.div variants={fadeUp}>
-            <h3 className="text-white font-bold text-sm tracking-widest uppercase mb-5 flex items-center gap-2">
+            <h3 className="font-bold tracking-widest uppercase mb-5 flex items-center gap-2" style={{ color: '#ffffff', fontSize: '13px' }}>
               <span className="w-5 h-0.5 bg-[#c8922a]" />
               Contact Us
             </h3>
@@ -130,34 +138,39 @@ export default function Footer() {
               <li>
                 <a
                   href="tel:+918238074700"
-                  className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors duration-200 group"
+                  className="flex items-start gap-3 hover:text-white transition-colors duration-200 group"
+                  style={{ color: '#a0a0a0' }}
                 >
-                  <Phone size={15} className="mt-0.5 flex-shrink-0 text-[#c8922a]" />
+                  <Phone size={16} className="mt-0.5 flex-shrink-0" style={{ color: '#c8922a' }} />
                   <div>
-                    <div className="text-xs text-gray-600 mb-0.5">Axit Hirani</div>
-                    <div className="text-sm group-hover:text-[#c8922a] transition-colors">+91 82380 74700</div>
+                    <div className="mb-0.5" style={{ color: '#666', fontSize: '12px' }}>Axit Hirani</div>
+                    <div className="group-hover:text-[#c8922a] transition-colors" style={{ fontSize: '14px' }}>+91 82380 74700</div>
                   </div>
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+919879645030"
-                  className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors duration-200 group"
+                  className="flex items-start gap-3 hover:text-white transition-colors duration-200 group"
+                  style={{ color: '#a0a0a0' }}
                 >
-                  <Phone size={15} className="mt-0.5 flex-shrink-0 text-[#c8922a]" />
+                  <Phone size={16} className="mt-0.5 flex-shrink-0" style={{ color: '#c8922a' }} />
                   <div>
-                    <div className="text-xs text-gray-600 mb-0.5">Mansukh Ranpariya</div>
-                    <div className="text-sm group-hover:text-[#c8922a] transition-colors">+91 98796 45030</div>
+                    <div className="mb-0.5" style={{ color: '#666', fontSize: '12px' }}>Mansukh Ranpariya</div>
+                    <div className="group-hover:text-[#c8922a] transition-colors" style={{ fontSize: '14px' }}>+91 98796 45030</div>
                   </div>
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:fabpapertube111@gmail.com"
-                  className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors duration-200 group"
+                  className="flex items-start gap-3 hover:text-white transition-colors duration-200 group"
+                  style={{ color: '#a0a0a0' }}
                 >
-                  <Mail size={15} className="mt-0.5 flex-shrink-0 text-[#c8922a]" />
-                  <span className="text-sm group-hover:text-[#c8922a] transition-colors break-all">fabpapertube111@gmail.com</span>
+                  <Mail size={16} className="mt-0.5 flex-shrink-0" style={{ color: '#c8922a' }} />
+                  <span className="group-hover:text-[#c8922a] transition-colors break-all" style={{ fontSize: '14px' }}>
+                    fabpapertube111@gmail.com
+                  </span>
                 </a>
               </li>
               <li>
@@ -165,10 +178,11 @@ export default function Footer() {
                   href="https://maps.google.com/?q=Star+Gold+Industrial+Park+Kuha+Ahmedabad"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors duration-200 group"
+                  className="flex items-start gap-3 hover:text-white transition-colors duration-200 group"
+                  style={{ color: '#a0a0a0' }}
                 >
-                  <MapPin size={15} className="mt-0.5 flex-shrink-0 text-[#c8922a]" />
-                  <span className="text-sm group-hover:text-[#c8922a] transition-colors">
+                  <MapPin size={16} className="mt-0.5 flex-shrink-0" style={{ color: '#c8922a' }} />
+                  <span className="group-hover:text-[#c8922a] transition-colors" style={{ fontSize: '14px', lineHeight: '1.6' }}>
                     Shed No. 14, Star Gold Industrial Park,<br />
                     Kuha, Ahmedabad, Gujarat - 382433
                   </span>
