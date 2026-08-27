@@ -45,7 +45,7 @@ export default function TrustedManufacturerSection() {
 
             <motion.p variants={slideLeft} style={{ color: '#4a5a7a', lineHeight: '1.75', fontSize: '15px' }}>
               FAB Paper Tube is a trusted manufacturer of premium quality paper tubes and paper cores,
-              established in 2013 in Ahmedabad, Gujarat. We have been delivering consistent,
+              based in Ahmedabad, Gujarat. We have been delivering consistent,
               high-quality products to industries across India for over a decade.
             </motion.p>
 
