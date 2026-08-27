@@ -40,8 +40,7 @@ export default function TrustedManufacturerSection() {
               className="font-black leading-tight"
               style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', color: '#0d1f3c' }}
             >
-              Trusted Paper Tube Manufacturer{' '}
-              <span style={{ color: '#1a4a9e' }}>Since 2013</span>
+              Trusted Paper Tube Manufacturer
             </motion.h2>
 
             <motion.p variants={slideLeft} style={{ color: '#4a5a7a', lineHeight: '1.75', fontSize: '15px' }}>
