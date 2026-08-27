@@ -96,9 +96,6 @@ export default function Footer() {
                 <div className="font-black text-white" style={{ fontSize: '18px', letterSpacing: '0.04em' }}>
                   FAB PAPER TUBE
                 </div>
-                <div className="font-semibold tracking-[0.18em] uppercase mt-1" style={{ fontSize: '11px', color: '#c8922a' }}>
-                  Since 2013
-                </div>
               </div>
             </div>
 
@@ -106,16 +103,8 @@ export default function Footer() {
               Quality Paper Tubes manufactured with precision, consistency and customer-focused requirements. Specializing in small-size and small-diameter paper tube manufacturing.
             </p>
 
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#c8922a]/10 border border-[#c8922a]/20 rounded px-3 py-2 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c8922a]" />
-              <span className="font-semibold tracking-wide" style={{ color: '#c8922a', fontSize: '12px' }}>
-                Small Size. Big Precision.
-              </span>
-            </div>
-
             {/* Social Icons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mt-2">
               {socials.map(({ label, href, Icon, hoverColor }) => (
                 <a
                   key={label}
@@ -257,14 +246,14 @@ export default function Footer() {
         </motion.div>
 
         {/* Divider */}
-        <div className="border-t border-white/5" />
+        <div className="border-t" style={{ borderColor: 'rgba(255,255,255,0.07)' }} />
 
         {/* Bottom Bar */}
-        <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
-          <span>
-            © {currentYear} FAB Paper Tube. All rights reserved.
+        <div className="py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span style={{ color: '#5a5a5a', fontSize: '13px' }}>
+            © {currentYear} <span style={{ color: '#888' }}>FAB Paper Tube</span>. All rights reserved.
           </span>
-          <span className="flex items-center gap-1">
+          <span style={{ color: '#5a5a5a', fontSize: '13px' }}>
             Paper Tube Manufacturer, Ahmedabad, Gujarat, India
           </span>
         </div>
