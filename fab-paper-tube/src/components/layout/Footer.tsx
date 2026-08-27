@@ -53,7 +53,7 @@ export default function Footer() {
           <motion.div variants={fadeUp} className="lg:col-span-1">
             {/* Logo */}
             <div className="flex items-center gap-4 mb-6">
-              <div className="relative flex-shrink-0" style={{ width: '72px', height: '72px' }}>
+              <div className="relative flex-shrink-0" style={{ width: '90px', height: '90px' }}>
                 <Image
                   src="/images/fab-logo.png"
                   alt="FAB Paper Tube Logo"
@@ -62,10 +62,10 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <div className="font-black text-white" style={{ fontSize: '17px', letterSpacing: '0.04em' }}>
+                <div className="font-black text-white" style={{ fontSize: '18px', letterSpacing: '0.04em' }}>
                   FAB PAPER TUBE
                 </div>
-                <div className="font-semibold tracking-[0.18em] uppercase mt-0.5" style={{ fontSize: '11px', color: '#c8922a' }}>
+                <div className="font-semibold tracking-[0.18em] uppercase mt-1" style={{ fontSize: '11px', color: '#c8922a' }}>
                   Since 2013
                 </div>
               </div>
@@ -86,19 +86,37 @@ export default function Footer() {
 
           {/* Quick Links */}
           <motion.div variants={fadeUp}>
-            <h3 className="font-bold tracking-widest uppercase mb-5 flex items-center gap-2" style={{ color: '#ffffff', fontSize: '13px' }}>
+            <h3 className="font-bold tracking-widest uppercase mb-6 flex items-center gap-2" style={{ color: '#ffffff', fontSize: '13px' }}>
               <span className="w-5 h-0.5 bg-[#c8922a]" />
               Quick Links
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="hover:text-[#c8922a] transition-colors duration-200 flex items-center gap-2 group"
-                    style={{ color: '#a0a0a0', fontSize: '14px' }}
+                    className="group flex items-center gap-0 rounded-md transition-all duration-250"
+                    style={{
+                      color: '#a0a0a0',
+                      fontSize: '14.5px',
+                      padding: '7px 10px 7px 0',
+                      display: 'flex',
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.color = '#e0a83b';
+                      el.style.paddingLeft = '10px';
+                      el.style.background = 'rgba(200,146,42,0.07)';
+                      el.style.borderRadius = '6px';
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.color = '#a0a0a0';
+                      el.style.paddingLeft = '0px';
+                      el.style.background = 'transparent';
+                    }}
                   >
-                    <ArrowRight size={13} className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-2 group-hover:translate-x-0 flex-shrink-0" />
+                    <ArrowRight size={13} className="mr-2 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-200" style={{ color: '#e0a83b' }} />
                     {link.label}
                   </Link>
                 </li>
@@ -108,19 +126,37 @@ export default function Footer() {
 
           {/* Products */}
           <motion.div variants={fadeUp}>
-            <h3 className="font-bold tracking-widest uppercase mb-5 flex items-center gap-2" style={{ color: '#ffffff', fontSize: '13px' }}>
+            <h3 className="font-bold tracking-widest uppercase mb-6 flex items-center gap-2" style={{ color: '#ffffff', fontSize: '13px' }}>
               <span className="w-5 h-0.5 bg-[#c8922a]" />
               Products
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1">
               {products.map((product) => (
                 <li key={product.href}>
                   <Link
                     href={product.href}
-                    className="hover:text-[#c8922a] transition-colors duration-200 flex items-center gap-2 group"
-                    style={{ color: '#a0a0a0', fontSize: '14px' }}
+                    className="group flex items-center gap-0 rounded-md transition-all duration-250"
+                    style={{
+                      color: '#a0a0a0',
+                      fontSize: '14.5px',
+                      padding: '7px 10px 7px 0',
+                      display: 'flex',
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.color = '#e0a83b';
+                      el.style.paddingLeft = '10px';
+                      el.style.background = 'rgba(200,146,42,0.07)';
+                      el.style.borderRadius = '6px';
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.color = '#a0a0a0';
+                      el.style.paddingLeft = '0px';
+                      el.style.background = 'transparent';
+                    }}
                   >
-                    <ArrowRight size={13} className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-2 group-hover:translate-x-0 flex-shrink-0" />
+                    <ArrowRight size={13} className="mr-2 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-200" style={{ color: '#e0a83b' }} />
                     {product.label}
                   </Link>
                 </li>
