@@ -7,7 +7,7 @@ import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { slideLeft, slideRight, staggerContainer, fadeUp, viewportConfig } from '@/lib/animations';
 
 const highlights = [
-  'Manufacturing all types of paper tubes since 2013',
+  'Manufacturing all types of paper tubes with precision',
   'Stitching thread Tube, Stretch film core, Textile Paper Tube',
   'Precision small-diameter paper tube specialists',
   'Custom size manufacturing as per customer requirement',
