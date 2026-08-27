@@ -179,28 +179,12 @@ export default function Footer() {
                 <li key={product.href}>
                   <Link
                     href={product.href}
-                    className="group flex items-center gap-0 rounded-md transition-all duration-250"
-                    style={{
-                      color: '#a0a0a0',
-                      fontSize: '14.5px',
-                      padding: '7px 10px 7px 0',
-                      display: 'flex',
-                    }}
-                    onMouseEnter={e => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.color = '#e0a83b';
-                      el.style.paddingLeft = '10px';
-                      el.style.background = 'rgba(200,146,42,0.07)';
-                      el.style.borderRadius = '6px';
-                    }}
-                    onMouseLeave={e => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.color = '#a0a0a0';
-                      el.style.paddingLeft = '0px';
-                      el.style.background = 'transparent';
-                    }}
+                    className="group flex items-center rounded-md transition-all duration-200"
+                    style={{ color: '#a0a0a0', fontSize: '14.5px', padding: '7px 0' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#e0a83b'; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#a0a0a0'; }}
                   >
-                    <ArrowRight size={13} className="mr-2 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-200" style={{ color: '#e0a83b' }} />
+                    <ArrowRight size={13} className="mr-2 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ color: '#e0a83b' }} />
                     {product.label}
                   </Link>
                 </li>
