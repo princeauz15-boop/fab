@@ -47,8 +47,8 @@ const contactInfo = [
     icon: MapPin,
     label: 'Factory Address',
     value:
-      'Shed No. 14, Star Gold Industrial Park, Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha, Ahmedabad, Gujarat - 382433',
-    href: 'https://maps.google.com/?q=Star+Gold+Industrial+Park+Kuha+Ahmedabad',
+      'Shed No. 14, STAR GOLD INDUSTRIAL PARK, bus stand, Indore - Ahmedabad Hwy, opp. Ghardaghar Kothiya, Kuha, Gujarat 382433',
+    href: 'https://maps.google.com/?q=Shed+No.+14+STAR+GOLD+INDUSTRIAL+PARK+Kuha+Gujarat+382433',
   },
 ];
 
@@ -192,14 +192,14 @@ export default function ContactPageClient() {
                 style={{ aspectRatio: '16/9' }}
               >
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.0!2d72.7!3d23.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b0000000001%3A0x0!2sStar+Gold+Industrial+Park%2C+Kuha%2C+Ahmedabad%2C+Gujarat+382433!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin&q=Shed+No.+14,+Star+Gold+Industrial+Park,+Opp.+Ghardaghar+Kothiya+Bus+Stand,+Indore+Highway,+Kuha,+Ahmedabad,+Gujarat+382433"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.6!2d72.69390!3d23.06140!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9c3b1f5d8f01%3A0xfab00001234abcde!2sFAB%20PAPER%20TUBE!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0, display: 'block', width: '100%', height: '100%', minHeight: '260px' }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="FAB Paper Tube Factory Location"
+                  title="FAB Paper Tube — Shed No. 14, STAR GOLD INDUSTRIAL PARK, Kuha, Gujarat 382433"
                 />
               </motion.div>
             </motion.div>

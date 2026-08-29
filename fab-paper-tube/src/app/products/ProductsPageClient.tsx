@@ -240,7 +240,7 @@ export default function ProductsPageClient({ products }: Props) {
         <div className="container-custom">
 
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-12">
+          <div className="flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left justify-between gap-5 mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

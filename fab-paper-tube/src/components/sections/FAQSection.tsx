@@ -10,7 +10,7 @@ const faqs = [
   { q: 'Do you accept custom size orders for paper tubes?', a: 'Yes, we specialize in custom size paper tube manufacturing. We can produce tubes to your exact specifications — specific diameter, length, wall thickness and paper grade.' },
   { q: 'What is your minimum order quantity?', a: 'Minimum order quantities vary by product type. Please contact us with your specific requirements and we will provide the best solution for your order size.' },
   { q: 'What industries do you serve?', a: 'We serve textile, packaging, stationery, cracker manufacturing, candle manufacturing, thermal roll, POS billing and general industrial sectors.' },
-  { q: 'Where are you located?', a: 'We are located at Shed No. 14, Star Gold Industrial Park, Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha, Ahmedabad, Gujarat - 382433.' },
+  { q: 'Where are you located?', a: 'We are located at Shed No. 14, STAR GOLD INDUSTRIAL PARK, bus stand, Indore - Ahmedabad Hwy, opp. Ghardaghar Kothiya, Kuha, Gujarat 382433.' },
   { q: 'How can I place an order?', a: 'You can contact us by phone (+91 82380 74700 or +91 98796 45030), email (fabpapertube111@gmail.com) or fill the contact form on our website with your requirements.' },
 ];
 
