@@ -88,10 +88,10 @@ export default function CTASection() {
             </motion.div>
 
             {/* Buttons */}
-            <motion.div variants={fadeUp} className="flex flex-row gap-3 justify-center lg:justify-start flex-wrap">
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start w-full lg:w-auto">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2.5 text-white font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2.5 text-white font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto"
                 style={{
                   background: 'linear-gradient(135deg, #1a4a9e, #2a5fc0)',
                   fontSize: '15px',
@@ -106,7 +106,7 @@ export default function CTASection() {
 
               <a
                 href="tel:+918238074700"
-                className="group inline-flex items-center gap-2.5 font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2.5 font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto"
                 style={{
                   background: 'transparent',
                   border: '2px solid #c8922a',

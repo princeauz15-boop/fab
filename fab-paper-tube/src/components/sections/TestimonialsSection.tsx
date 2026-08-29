@@ -24,7 +24,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
       className="bg-white rounded-xl flex flex-col h-full"
       style={{ border: '1px solid #e8edf5', padding: '24px', boxShadow: '0 2px 12px rgba(26,74,158,0.05)' }}
     >
-      <Quote size={26} style={{ color: 'rgba(200,146,42,0.18)' }} className="mb-3 flex-shrink-0" />
+      <Quote size={26} style={{ color: 'rgba(200,146,42,0.18)' }} className="mb-3 flex-shrink-0 mx-auto" />
       <p className="italic leading-relaxed flex-1 mb-5 text-center" style={{ color: '#4a5a7a', fontSize: '14px' }}>
         &ldquo;{t.review}&rdquo;
       </p>
