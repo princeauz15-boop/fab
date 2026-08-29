@@ -52,7 +52,7 @@ export default function HeroSection() {
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex flex-col max-w-xl"
+            className="flex flex-col max-w-xl text-center lg:text-left items-center lg:items-start"
             style={{ gap: '20px' }}
           >
             {/* H1 — "FAB Paper Tube." white + rest sky-blue, no forced breaks */}
@@ -110,7 +110,8 @@ export default function HeroSection() {
             {/* CTA buttons — white outlined, exact match screenshot */}
             <motion.div
               variants={heroButtons}
-              style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', paddingTop: '4px' }}
+              style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', paddingTop: '4px', justifyContent: 'center' }}
+              className="lg:justify-start"
             >
               <Link
                 href="/contact"

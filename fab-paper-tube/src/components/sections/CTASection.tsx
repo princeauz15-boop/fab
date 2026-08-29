@@ -43,9 +43,10 @@ export default function CTASection() {
             whileInView="visible"
             viewport={viewportConfig}
             variants={staggerContainer}
+            className="text-center lg:text-left"
           >
             {/* Eyebrow */}
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-5">
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-5 justify-center lg:justify-start">
               <span className="block h-[2px] w-8 rounded" style={{ background: '#c8922a' }} />
               <span
                 className="font-bold tracking-[0.25em] uppercase"
@@ -69,7 +70,7 @@ export default function CTASection() {
             {/* Description */}
             <motion.p
               variants={fadeUp}
-              className="leading-relaxed mb-7"
+              className="leading-relaxed mb-7 mx-auto lg:mx-0"
               style={{ color: '#5a6a8a', fontSize: '16px', lineHeight: '1.8', maxWidth: '460px' }}
             >
               Tell us your required{' '}
@@ -80,7 +81,7 @@ export default function CTASection() {
             </motion.p>
 
             {/* Feature list */}
-            <motion.div variants={fadeUp} className="space-y-2.5 mb-9">
+            <motion.div variants={fadeUp} className="space-y-2.5 mb-9 text-left">
               {features.map((f) => (
                 <div key={f} className="flex items-center gap-2.5">
                   <div
