@@ -9,10 +9,8 @@ import type { Product } from '@/types';
 
 interface Props { products: Product[] }
 
-const pad = (n: number) => String(n + 1).padStart(2, '0');
-
-/* ── Large featured card (left) ── */
-function FeaturedCard({ product, index }: { product: Product; index: number }) {
+/* ── Large featured card ── */
+function FeaturedCard({ product }: { product: Product }) {
   return (
     <motion.article
       initial={{ opacity: 0, x: -48 }}
@@ -22,7 +20,6 @@ function FeaturedCard({ product, index }: { product: Product; index: number }) {
       className="group relative rounded-2xl overflow-hidden col-span-1 lg:col-span-2"
       style={{ minHeight: '420px' }}
     >
-      {/* BG image */}
       <div className="absolute inset-0">
         {product.featuredImage ? (
           <Image
@@ -34,37 +31,32 @@ function FeaturedCard({ product, index }: { product: Product; index: number }) {
             priority
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center" style={{ background: '#0d2240' }}>
-            <Package size={64} style={{ color: 'rgba(255,255,255,0.15)' }} />
+          <div className="absolute inset-0 flex items-center justify-center" style={{ background: '#1a3a6b' }}>
+            <Package size={64} style={{ color: 'rgba(255,255,255,0.12)' }} />
           </div>
         )}
-        {/* Gradient overlay */}
+        {/* Warm navy gradient overlay */}
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(135deg, rgba(13,31,60,0.82) 0%, rgba(13,31,60,0.45) 60%, rgba(13,31,60,0.20) 100%)' }}
+          style={{
+            background:
+              'linear-gradient(135deg, rgba(10,22,48,0.88) 0%, rgba(10,22,48,0.50) 60%, rgba(10,22,48,0.15) 100%)',
+          }}
         />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-between p-8 md:p-10" style={{ minHeight: '420px' }}>
-        {/* Top */}
-        <div className="flex items-start justify-between">
-          <span
-            className="font-black"
-            style={{ color: 'rgba(255,255,255,0.20)', fontSize: '3.5rem', lineHeight: 1 }}
-          >
-            {pad(index)}
-          </span>
+        {/* Used For tag */}
+        <div>
           {product.usedFor.length > 0 && (
             <span
-              className="rounded-full font-semibold"
+              className="inline-block rounded-full font-semibold"
               style={{
-                background: 'rgba(255,255,255,0.15)',
-                color: 'rgba(255,255,255,0.90)',
+                background: 'rgba(200,146,42,0.22)',
+                color: '#e0a83b',
                 fontSize: '11px',
                 padding: '5px 14px',
-                backdropFilter: 'blur(8px)',
-                border: '1px solid rgba(255,255,255,0.20)',
+                border: '1px solid rgba(200,146,42,0.38)',
               }}
             >
               {product.usedFor[0]}
@@ -72,17 +64,16 @@ function FeaturedCard({ product, index }: { product: Product; index: number }) {
           )}
         </div>
 
-        {/* Bottom */}
         <div>
           <h3
             className="font-black text-white leading-tight mb-3"
-            style={{ fontSize: 'clamp(1.3rem, 2.5vw, 2rem)' }}
+            style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.1rem)' }}
           >
             {product.title}
           </h3>
           <p
             className="mb-6 leading-relaxed line-clamp-2"
-            style={{ color: 'rgba(200,218,245,0.78)', fontSize: '14px' }}
+            style={{ color: 'rgba(200,218,245,0.75)', fontSize: '14px' }}
           >
             {product.shortDescription.replace(/<[^>]*>/g, '')}
           </p>
@@ -90,11 +81,11 @@ function FeaturedCard({ product, index }: { product: Product; index: number }) {
             href={`/products/${product.slug}`}
             className="group/btn inline-flex items-center gap-2.5 font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5"
             style={{
-              background: 'linear-gradient(135deg, #c8922a, #e0a83b)',
+              background: 'linear-gradient(135deg, #1a4a9e, #2a5fc0)',
               color: 'white',
               fontSize: '13.5px',
-              padding: '12px 22px',
-              boxShadow: '0 4px 20px rgba(200,146,42,0.40)',
+              padding: '12px 24px',
+              boxShadow: '0 4px 18px rgba(26,74,158,0.40)',
             }}
           >
             View Product
@@ -113,10 +104,9 @@ function SideCard({ product, index }: { product: Product; index: number }) {
       initial={{ opacity: 0, x: 48 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={viewportConfig}
-      transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.65, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
       className="group relative rounded-2xl overflow-hidden"
     >
-      {/* BG image */}
       <div className="absolute inset-0">
         {product.featuredImage ? (
           <Image
@@ -127,23 +117,25 @@ function SideCard({ product, index }: { product: Product; index: number }) {
             className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
           />
         ) : (
-          <div className="absolute inset-0" style={{ background: '#112040' }} />
+          <div className="absolute inset-0" style={{ background: '#1a3a6b' }} />
         )}
         <div
           className="absolute inset-0 transition-opacity duration-400"
-          style={{ background: 'linear-gradient(180deg, rgba(13,31,60,0.30) 0%, rgba(13,31,60,0.78) 100%)' }}
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(10,22,48,0.22) 0%, rgba(10,22,48,0.82) 100%)',
+          }}
         />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col justify-end p-6" style={{ minHeight: '200px' }}>
+      <div className="relative z-10 flex flex-col justify-end p-5" style={{ minHeight: '200px' }}>
         <div className="flex items-end justify-between gap-3">
           <div>
             {product.usedFor.length > 0 && (
               <span
-                className="inline-block rounded-full font-semibold mb-2"
+                className="inline-block rounded-full font-semibold mb-1.5"
                 style={{
-                  background: 'rgba(200,146,42,0.25)',
+                  background: 'rgba(200,146,42,0.22)',
                   color: '#e0a83b',
                   fontSize: '10px',
                   padding: '3px 10px',
@@ -153,17 +145,18 @@ function SideCard({ product, index }: { product: Product; index: number }) {
                 {product.usedFor[0]}
               </span>
             )}
-            <h3
-              className="font-black text-white leading-tight"
-              style={{ fontSize: '15px' }}
-            >
+            <h3 className="font-black text-white leading-tight" style={{ fontSize: '14.5px' }}>
               {product.title}
             </h3>
           </div>
           <Link
             href={`/products/${product.slug}`}
-            className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110"
-            style={{ background: 'rgba(255,255,255,0.18)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.25)' }}
+            className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#1a4a9e]"
+            style={{
+              background: 'rgba(255,255,255,0.16)',
+              border: '1px solid rgba(255,255,255,0.28)',
+              backdropFilter: 'blur(8px)',
+            }}
             aria-label={`View ${product.title}`}
           >
             <MoveRight size={15} className="text-white" />
@@ -186,13 +179,13 @@ function RegularCard({ product, index }: { product: Product; index: number }) {
       style={{
         border: '1px solid #e8edf5',
         boxShadow: '0 2px 12px rgba(26,74,158,0.05)',
-        transition: 'box-shadow 0.3s, border-color 0.3s',
+        transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
       }}
       whileHover={{ y: -6, transition: { duration: 0.28 } }}
       onMouseEnter={e => {
         const el = e.currentTarget as HTMLElement;
         el.style.boxShadow = '0 20px 48px rgba(26,74,158,0.12)';
-        el.style.borderColor = 'rgba(26,74,158,0.18)';
+        el.style.borderColor = 'rgba(26,74,158,0.20)';
       }}
       onMouseLeave={e => {
         const el = e.currentTarget as HTMLElement;
@@ -215,13 +208,6 @@ function RegularCard({ product, index }: { product: Product; index: number }) {
             <Package size={40} style={{ color: '#c8d8f0', opacity: 0.5 }} />
           </div>
         )}
-        {/* Number tag */}
-        <div
-          className="absolute top-3 left-3 rounded-lg px-2.5 py-1 font-black"
-          style={{ background: 'rgba(13,31,60,0.75)', color: 'rgba(255,255,255,0.7)', fontSize: '11px', backdropFilter: 'blur(6px)' }}
-        >
-          {pad(index)}
-        </div>
       </div>
 
       {/* Body */}
@@ -305,39 +291,37 @@ export default function ProductsSection({ products }: Props) {
             </p>
           </motion.div>
 
+          {/* View All button — blue gradient matching brand */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportConfig}
             transition={{ delay: 0.2 }}
-            className="hidden lg:block"
+            className="hidden lg:block flex-shrink-0"
           >
             <Link
               href="/products"
-              className="group inline-flex items-center gap-2 font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2.5 font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5"
               style={{
-                background: '#0d1f3c',
+                background: 'linear-gradient(135deg, #1a4a9e, #2a5fc0)',
                 color: 'white',
-                fontSize: '13.5px',
-                padding: '13px 24px',
-                boxShadow: '0 4px 16px rgba(13,31,60,0.20)',
+                fontSize: '14px',
+                padding: '13px 26px',
+                boxShadow: '0 4px 18px rgba(26,74,158,0.28)',
               }}
             >
               View All Products
-              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>
 
-        {/* ── Top row: Featured (2/3) + Side cards (1/3) ── */}
+        {/* ── Top row: Featured (2/3) + Side stack (1/3) ── */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
-          {/* Featured — spans 2 columns */}
-          <FeaturedCard product={featured} index={0} />
-
-          {/* Side cards stacked */}
+          <FeaturedCard product={featured} />
           <div className="flex flex-col gap-5">
             {sideCards.map((p, i) => (
-              <SideCard key={p.id} product={p} index={i + 1} />
+              <SideCard key={p.id} product={p} index={i} />
             ))}
           </div>
         </div>
@@ -346,7 +330,7 @@ export default function ProductsSection({ products }: Props) {
         {bottomCards.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {bottomCards.map((p, i) => (
-              <RegularCard key={p.id} product={p} index={i + 3} />
+              <RegularCard key={p.id} product={p} index={i} />
             ))}
           </div>
         )}
@@ -356,37 +340,22 @@ export default function ProductsSection({ products }: Props) {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={viewportConfig}
-          transition={{ delay: 0.35 }}
+          transition={{ delay: 0.3 }}
           className="mt-10 text-center lg:hidden"
         >
           <Link
             href="/products"
             className="group inline-flex items-center gap-2 text-white font-bold rounded-xl hover:-translate-y-0.5 transition-all duration-300"
             style={{
-              background: '#0d1f3c',
+              background: 'linear-gradient(135deg, #1a4a9e, #2a5fc0)',
               fontSize: '15px',
               padding: '14px 32px',
-              boxShadow: '0 4px 16px rgba(13,31,60,0.20)',
+              boxShadow: '0 4px 18px rgba(26,74,158,0.28)',
             }}
           >
             View All Products
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
-        </motion.div>
-
-        {/* Product count strip */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={viewportConfig}
-          transition={{ delay: 0.4 }}
-          className="mt-10 flex items-center justify-center gap-4"
-        >
-          <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, #dde8f5)' }} />
-          <span style={{ color: '#9aaacc', fontSize: '12.5px', fontWeight: 600 }}>
-            Showing {Math.min(6, products.length)} of {products.length} products
-          </span>
-          <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, #dde8f5, transparent)' }} />
         </motion.div>
 
       </div>
