@@ -3,90 +3,107 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Package } from 'lucide-react';
 import { staggerContainer, fadeUp, viewportConfig } from '@/lib/animations';
 import type { Product } from '@/types';
 
 interface Props { products: Product[] }
 
-// Product photo backgrounds using real uploaded images via data URIs or descriptive gradients
-const productColors: Record<string, string> = {
-  'white-sewing-thread-paper-tube': 'linear-gradient(145deg, #e8e4dc, #d4cfc4)',
-  'brown-notebook-cover-paper-tube': 'linear-gradient(145deg, #c8a870, #b89050)',
-  'birthday-cake-sparkle-candle-tube': 'linear-gradient(145deg, #d8d0c4, #c4bab0)',
-  'selfie-stick-pencil-crackers-tube': 'linear-gradient(145deg, #c0b8a8, #b0a898)',
-  'butterfly-firecracker-tube': 'linear-gradient(145deg, #c8c0b0, #b8b0a0)',
-  'thermal-roll-paper-tube': 'linear-gradient(145deg, #e0dcd4, #d0ccc4)',
-  'mirchi-bomb-paper-tube': 'linear-gradient(145deg, #c4bab0, #b4aaa0)',
-  'stretch-film-roll-paper-tube': 'linear-gradient(145deg, #d0c8b8, #c0b8a8)',
-};
-
 function ProductCard({ product, index }: { product: Product; index: number }) {
-  const bg = productColors[product.slug] || 'linear-gradient(145deg, #d4cfc4, #c4bfb4)';
-
   return (
     <motion.article
       variants={fadeUp}
       custom={index}
-      className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-1.5 flex flex-col border border-gray-100"
+      className="product-card group bg-white rounded-xl overflow-hidden flex flex-col"
+      style={{
+        border: '1px solid #e8edf5',
+        boxShadow: '0 2px 12px rgba(26,74,158,0.06)',
+        transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+      }}
+      whileHover={{
+        y: -6,
+        transition: { duration: 0.28 },
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 40px rgba(26,74,158,0.14)';
+        (e.currentTarget as HTMLElement).style.borderColor = 'rgba(26,74,158,0.25)';
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 12px rgba(26,74,158,0.06)';
+        (e.currentTarget as HTMLElement).style.borderColor = '#e8edf5';
+      }}
     >
-      {/* Product Image */}
-      <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
+      {/* Image */}
+      <div className="relative overflow-hidden bg-[#f4f6fb]" style={{ aspectRatio: '4/3' }}>
         {product.featuredImage ? (
           <Image
             src={product.featuredImage.url}
             alt={product.featuredImage.alt || product.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+            className="product-image object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
         ) : (
-          /* Realistic paper tube image placeholder */
-          <div className="absolute inset-0 flex items-center justify-center" style={{ background: bg }}>
-            <svg viewBox="0 0 300 225" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              {/* Tube bundle visual */}
-              {[0,1,2,3,4,5,6].map((i) => (
-                <g key={i}>
-                  <ellipse cx={80 + i * 22} cy="80" rx="10" ry="5.5" fill="rgba(120,80,30,0.8)"/>
-                  <rect x={70 + i * 22} y="80" width="20" height="110" fill={i % 2 === 0 ? 'rgba(200,185,160,0.9)' : 'rgba(220,205,180,0.9)'}/>
-                  <ellipse cx={80 + i * 22} cy="190" rx="10" ry="5.5" fill="rgba(100,65,20,0.7)"/>
-                  <ellipse cx={80 + i * 22} cy="80" rx="6" ry="3" fill="rgba(50,30,10,0.6)"/>
-                </g>
-              ))}
-              {/* Soft shadow overlay */}
-              <rect width="300" height="225" fill="url(#shadowGrad)" opacity="0.2"/>
-              <defs>
-                <linearGradient id="shadowGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="white" stopOpacity="0.3"/>
-                  <stop offset="100%" stopColor="black" stopOpacity="0.1"/>
-                </linearGradient>
-              </defs>
-            </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Package size={48} style={{ color: '#c8d8f0', opacity: 0.6 }} />
           </div>
         )}
+        {/* Category badge */}
+        <div className="absolute top-3 left-3">
+          <span
+            className="text-white text-xs font-semibold px-2.5 py-1 rounded-md"
+            style={{ background: 'rgba(26,74,158,0.85)', backdropFilter: 'blur(4px)', fontSize: '11px' }}
+          >
+            Paper Tube
+          </span>
+        </div>
       </div>
 
-      {/* Blue title bar — exactly matches screenshot style */}
-      <div className="bg-[#1a4a9e] px-4 py-3">
-        <h3 className="text-white font-bold text-sm leading-tight">{product.title}</h3>
-      </div>
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1">
+        <h3
+          className="font-bold leading-tight mb-2 transition-colors duration-200 group-hover:text-[#1a4a9e]"
+          style={{ color: '#0d1f3c', fontSize: '15px' }}
+        >
+          {product.title}
+        </h3>
 
-      {/* Card body */}
-      <div className="p-4 flex flex-col flex-1 bg-white">
         {product.usedFor.length > 0 && (
-          <div className="mb-2">
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Used For: </span>
-            <span className="text-xs text-gray-600">{product.usedFor.join(', ')}</span>
+          <div className="mb-3">
+            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#9aaacc', fontSize: '10px' }}>
+              Used For
+            </span>
+            <div className="flex flex-wrap gap-1.5 mt-1.5">
+              {product.usedFor.slice(0, 2).map((use) => (
+                <span
+                  key={use}
+                  className="text-xs px-2 py-0.5 rounded-md font-medium"
+                  style={{ background: '#f0f5ff', color: '#1a4a9e', fontSize: '11px' }}
+                >
+                  {use}
+                </span>
+              ))}
+            </div>
           </div>
         )}
-        <p className="text-gray-500 text-xs leading-relaxed line-clamp-2 flex-1">
+
+        <p
+          className="leading-relaxed line-clamp-2 flex-1 mb-4"
+          style={{ color: '#6a7a9a', fontSize: '13px' }}
+        >
           {product.shortDescription.replace(/<[^>]*>/g, '')}
         </p>
+
         <Link
           href={`/products/${product.slug}`}
-          className="mt-3 inline-flex items-center gap-1.5 text-[#1a4a9e] text-xs font-bold hover:gap-2.5 transition-all duration-200"
+          className="inline-flex items-center gap-1.5 font-bold transition-all duration-200 group/btn w-fit"
+          style={{ color: '#1a4a9e', fontSize: '13px' }}
         >
-          View Details <ArrowRight size={12} />
+          View Product
+          <ArrowRight
+            size={13}
+            className="arrow-icon transition-transform duration-200 group-hover/btn:translate-x-1"
+          />
         </Link>
       </div>
     </motion.article>
@@ -94,59 +111,94 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 }
 
 export default function ProductsSection({ products }: Props) {
+  // Show first 6 products on homepage
+  const displayed = products.slice(0, 6);
+
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
+
         {/* Heading */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
           variants={staggerContainer}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
-          <motion.span variants={fadeUp} className="text-xs font-bold tracking-[0.2em] uppercase text-[#8B7355] flex items-center justify-center gap-3 mb-3">
-            <span className="w-8 h-0.5 bg-[#8B7355]" />
-            What We Make
-            <span className="w-8 h-0.5 bg-[#8B7355]" />
-          </motion.span>
-          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-black text-[#1a1a1a] mb-3">
-            Premium <span className="text-[#1a4a9e]">Paper Tube</span> Products
+          <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-4">
+            <span className="block h-[2px] w-8 rounded" style={{ background: '#c8922a' }} />
+            <span
+              className="font-bold tracking-[0.22em] uppercase"
+              style={{ color: '#c8922a', fontSize: '12px' }}
+            >
+              Our Products
+            </span>
+            <span className="block h-[2px] w-8 rounded" style={{ background: '#c8922a' }} />
+          </motion.div>
+
+          <motion.h2
+            variants={fadeUp}
+            className="font-black leading-tight mb-4"
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: '#0d1f3c' }}
+          >
+            Precision Paper Tubes for{' '}
+            <span style={{ color: '#1a4a9e' }}>Every Application</span>
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-[#6b6b6b] text-base max-w-2xl mx-auto">
-            Our wide range of paper tubes is designed to meet the specific requirements of different industrial applications.
+
+          <motion.p
+            variants={fadeUp}
+            className="mx-auto leading-relaxed"
+            style={{ color: '#6a7a9a', fontSize: '16px', maxWidth: '560px' }}
+          >
+            Explore our range of quality paper tubes designed for different industrial,
+            packaging and winding applications.
           </motion.p>
         </motion.div>
 
-        {/* Products Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          variants={staggerContainer}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {products.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
-          ))}
-        </motion.div>
+        {/* Grid */}
+        {displayed.length > 0 ? (
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {displayed.map((product, i) => (
+              <ProductCard key={product.id} product={product} index={i} />
+            ))}
+          </motion.div>
+        ) : (
+          <div className="text-center py-16" style={{ color: '#9aaacc' }}>
+            <Package size={48} className="mx-auto mb-4 opacity-30" />
+            <p style={{ fontSize: '15px' }}>Products are being loaded. Please check back soon.</p>
+          </div>
+        )}
 
-        {/* View All Button */}
+        {/* View All CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportConfig}
           transition={{ delay: 0.3 }}
-          className="mt-10 text-center"
+          className="mt-12 text-center"
         >
           <Link
             href="/products"
-            className="group inline-flex items-center gap-2 bg-[#8B7355] text-white font-semibold px-8 py-3.5 rounded-sm hover:bg-[#7a6245] transition-all duration-300 hover:-translate-y-0.5 shadow-md text-sm"
+            className="group inline-flex items-center gap-2.5 text-white font-bold rounded-lg hover:-translate-y-0.5 transition-all duration-300"
+            style={{
+              background: 'linear-gradient(135deg, #1a4a9e, #2a5fc0)',
+              fontSize: '15px',
+              padding: '14px 32px',
+              boxShadow: '0 4px 18px rgba(26,74,158,0.28)',
+            }}
           >
             View All Products
-            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </motion.div>
+
       </div>
     </section>
   );

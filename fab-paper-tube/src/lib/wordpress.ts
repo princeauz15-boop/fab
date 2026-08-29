@@ -1,19 +1,18 @@
 import type { WPPost, WPMedia, Product, WPImage, Testimonial, CompanySettings } from '@/types';
 
-const WP_API_URL = process.env.WORDPRESS_API_URL || 'https://your-wordpress-site.com/wp-json/wp/v2';
+const WP_API_URL =
+  process.env.WORDPRESS_API_URL || 'https://your-wordpress-site.com/wp-json/wp/v2';
 
-// ─── Fetch Helpers ────────────────────────────────────────────────────────────
+// ─── Fetch Helper ─────────────────────────────────────────────────────────────
 async function wpFetch<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${WP_API_URL}${endpoint}`;
   const res = await fetch(url, {
     next: { revalidate: 3600 }, // ISR: revalidate every hour
     ...options,
   });
-
   if (!res.ok) {
-    throw new Error(`WordPress API error: ${res.status} ${res.statusText} for ${url}`);
+    throw new Error(`WP API error: ${res.status} for ${url}`);
   }
-
   return res.json();
 }
 
@@ -28,30 +27,152 @@ function parseMedia(media: WPMedia): WPImage {
   };
 }
 
+// ─── YouTube URL → Embed ID ───────────────────────────────────────────────────
+export function getYouTubeEmbedId(url: string): string | null {
+  if (!url) return null;
+  // Handles: youtu.be/ID, youtube.com/watch?v=ID, youtube.com/shorts/ID
+  const patterns = [
+    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /[?&]v=([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
+  ];
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) return match[1];
+  }
+  return null;
+}
+
+// ─── Parse Product Post ───────────────────────────────────────────────────────
+function parseProduct(post: WPPost): Product {
+  const media = post._embedded?.['wp:featuredmedia']?.[0];
+  const featuredImage = media ? parseMedia(media) : null;
+  const acf = (post.acf || {}) as Record<string, unknown>;
+
+  const usedFor =
+    typeof acf.used_for === 'string'
+      ? acf.used_for.split('\n').map((s) => s.trim()).filter(Boolean)
+      : [];
+
+  const applications =
+    typeof acf.applications === 'string'
+      ? acf.applications.split('\n').map((s) => s.trim()).filter(Boolean)
+      : [];
+
+  // Build specifications from individual ACF fields + legacy specs array
+  const specsList: Product['specifications'] = [];
+  if (typeof acf.thickness === 'string' && acf.thickness.trim()) {
+    specsList.push({ label: 'Thickness', value: acf.thickness.trim() });
+  }
+  if (typeof acf.diameter === 'string' && acf.diameter.trim()) {
+    specsList.push({ label: 'Diameter', value: acf.diameter.trim() });
+  }
+  if (typeof acf.length === 'string' && acf.length.trim()) {
+    specsList.push({ label: 'Length', value: acf.length.trim() });
+  }
+  if (typeof acf.size === 'string' && acf.size.trim()) {
+    specsList.push({ label: 'Size', value: acf.size.trim() });
+  }
+  if (typeof acf.weight === 'string' && acf.weight.trim()) {
+    specsList.push({ label: 'Weight', value: acf.weight.trim() });
+  }
+  if (typeof acf.usage === 'string' && acf.usage.trim()) {
+    specsList.push({ label: 'Usage / Application', value: acf.usage.trim() });
+  }
+  if (typeof acf.material === 'string' && acf.material.trim()) {
+    specsList.push({ label: 'Material', value: acf.material.trim() });
+  }
+  if (typeof acf.quality === 'string' && acf.quality.trim()) {
+    specsList.push({ label: 'Quality / Features', value: acf.quality.trim() });
+  }
+
+  // Merge with legacy specifications array if provided
+  const legacySpecs = Array.isArray(acf.specifications)
+    ? (acf.specifications as Product['specifications'])
+    : [];
+  const allSpecs = specsList.length > 0 ? specsList : legacySpecs;
+
+  const productOrder =
+    typeof acf.product_order === 'number'
+      ? acf.product_order
+      : typeof post.menu_order === 'number'
+      ? post.menu_order
+      : 999;
+
+  return {
+    id: post.id,
+    slug: post.slug,
+    title: post.title.rendered,
+    shortDescription:
+      typeof acf.short_description === 'string' && acf.short_description.trim()
+        ? acf.short_description.trim()
+        : post.excerpt.rendered.replace(/<[^>]*>/g, '').trim(),
+    description: post.content.rendered,
+    featuredImage,
+    gallery: [],
+    usedFor,
+    applications,
+    specifications: allSpecs,
+    seoTitle: post.yoast_head_json?.title || post.title.rendered,
+    seoDescription: post.yoast_head_json?.description || '',
+    acf: acf as Product['acf'],
+    // New fields
+    videoUrl: typeof acf.video_url === 'string' && acf.video_url.trim() ? acf.video_url.trim() : undefined,
+    thickness: typeof acf.thickness === 'string' && acf.thickness.trim() ? acf.thickness.trim() : undefined,
+    diameter: typeof acf.diameter === 'string' && acf.diameter.trim() ? acf.diameter.trim() : undefined,
+    length: typeof acf.length === 'string' && acf.length.trim() ? acf.length.trim() : undefined,
+    size: typeof acf.size === 'string' && acf.size.trim() ? acf.size.trim() : undefined,
+    weight: typeof acf.weight === 'string' && acf.weight.trim() ? acf.weight.trim() : undefined,
+    usage: typeof acf.usage === 'string' && acf.usage.trim() ? acf.usage.trim() : undefined,
+    material: typeof acf.material === 'string' && acf.material.trim() ? acf.material.trim() : undefined,
+    quality: typeof acf.quality === 'string' && acf.quality.trim() ? acf.quality.trim() : undefined,
+    productOrder,
+  };
+}
+
 // ─── Products ─────────────────────────────────────────────────────────────────
+
+// Try CPT 'products' first, fall back to posts in 'products' category
 export async function getAllProducts(): Promise<Product[]> {
   try {
-    const posts = await wpFetch<WPPost[]>(
-      '/posts?categories=products&_embed&per_page=100&status=publish'
-    );
-    return posts.map(parseProduct);
+    let posts: WPPost[] = [];
+
+    // Try 1: Custom Post Type 'products'
+    try {
+      posts = await wpFetch<WPPost[]>(
+        '/products?_embed&per_page=100&status=publish&orderby=menu_order&order=asc'
+      );
+    } catch {
+      // Try 2: Posts in 'products' category
+      posts = await wpFetch<WPPost[]>(
+        '/posts?categories=products&_embed&per_page=100&status=publish&orderby=menu_order&order=asc'
+      );
+    }
+
+    const parsed = posts.map(parseProduct);
+    // Sort by productOrder ascending
+    return parsed.sort((a, b) => (a.productOrder ?? 999) - (b.productOrder ?? 999));
   } catch {
-    // Return fallback static products if WordPress is not configured
     return getFallbackProducts();
   }
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   try {
-    const posts = await wpFetch<WPPost[]>(
-      `/posts?slug=${slug}&_embed&status=publish`
-    );
+    let posts: WPPost[] = [];
+
+    try {
+      posts = await wpFetch<WPPost[]>(`/products?slug=${slug}&_embed&status=publish`);
+    } catch {
+      posts = await wpFetch<WPPost[]>(`/posts?slug=${slug}&_embed&status=publish`);
+    }
+
     if (!posts || posts.length === 0) return null;
     return parseProduct(posts[0]);
   } catch {
-    // Return fallback product
     const fallback = getFallbackProducts();
-    return fallback.find((p) => p.slug === slug) || null;
+    return fallback.find((p) => p.slug === slug) ?? null;
   }
 }
 
@@ -60,42 +181,10 @@ export async function getRelatedProducts(currentSlug: string, limit = 4): Promis
   return all.filter((p) => p.slug !== currentSlug).slice(0, limit);
 }
 
-function parseProduct(post: WPPost): Product {
-  const media = post._embedded?.['wp:featuredmedia']?.[0];
-  const featuredImage = media ? parseMedia(media) : null;
-  const acf = (post.acf || {}) as Record<string, unknown>;
-
-  const usedFor = typeof acf.used_for === 'string'
-    ? acf.used_for.split('\n').filter(Boolean)
-    : [];
-
-  const applications = typeof acf.applications === 'string'
-    ? acf.applications.split('\n').filter(Boolean)
-    : [];
-
-  return {
-    id: post.id,
-    slug: post.slug,
-    title: post.title.rendered,
-    shortDescription: typeof acf.short_description === 'string' ? acf.short_description : post.excerpt.rendered,
-    description: post.content.rendered,
-    featuredImage,
-    gallery: [],
-    usedFor,
-    applications,
-    specifications: Array.isArray(acf.specifications) ? acf.specifications as Product['specifications'] : [],
-    seoTitle: post.yoast_head_json?.title || post.title.rendered,
-    seoDescription: post.yoast_head_json?.description || '',
-    acf: acf as Product['acf'],
-  };
-}
-
 // ─── Testimonials ─────────────────────────────────────────────────────────────
 export async function getTestimonials(): Promise<Testimonial[]> {
   try {
-    const posts = await wpFetch<WPPost[]>(
-      '/testimonials?_embed&per_page=20&status=publish'
-    );
+    const posts = await wpFetch<WPPost[]>('/testimonials?_embed&per_page=20&status=publish');
     return posts.map((post) => {
       const acf = (post.acf || {}) as Record<string, string | number>;
       return {
@@ -122,9 +211,12 @@ export async function getCompanySettings(): Promise<CompanySettings> {
       phone1: settings.phone1 || '+91 82380 74700',
       phone2: settings.phone2 || '+91 98796 45030',
       email: settings.email || 'fabpapertube111@gmail.com',
-      address: settings.address || 'Shed No. 14, Star Gold Industrial Park, Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha, Ahmedabad, Gujarat - 382433',
+      address:
+        settings.address ||
+        'Shed No. 14, Star Gold Industrial Park, Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha, Ahmedabad, Gujarat - 382433',
       addressLine1: settings.address_line1 || 'Shed No. 14, Star Gold Industrial Park',
-      addressLine2: settings.address_line2 || 'Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha',
+      addressLine2:
+        settings.address_line2 || 'Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha',
       city: settings.city || 'Ahmedabad',
       state: settings.state || 'Gujarat',
       pincode: settings.pincode || '382433',
@@ -138,203 +230,176 @@ export async function getCompanySettings(): Promise<CompanySettings> {
   }
 }
 
-// ─── Fallback Data (used when WordPress is not configured) ────────────────────
+// ─── Fallback Data ────────────────────────────────────────────────────────────
 export function getFallbackProducts(): Product[] {
   return [
     {
       id: 1,
       slug: 'white-sewing-thread-paper-tube',
       title: 'White Sewing Thread Paper Tube',
-      shortDescription: 'Precision-wound paper tubes designed for sewing thread and yarn winding applications. Consistent inner diameter ensures smooth unwinding.',
-      description: '<p>Our White Sewing Thread Paper Tubes are manufactured with high precision to ensure consistent winding and smooth unwinding of sewing threads and yarns. The tubes are made from high-quality kraft paper with precise dimensions for perfect fit in winding machines.</p>',
-      featuredImage: {
-        id: 1,
-        url: '/images/products/sewing-thread-tube.jpg',
-        alt: 'White Sewing Thread Paper Tube',
-        width: 800,
-        height: 600,
-      },
+      shortDescription:
+        'Strong paper tubes specially made for sewing thread winding. Designed for smooth winding, good strength and reliable support.',
+      description:
+        '<p>Our White Sewing Thread Paper Tubes are manufactured with high precision to ensure consistent winding and smooth unwinding of sewing threads and yarns.</p>',
+      featuredImage: null,
       gallery: [],
-      usedFor: ['Sewing Thread', 'Yarn Winding'],
-      applications: ['Textile Industry', 'Thread Manufacturing'],
+      usedFor: ['Sewing Thread & Yarn Winding'],
+      applications: ['Textile Industry'],
       specifications: [
         { label: 'Material', value: 'High-quality Kraft Paper' },
-        { label: 'Color', value: 'White' },
-        { label: 'Available Sizes', value: 'Custom as per requirement' },
+        { label: 'Usage / Application', value: 'Sewing Thread Winding' },
       ],
       seoTitle: 'White Sewing Thread Paper Tube | FAB Paper Tube',
-      seoDescription: 'Premium white sewing thread paper tubes for yarn winding. Precision manufactured for consistent performance.',
+      seoDescription: 'Premium white sewing thread paper tubes for yarn winding.',
       acf: {},
+      productOrder: 1,
     },
     {
       id: 2,
       slug: 'brown-notebook-cover-paper-tube',
       title: 'Brown Notebook Cover Paper Tube',
-      shortDescription: 'Sturdy paper tubes for notebook cover rolls and paper roll winding. Strong construction ensures roll integrity during storage and transport.',
-      description: '<p>Brown Notebook Cover Paper Tubes provide excellent support for notebook cover rolls and paper roll winding. Manufactured with strong kraft paper for durability and consistent performance in paper converting operations.</p>',
-      featuredImage: {
-        id: 2,
-        url: '/images/products/notebook-cover-tube.jpg',
-        alt: 'Brown Notebook Cover Paper Tube',
-        width: 800,
-        height: 600,
-      },
+      shortDescription:
+        'Strong and durable paper tubes used inside notebook cover rolls, keeping the material neat and wrinkle-free during winding.',
+      description:
+        '<p>Brown Notebook Cover Paper Tubes provide excellent support for notebook cover rolls and paper roll winding.</p>',
+      featuredImage: null,
       gallery: [],
-      usedFor: ['Notebook Cover Roll', 'Paper Roll Winding'],
-      applications: ['Paper Industry', 'Stationery Manufacturing'],
+      usedFor: ['Notebook Cover Roll Winding'],
+      applications: ['Stationery Industry'],
       specifications: [
         { label: 'Material', value: 'Brown Kraft Paper' },
-        { label: 'Color', value: 'Brown' },
-        { label: 'Available Sizes', value: 'Custom as per requirement' },
+        { label: 'Usage / Application', value: 'Notebook Cover Roll Winding' },
       ],
       seoTitle: 'Brown Notebook Cover Paper Tube | FAB Paper Tube',
-      seoDescription: 'Heavy-duty brown paper tubes for notebook cover rolls and paper winding applications.',
+      seoDescription: 'Heavy-duty brown paper tubes for notebook cover rolls.',
       acf: {},
+      productOrder: 2,
     },
     {
       id: 3,
       slug: 'birthday-cake-sparkle-candle-tube',
       title: 'Birthday Cake Sparkle Candle Tube',
-      shortDescription: 'Specially designed paper tubes for birthday cake sparkle candles. Precise dimensions for consistent candle manufacturing.',
-      description: '<p>Our Birthday Cake Sparkle Candle Tubes are manufactured with precise dimensions required for candle manufacturing. The consistent inner diameter ensures uniform candle production and reliable performance.</p>',
-      featuredImage: {
-        id: 3,
-        url: '/images/products/sparkle-candle-tube.jpg',
-        alt: 'Birthday Cake Sparkle Candle Tube',
-        width: 800,
-        height: 600,
-      },
+      shortDescription:
+        'Precisely made paper tubes for birthday cake sparkle candles, offering good support during packaging and handling.',
+      description:
+        '<p>Our Birthday Cake Sparkle Candle Tubes are manufactured with precise dimensions for candle manufacturing.</p>',
+      featuredImage: null,
       gallery: [],
-      usedFor: ['Birthday Cake Sparkle Candles', 'Candle Manufacturing'],
-      applications: ['Candle Industry', 'Firework Manufacturing'],
+      usedFor: ['Birthday Cake Sparkle Candles'],
+      applications: ['Candle Manufacturing'],
       specifications: [
         { label: 'Material', value: 'Quality Kraft Paper' },
-        { label: 'Color', value: 'As per requirement' },
-        { label: 'Available Sizes', value: 'Custom as per requirement' },
+        { label: 'Usage / Application', value: 'Sparkle Candle Manufacturing' },
       ],
       seoTitle: 'Birthday Cake Sparkle Candle Tube | FAB Paper Tube',
-      seoDescription: 'Precision paper tubes for birthday cake sparkle candle manufacturing.',
+      seoDescription: 'Precision paper tubes for sparkle candle manufacturing.',
       acf: {},
+      productOrder: 3,
     },
     {
       id: 4,
       slug: 'selfie-stick-pencil-crackers-tube',
       title: 'Selfie Stick Pencil Crackers Tube',
-      shortDescription: 'High-precision paper tubes for selfie stick firecracker and cracker manufacturing. Consistent dimensions for safe production.',
-      description: '<p>Selfie Stick Pencil Crackers Tubes are manufactured to precise specifications required for the cracker industry. Our tubes ensure consistent dimensions for uniform product manufacturing.</p>',
-      featuredImage: {
-        id: 4,
-        url: '/images/products/pencil-crackers-tube.jpg',
-        alt: 'Selfie Stick Pencil Crackers Tube',
-        width: 800,
-        height: 600,
-      },
+      shortDescription:
+        'Paper tubes for selfie stick firecrackers, providing strong support and reliable shape for the product.',
+      description:
+        '<p>Selfie Stick Pencil Crackers Tubes are manufactured to precise specifications for the cracker industry.</p>',
+      featuredImage: null,
       gallery: [],
-      usedFor: ['Selfie Stick Firecrackers', 'Cracker Manufacturing'],
-      applications: ['Cracker Manufacturing', 'Fireworks Industry'],
+      usedFor: ['Selfie Stick Firecrackers'],
+      applications: ['Cracker Manufacturing'],
       specifications: [
         { label: 'Material', value: 'Strong Kraft Paper' },
-        { label: 'Available Sizes', value: 'Custom as per requirement' },
+        { label: 'Usage / Application', value: 'Selfie Stick Firecrackers' },
       ],
       seoTitle: 'Selfie Stick Pencil Crackers Tube | FAB Paper Tube',
-      seoDescription: 'Precision paper tubes for selfie stick firecrackers and cracker manufacturing.',
+      seoDescription: 'Paper tubes for selfie stick firecracker manufacturing.',
       acf: {},
+      productOrder: 4,
     },
     {
       id: 5,
       slug: 'butterfly-firecracker-tube',
       title: 'Butterfly Firecracker Tube',
-      shortDescription: 'Specially engineered paper tubes for butterfly firecracker manufacturing. Precise size and strength for consistent cracker production.',
-      description: '<p>Butterfly Firecracker Tubes from FAB Paper Tube are manufactured with precise specifications for the cracker manufacturing industry. Our focus on small-size precision ensures consistent product quality.</p>',
-      featuredImage: {
-        id: 5,
-        url: '/images/products/butterfly-firecracker-tube.jpg',
-        alt: 'Butterfly Firecracker Tube',
-        width: 800,
-        height: 600,
-      },
+      shortDescription:
+        'Small kraft paper tubes for butterfly firecrackers, providing reliable shape and support for the product.',
+      description:
+        '<p>Butterfly Firecracker Tubes are manufactured with precise specifications for the cracker manufacturing industry.</p>',
+      featuredImage: null,
       gallery: [],
-      usedFor: ['Butterfly Firecrackers', 'Cracker Manufacturing'],
-      applications: ['Cracker Manufacturing', 'Fireworks Industry'],
+      usedFor: ['Butterfly Firecrackers'],
+      applications: ['Cracker Manufacturing'],
       specifications: [
         { label: 'Material', value: 'Strong Kraft Paper' },
-        { label: 'Available Sizes', value: 'Custom as per requirement' },
+        { label: 'Usage / Application', value: 'Butterfly Firecrackers' },
       ],
       seoTitle: 'Butterfly Firecracker Tube | FAB Paper Tube',
-      seoDescription: 'Precision paper tubes for butterfly firecracker manufacturing.',
+      seoDescription: 'Paper tubes for butterfly firecracker manufacturing.',
       acf: {},
+      productOrder: 5,
     },
     {
       id: 6,
       slug: 'thermal-roll-paper-tube',
       title: 'Thermal Roll Paper Tube',
-      shortDescription: 'Reliable paper tubes for thermal paper rolls used in billing and POS systems. Consistent dimensions for smooth roll performance.',
-      description: '<p>Our Thermal Roll Paper Tubes are designed for thermal paper rolls used in billing machines and POS systems. Consistent inner diameter ensures smooth paper feeding and reliable POS performance.</p>',
-      featuredImage: {
-        id: 6,
-        url: '/images/products/thermal-roll-tube.jpg',
-        alt: 'Thermal Roll Paper Tube',
-        width: 800,
-        height: 600,
-      },
+      shortDescription:
+        'High-quality paper cores for thermal paper rolls, providing consistent performance and reliable roll support.',
+      description:
+        '<p>Our Thermal Roll Paper Tubes are designed for thermal paper rolls used in billing machines and POS systems.</p>',
+      featuredImage: null,
       gallery: [],
-      usedFor: ['Thermal Paper Rolls', 'Billing & POS Rolls'],
+      usedFor: ['Thermal Paper Rolls'],
       applications: ['POS Industry', 'Retail', 'Banking'],
       specifications: [
         { label: 'Material', value: 'Quality Kraft Paper' },
-        { label: 'Available Sizes', value: 'Custom as per requirement' },
+        { label: 'Usage / Application', value: 'Thermal Paper Rolls' },
       ],
       seoTitle: 'Thermal Roll Paper Tube | FAB Paper Tube',
-      seoDescription: 'Precision paper tubes for thermal paper rolls and POS billing systems.',
+      seoDescription: 'Precision paper tubes for thermal paper rolls.',
       acf: {},
+      productOrder: 6,
     },
     {
       id: 7,
       slug: 'mirchi-bomb-paper-tube',
       title: 'Mirchi Bomb Paper Tube',
-      shortDescription: 'Precision-manufactured paper tubes for Mirchi Bomb firecrackers. Strong and consistent dimensions for reliable cracker production.',
-      description: '<p>Mirchi Bomb Paper Tubes from FAB Paper Tube are manufactured with high precision for the cracker manufacturing industry. Our small-size expertise ensures perfect dimensional consistency required for Mirchi Bomb production.</p>',
-      featuredImage: {
-        id: 7,
-        url: '/images/products/mirchi-bomb-tube.jpg',
-        alt: 'Mirchi Bomb Paper Tube',
-        width: 800,
-        height: 600,
-      },
+      shortDescription:
+        'Paper tubes for Mirchi Bomb firecrackers, providing good strength, shape and reliable support.',
+      description:
+        '<p>Mirchi Bomb Paper Tubes are manufactured with high precision for the cracker manufacturing industry.</p>',
+      featuredImage: null,
       gallery: [],
-      usedFor: ['Mirchi Bomb Firecrackers', 'Cracker Manufacturing'],
-      applications: ['Cracker Manufacturing', 'Fireworks Industry'],
+      usedFor: ['Mirchi Bomb Firecrackers'],
+      applications: ['Cracker Manufacturing'],
       specifications: [
         { label: 'Material', value: 'Strong Kraft Paper' },
-        { label: 'Available Sizes', value: 'Custom as per requirement' },
+        { label: 'Usage / Application', value: 'Mirchi Bomb Firecrackers' },
       ],
       seoTitle: 'Mirchi Bomb Paper Tube | FAB Paper Tube',
-      seoDescription: 'Precision paper tubes for Mirchi Bomb firecrackers and cracker manufacturing.',
+      seoDescription: 'Precision paper tubes for Mirchi Bomb firecracker manufacturing.',
       acf: {},
+      productOrder: 7,
     },
     {
       id: 8,
       slug: 'stretch-film-roll-paper-tube',
       title: 'Stretch Film Roll Paper Tube',
-      shortDescription: 'Heavy-duty paper tubes for stretch film rolls in the packaging industry. Strong construction for reliable stretch film winding and unwinding.',
-      description: '<p>Stretch Film Roll Paper Tubes are manufactured to withstand the tension required in stretch film winding operations. Our tubes provide consistent performance in packaging industry applications.</p>',
-      featuredImage: {
-        id: 8,
-        url: '/images/products/stretch-film-tube.jpg',
-        alt: 'Stretch Film Roll Paper Tube',
-        width: 800,
-        height: 600,
-      },
+      shortDescription:
+        'Quality paper cores for stretch film rolls, ensuring firm support and neat, uniform winding.',
+      description:
+        '<p>Stretch Film Roll Paper Tubes are manufactured to withstand the tension required in stretch film winding operations.</p>',
+      featuredImage: null,
       gallery: [],
-      usedFor: ['Stretch Film Rolls', 'Packaging Industry'],
-      applications: ['Packaging Industry', 'Film Manufacturing'],
+      usedFor: ['Stretch Film Rolls'],
+      applications: ['Packaging Industry'],
       specifications: [
         { label: 'Material', value: 'Heavy-duty Kraft Paper' },
-        { label: 'Available Sizes', value: 'Custom as per requirement' },
+        { label: 'Usage / Application', value: 'Stretch Film Rolls' },
       ],
       seoTitle: 'Stretch Film Roll Paper Tube | FAB Paper Tube',
-      seoDescription: 'Heavy-duty paper tubes for stretch film rolls in the packaging industry.',
+      seoDescription: 'Heavy-duty paper tubes for stretch film rolls.',
       acf: {},
+      productOrder: 8,
     },
   ];
 }
@@ -346,7 +411,8 @@ function getFallbackTestimonials(): Testimonial[] {
       clientName: 'Rajesh Patel',
       designation: 'Production Manager',
       company: 'Textile Manufacturing Unit',
-      review: 'FAB Paper Tube has been our trusted supplier for sewing thread tubes. Their precision and consistency in manufacturing has significantly improved our production efficiency.',
+      review:
+        'FAB Paper Tube has been our trusted supplier for sewing thread tubes. Their precision and consistency has significantly improved our production efficiency.',
       rating: 5,
     },
     {
@@ -354,7 +420,8 @@ function getFallbackTestimonials(): Testimonial[] {
       clientName: 'Suresh Mehta',
       designation: 'Purchase Manager',
       company: 'Cracker Manufacturing Company',
-      review: 'Excellent quality paper tubes for our cracker manufacturing needs. The small-size precision is outstanding. Very reliable supply and on-time delivery.',
+      review:
+        'Excellent quality paper tubes for our cracker manufacturing needs. Very reliable supply and on-time delivery.',
       rating: 5,
     },
     {
@@ -362,23 +429,8 @@ function getFallbackTestimonials(): Testimonial[] {
       clientName: 'Priya Shah',
       designation: 'Operations Head',
       company: 'Paper Converting Unit',
-      review: 'We have been using FAB Paper Tube products for our thermal roll and notebook cover requirements. The quality is consistent and the team is very responsive to custom requirements.',
-      rating: 5,
-    },
-    {
-      id: 4,
-      clientName: 'Amit Kumar',
-      designation: 'Director',
-      company: 'Packaging Solutions',
-      review: 'Their stretch film tubes are exactly what we needed. Strong, consistent and delivered on time. FAB Paper Tube understands industrial requirements very well.',
-      rating: 5,
-    },
-    {
-      id: 5,
-      clientName: 'Dinesh Sharma',
-      designation: 'Factory Manager',
-      company: 'Candle Manufacturing Unit',
-      review: 'The birthday cake sparkle candle tubes from FAB are perfect. Precise dimensions, good quality paper and reliable supply. Highly recommended for candle manufacturers.',
+      review:
+        'We have been using FAB Paper Tube products for thermal rolls and notebook covers. Quality is consistent and the team is very responsive.',
       rating: 5,
     },
   ];
@@ -391,7 +443,8 @@ function getFallbackCompanySettings(): CompanySettings {
     phone1: '+91 82380 74700',
     phone2: '+91 98796 45030',
     email: 'fabpapertube111@gmail.com',
-    address: 'Shed No. 14, Star Gold Industrial Park, Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha, Ahmedabad, Gujarat - 382433',
+    address:
+      'Shed No. 14, Star Gold Industrial Park, Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha, Ahmedabad, Gujarat - 382433',
     addressLine1: 'Shed No. 14, Star Gold Industrial Park',
     addressLine2: 'Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha',
     city: 'Ahmedabad',

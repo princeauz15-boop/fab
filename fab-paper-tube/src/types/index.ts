@@ -13,6 +13,17 @@ export interface Product {
   seoTitle: string;
   seoDescription: string;
   acf: ProductACF;
+  // New ACF fields
+  videoUrl?: string;          // YouTube URL
+  thickness?: string;         // e.g. "1.20 mm - 1.5 mm"
+  diameter?: string;          // e.g. "9.5 mm"
+  length?: string;            // e.g. "63 mm"
+  size?: string;              // e.g. "63 × 170 mm"
+  weight?: string;            // e.g. "2.4 Gram"
+  usage?: string;             // e.g. "Sewing Thread Winding"
+  material?: string;          // e.g. "Kraft Paper"
+  quality?: string;           // e.g. "Strong, smooth winding..."
+  productOrder?: number;      // Numeric sort field
 }
 
 export interface ProductACF {
@@ -22,6 +33,17 @@ export interface ProductACF {
   specifications?: ProductSpecification[];
   seo_title?: string;
   seo_description?: string;
+  // New ACF fields
+  video_url?: string;
+  thickness?: string;
+  diameter?: string;
+  length?: string;
+  size?: string;
+  weight?: string;
+  usage?: string;
+  material?: string;
+  quality?: string;
+  product_order?: number;
 }
 
 export interface ProductSpecification {
@@ -45,6 +67,7 @@ export interface WPPost {
   content: { rendered: string };
   excerpt: { rendered: string };
   featured_media: number;
+  menu_order?: number;
   _embedded?: {
     'wp:featuredmedia'?: WPMedia[];
     'wp:term'?: WPTerm[][];
