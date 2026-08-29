@@ -118,7 +118,7 @@ function ProductRow({ product, index }: { product: Product; index: number }) {
                 {String(index + 1).padStart(2, '0')}
               </span>
               <div className="h-px flex-1" style={{ background: '#d8e2f0' }} />
-              <span style={{ color: '#7a8aaa', fontSize: '11px', fontWeight: 700 }}>Paper Tube</span>
+              <span style={{ color: '#7a8aaa', fontSize: '11px', fontWeight: 700 }}>FAB Paper Tube</span>
             </div>
 
             {/* Title */}
