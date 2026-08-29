@@ -102,7 +102,7 @@ export default function ContactFormSection() {
                     { icon: Phone, label: 'AXIT HIRANI', value: '+ 91 82380 74700', href: 'tel:+918238074700' },
                     { icon: Phone, label: 'MANSHUKH RANPARIYA', value: '+ 91 98796 45030', href: 'tel:+919879645030' },
                     { icon: Mail, label: '', value: 'fabpapertube111@gmail.com', href: 'mailto:fabpapertube111@gmail.com' },
-                    { icon: MapPin, label: '', value: 'Shed No. 14, Star Gold Industrial Park, Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha, Ahmedabad, Gujarat - 382433', href: '#' },
+                    { icon: MapPin, label: '', value: 'Shed No. 14, STAR GOLD INDUSTRIAL PARK, bus stand, Indore - Ahmedabad Hwy, opp. Ghardaghar Kothiya, Kuha, Gujarat 382433', href: 'https://maps.google.com/?q=Shed+No.+14+STAR+GOLD+INDUSTRIAL+PARK+Kuha+Gujarat+382433' },
                   ].map((item, i) => {
                     const Icon = item.icon;
                     return (
