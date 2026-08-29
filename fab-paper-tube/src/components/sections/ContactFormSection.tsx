@@ -60,14 +60,14 @@ export default function ContactFormSection() {
             className="flex flex-col gap-6"
           >
             <motion.div variants={slideLeft}>
-              <span className="text-[#1a4a9e] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-3 mb-3">
+              <span className="text-[#1a4a9e] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-3 mb-3 justify-center lg:justify-start">
                 <span className="w-8 h-0.5 bg-[#1a4a9e]" />
                 Contact Us
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-[#1a1a1a] mb-3">
+              <h2 className="text-3xl md:text-4xl font-black text-[#1a1a1a] mb-3 text-center lg:text-left">
                 Get in <span className="text-[#1a4a9e]">Touch</span>
               </h2>
-              <p className="text-[#6b6b6b] text-sm leading-relaxed">
+              <p className="text-[#6b6b6b] text-sm leading-relaxed text-center lg:text-left">
                 Tell us your paper tube requirements — size, diameter, quantity and application. We will respond with the right solution.
               </p>
             </motion.div>
