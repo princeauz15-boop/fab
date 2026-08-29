@@ -109,16 +109,16 @@ function ProductRow({ product, index }: { product: Product; index: number }) {
               <span
                 className="font-black rounded-lg px-2.5 py-1"
                 style={{
-                  background: isEven ? 'rgba(26,74,158,0.08)' : 'rgba(200,146,42,0.10)',
-                  color: isEven ? '#1a4a9e' : '#c8922a',
+                  background: isEven ? 'rgba(26,74,158,0.10)' : 'rgba(200,146,42,0.12)',
+                  color: isEven ? '#1a4a9e' : '#b87d20',
                   fontSize: '11px',
-                  letterSpacing: '0.08em',
+                  letterSpacing: '0.06em',
                 }}
               >
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <div className="h-px flex-1" style={{ background: '#e8edf5' }} />
-              <span style={{ color: '#c8d0e0', fontSize: '11px', fontWeight: 600 }}>Paper Tube</span>
+              <div className="h-px flex-1" style={{ background: '#d8e2f0' }} />
+              <span style={{ color: '#7a8aaa', fontSize: '11px', fontWeight: 700 }}>Paper Tube</span>
             </div>
 
             {/* Title */}
@@ -132,7 +132,7 @@ function ProductRow({ product, index }: { product: Product; index: number }) {
             {/* Description */}
             <p
               className="leading-relaxed mb-6 line-clamp-2"
-              style={{ color: '#6a7a9a', fontSize: '14px', lineHeight: '1.75' }}
+              style={{ color: '#3a4a6a', fontSize: '14px', lineHeight: '1.75' }}
             >
               {product.shortDescription.replace(/<[^>]*>/g, '')}
             </p>
@@ -144,9 +144,9 @@ function ProductRow({ product, index }: { product: Product; index: number }) {
                   <div
                     key={s.label}
                     className="flex items-center gap-1.5 rounded-lg px-3 py-1.5"
-                    style={{ background: '#f8faff', border: '1px solid #e8edf5' }}
+                    style={{ background: '#f0f5ff', border: '1px solid #d8e4f8' }}
                   >
-                    <span style={{ color: '#9aaacc', fontSize: '9.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    <span style={{ color: '#5a7aaa', fontSize: '9.5px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.07em' }}>
                       {s.label}
                     </span>
                     <span style={{ color: '#0d1f3c', fontSize: '11.5px', fontWeight: 800 }}>{s.value}</span>
