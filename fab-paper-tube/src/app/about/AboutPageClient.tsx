@@ -75,9 +75,9 @@ export default function AboutPageClient() {
               whileInView="visible"
               viewport={viewportConfig}
               variants={staggerContainer}
-              className="flex flex-col gap-5"
+              className="flex flex-col items-center text-center lg:items-start lg:text-left gap-5"
             >
-              <motion.div variants={slideLeft} className="flex items-center gap-3">
+              <motion.div variants={slideLeft} className="flex items-center gap-3 justify-center lg:justify-start">
                 <span className="w-8 h-0.5 bg-[#c8922a]" />
                 <span className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase">Company Overview</span>
               </motion.div>
@@ -103,7 +103,7 @@ export default function AboutPageClient() {
                   'Serving textile, packaging, cracker, candle and industrial sectors',
                   'Pan-India supply capabilities',
                 ].map((item) => (
-                  <motion.div key={item} variants={fadeUp} className="flex items-start gap-3">
+                  <motion.div key={item} variants={fadeUp} className="flex items-start gap-3 text-left">
                     <CheckCircle2 size={16} className="text-[#c8922a] flex-shrink-0 mt-0.5" />
                     <span className="text-[#4a4a4a] text-sm">{item}</span>
                   </motion.div>
@@ -177,7 +177,7 @@ export default function AboutPageClient() {
                   key={val.title}
                   variants={fadeUp}
                   custom={i}
-                  className="bg-white p-6 rounded border border-[#e5e5e5] hover:border-[#c8922a]/40 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
+                  className="bg-white p-6 rounded border border-[#e5e5e5] hover:border-[#c8922a]/40 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex flex-col items-center text-center lg:items-start lg:text-left"
                 >
                   <div className="w-11 h-11 bg-[#c8922a]/10 rounded flex items-center justify-center mb-4">
                     <Icon size={20} className="text-[#c8922a]" />

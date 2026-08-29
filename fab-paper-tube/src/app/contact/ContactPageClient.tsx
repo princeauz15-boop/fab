@@ -140,18 +140,18 @@ export default function ContactPageClient() {
               className="flex flex-col gap-6"
             >
               <motion.div variants={slideLeft}>
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-3 justify-center lg:justify-start">
                   <span className="w-8 h-0.5 bg-[#c8922a]" />
                   <span className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase">
                     Reach Us Directly
                   </span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black text-[#1a1a1a] leading-tight">
+                <h2 className="text-2xl md:text-3xl font-black text-[#1a1a1a] leading-tight text-center lg:text-left">
                   We Are Ready to Help
                 </h2>
               </motion.div>
 
-              <motion.p variants={slideLeft} className="text-[#6b6b6b] leading-relaxed">
+              <motion.p variants={slideLeft} className="text-[#6b6b6b] leading-relaxed text-center lg:text-left">
                 Have a paper tube requirement? Call us, send an email or fill the form. Our team will
                 respond promptly with the right solution.
               </motion.p>

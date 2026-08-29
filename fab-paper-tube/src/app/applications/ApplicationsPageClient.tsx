@@ -158,7 +158,7 @@ export default function ApplicationsPageClient() {
                   className={`grid md:grid-cols-2 gap-8 items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}
                 >
                   {/* Content */}
-                  <div className={isEven ? '' : 'md:order-2'}>
+                  <div className={`flex flex-col items-center text-center lg:items-start lg:text-left ${isEven ? '' : 'md:order-2'}`}>
                     <div className={`w-12 h-12 ${app.iconBg} rounded flex items-center justify-center mb-4`}>
                       <Icon size={24} className={app.iconColor} />
                     </div>
@@ -170,7 +170,7 @@ export default function ApplicationsPageClient() {
 
                     <div className="mb-5">
                       <div className="text-xs font-bold tracking-widest uppercase text-[#9a9a9a] mb-3">Used For</div>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                         {app.usedFor.map((use) => (
                           <span key={use} className="flex items-center gap-1.5 text-sm text-[#4a4a4a] bg-[#f5f4f0] px-3 py-1.5 rounded">
                             <CheckCircle2 size={12} className="text-[#c8922a]" />

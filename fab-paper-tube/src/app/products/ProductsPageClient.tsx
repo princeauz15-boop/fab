@@ -328,7 +328,7 @@ export default function ProductsPageClient({ products }: Props) {
               style={{ background: 'linear-gradient(90deg, transparent, #c8922a 30%, #e0a83b 50%, #c8922a 70%, transparent)' }}
             />
 
-            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div className="relative z-10 flex flex-col items-center text-center md:flex-row md:items-center md:text-left justify-between gap-8">
               <div>
                 <div className="font-bold tracking-widest uppercase mb-2" style={{ color: '#e0a83b', fontSize: '11px' }}>
                   Custom Manufacturing
@@ -340,7 +340,7 @@ export default function ProductsPageClient({ products }: Props) {
                   We manufacture paper tubes to your exact diameter, length and wall thickness.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+              <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0 justify-center md:justify-start">
                 <Link
                   href="/contact"
                   className="group inline-flex items-center gap-2 font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5"
