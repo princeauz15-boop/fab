@@ -137,42 +137,42 @@ export default function ContactPageClient() {
               whileInView="visible"
               viewport={viewportConfig}
               variants={staggerContainer}
-              className="flex flex-col gap-6"
-            >
-              <motion.div variants={slideLeft}>
-                <div className="flex items-center gap-3 mb-3 justify-center lg:justify-start">
-                  <span className="w-8 h-0.5 bg-[#c8922a]" />
-                  <span className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase">
-                    Reach Us Directly
-                  </span>
-                </div>
-                <h2 className="text-2xl md:text-3xl font-black text-[#1a1a1a] leading-tight text-center lg:text-left">
-                  We Are Ready to Help
-                </h2>
-              </motion.div>
+                className="flex flex-col gap-6"
+              >
+                <motion.div variants={slideLeft}>
+                  <div className="flex items-center gap-3 mb-3 justify-center lg:justify-start">
+                    <span className="w-8 h-0.5 bg-[#c8922a]" />
+                    <span className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase">
+                      Reach Us Directly
+                    </span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-black text-[#1a1a1a] leading-tight text-center lg:text-left">
+                    We Are Ready to Help
+                  </h2>
+                </motion.div>
 
-              <motion.p variants={slideLeft} className="text-[#6b6b6b] leading-relaxed text-center lg:text-left">
-                Have a paper tube requirement? Call us, send an email or fill the form. Our team will
-                respond promptly with the right solution.
-              </motion.p>
+                <motion.p variants={slideLeft} className="text-[#6b6b6b] leading-relaxed text-center lg:text-left">
+                  Have a paper tube requirement? Call us, send an email or fill the form. Our team will
+                  respond promptly with the right solution.
+                </motion.p>
 
-              {/* Contact Cards */}
-              <motion.div variants={staggerContainer} className="space-y-4">
-                {contactInfo.map((info) => {
-                  const Icon = info.icon;
-                  return (
-                    <motion.a
-                      key={info.label}
-                      variants={fadeUp}
-                      href={info.href}
-                      target={info.href.startsWith('http') ? '_blank' : undefined}
-                      rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="flex items-start gap-4 p-4 border border-[#e5e5e5] rounded hover:border-[#c8922a]/40 hover:shadow-md transition-all duration-300 group"
-                    >
-                      <div className="w-10 h-10 bg-[#c8922a]/10 rounded flex items-center justify-center flex-shrink-0 group-hover:bg-[#c8922a]/20 transition-colors">
-                        <Icon size={18} className="text-[#c8922a]" />
-                      </div>
-                      <div>
+                {/* Contact Cards */}
+                <motion.div variants={staggerContainer} className="space-y-4">
+                  {contactInfo.map((info) => {
+                    const Icon = info.icon;
+                    return (
+                      <motion.a
+                        key={info.label}
+                        variants={fadeUp}
+                        href={info.href}
+                        target={info.href.startsWith('http') ? '_blank' : undefined}
+                        rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        className="flex items-start gap-4 p-4 border border-[#e5e5e5] rounded hover:border-[#c8922a]/40 hover:shadow-md transition-all duration-300 group"
+                      >
+                        <div className="w-10 h-10 bg-[#c8922a]/10 rounded flex items-center justify-center flex-shrink-0 group-hover:bg-[#c8922a]/20 transition-colors">
+                          <Icon size={18} className="text-[#c8922a]" />
+                        </div>
+                        <div>
                         <div className="text-xs font-bold text-[#9a9a9a] uppercase tracking-wider mb-0.5">
                           {info.label}
                         </div>
@@ -185,23 +185,22 @@ export default function ContactPageClient() {
                 })}
               </motion.div>
 
-              {/* Map embed placeholder */}
+              {/* Google Maps Embed */}
               <motion.div
                 variants={fadeUp}
-                className="rounded overflow-hidden border border-[#e5e5e5] aspect-video bg-[#f5f4f0] flex items-center justify-center"
+                className="rounded-xl overflow-hidden border border-[#e5e5e5]"
+                style={{ aspectRatio: '16/9' }}
               >
-                <a
-                  href="https://maps.google.com/?q=Star+Gold+Industrial+Park+Kuha+Ahmedabad+382433"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-2 text-[#9a9a9a] hover:text-[#c8922a] transition-colors group"
-                >
-                  <MapPin size={32} className="group-hover:scale-110 transition-transform" />
-                  <span className="text-sm font-medium">View on Google Maps</span>
-                  <span className="text-xs text-center px-6 leading-relaxed">
-                    Shed No. 14, Star Gold Industrial Park, Kuha, Ahmedabad
-                  </span>
-                </a>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.0!2d72.7!3d23.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b0000000001%3A0x0!2sStar+Gold+Industrial+Park%2C+Kuha%2C+Ahmedabad%2C+Gujarat+382433!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin&q=Shed+No.+14,+Star+Gold+Industrial+Park,+Opp.+Ghardaghar+Kothiya+Bus+Stand,+Indore+Highway,+Kuha,+Ahmedabad,+Gujarat+382433"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, display: 'block', width: '100%', height: '100%', minHeight: '260px' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="FAB Paper Tube Factory Location"
+                />
               </motion.div>
             </motion.div>
 

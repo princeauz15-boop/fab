@@ -75,14 +75,14 @@ export default function CTASection() {
             {/* Feature list */}
             <motion.div variants={fadeUp} className="space-y-2.5 mb-9 w-full max-w-sm">
               {features.map((f) => (
-                <div key={f} className="flex items-center gap-2.5">
+                <div key={f} className="flex items-center gap-2.5 justify-center lg:justify-start">
                   <div
                     className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                     style={{ background: 'rgba(26,74,158,0.10)' }}
                   >
                     <CheckCircle2 size={12} style={{ color: '#1a4a9e' }} />
                   </div>
-                  <span className="font-medium text-left" style={{ color: '#3a4a6a', fontSize: '14px' }}>{f}</span>
+                  <span className="font-medium" style={{ color: '#3a4a6a', fontSize: '14px' }}>{f}</span>
                 </div>
               ))}
             </motion.div>

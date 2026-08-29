@@ -112,52 +112,55 @@ export default function WhyChooseUsPageClient() {
               const isGold = i % 2 === 1;
               const color = isGold ? '#c8922a' : '#1a4a9e';
               return (
-              <motion.div
-                key={d.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative rounded-2xl overflow-hidden cursor-default bg-white flex flex-col items-center text-center"
-                style={{
-                  border: `1.5px solid #e8edf5`,
-                  boxShadow: '0 2px 16px rgba(26,74,158,0.06)',
-                  padding: '28px 24px',
-                  transition: 'box-shadow 0.28s ease, border-color 0.28s ease, transform 0.28s ease',
-                }}
-                whileHover={{ y: -6, transition: { duration: 0.28 } }}
-                onHoverStart={e => {
-                  const el = (e.target as HTMLElement).closest('.group') as HTMLElement;
-                  if (el) {
-                    el.style.borderColor = color;
-                    el.style.boxShadow = isGold ? '0 12px 36px rgba(200,146,42,0.18)' : '0 12px 36px rgba(26,74,158,0.16)';
-                  }
-                }}
-                onHoverEnd={e => {
-                  const el = (e.target as HTMLElement).closest('.group') as HTMLElement;
-                  if (el) { el.style.borderColor = '#e8edf5'; el.style.boxShadow = '0 2px 16px rgba(26,74,158,0.06)'; }
-                }}
-              >
-                {/* Watermark icon */}
-                <div className="absolute -bottom-3 -right-3 pointer-events-none" style={{ opacity: 0.04 }}>
-                  <Icon size={90} strokeWidth={1.5} style={{ color }} />
-                </div>
-
-                {/* Stat number */}
-                <div className="font-black leading-none mb-1" style={{ fontSize: '2.4rem', color }}>{d.stat}</div>
-                <div className="font-bold tracking-widest uppercase mb-5" style={{ color: '#9aaacc', fontSize: '10px' }}>{d.statLabel}</div>
-
-                {/* Divider */}
-                <div className="mb-4 w-full" style={{ height: '1px', background: '#e8edf5' }} />
-
-                {/* Icon + title */}
-                <div className="flex items-center gap-3 mb-2 justify-center">
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: isGold ? 'rgba(200,146,42,0.10)' : 'rgba(26,74,158,0.08)' }}>
-                    <Icon size={17} strokeWidth={2.5} style={{ color }} />
+                <motion.div
+                  key={d.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative rounded-2xl overflow-hidden cursor-default bg-white"
+                  style={{
+                    border: `1.5px solid #e8edf5`,
+                    boxShadow: '0 2px 16px rgba(26,74,158,0.06)',
+                    padding: '28px 24px',
+                    transition: 'box-shadow 0.28s ease, border-color 0.28s ease, transform 0.28s ease',
+                  }}
+                  whileHover={{ y: -6, transition: { duration: 0.28 } }}
+                  onHoverStart={e => {
+                    const el = (e.target as HTMLElement).closest('.group') as HTMLElement;
+                    if (el) {
+                      el.style.borderColor = color;
+                      el.style.boxShadow = isGold ? '0 12px 36px rgba(200,146,42,0.18)' : '0 12px 36px rgba(26,74,158,0.16)';
+                    }
+                  }}
+                  onHoverEnd={e => {
+                    const el = (e.target as HTMLElement).closest('.group') as HTMLElement;
+                    if (el) { el.style.borderColor = '#e8edf5'; el.style.boxShadow = '0 2px 16px rgba(26,74,158,0.06)'; }
+                  }}
+                >
+                  {/* Watermark icon */}
+                  <div className="absolute -bottom-3 -right-3 pointer-events-none" style={{ opacity: 0.04 }}>
+                    <Icon size={90} strokeWidth={1.5} style={{ color }} />
                   </div>
-                  <div className="font-bold leading-tight" style={{ fontSize: '13px', color: '#0d1f3c' }}>{d.title}</div>
-                </div>
-                <p style={{ color: '#6a7a9a', fontSize: '12px', lineHeight: '1.6' }}>{d.description}</p>
-              </motion.div>
+
+                  {/* All content centered */}
+                  <div className="relative z-10 flex flex-col items-center text-center">
+                    {/* Stat number */}
+                    <div className="font-black leading-none mb-1" style={{ fontSize: '2.4rem', color }}>{d.stat}</div>
+                    <div className="font-bold tracking-widest uppercase mb-5" style={{ color: '#9aaacc', fontSize: '10px' }}>{d.statLabel}</div>
+
+                    {/* Divider */}
+                    <div className="mb-4 w-full" style={{ height: '1px', background: '#e8edf5' }} />
+
+                    {/* Icon + title */}
+                    <div className="flex items-center gap-3 mb-2 justify-center">
+                      <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: isGold ? 'rgba(200,146,42,0.10)' : 'rgba(26,74,158,0.08)' }}>
+                        <Icon size={17} strokeWidth={2.5} style={{ color }} />
+                      </div>
+                      <div className="font-bold leading-tight text-left" style={{ fontSize: '13px', color: '#0d1f3c' }}>{d.title}</div>
+                    </div>
+                    <p style={{ color: '#6a7a9a', fontSize: '12px', lineHeight: '1.6' }}>{d.description}</p>
+                  </div>
+                </motion.div>
               );
             })}
           </div>
