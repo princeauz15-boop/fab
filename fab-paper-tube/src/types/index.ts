@@ -65,7 +65,7 @@ export interface WPPost {
   slug: string;
   title: { rendered: string };
   content: { rendered: string };
-  excerpt: { rendered: string };
+  excerpt: { rendered: string } | undefined;
   featured_media: number;
   menu_order?: number;
   _embedded?: {

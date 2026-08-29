@@ -88,7 +88,9 @@ function parseProduct(post: WPPost): Product {
     typeof acf.product_order === 'number' ? acf.product_order :
     typeof post.menu_order === 'number' ? post.menu_order : 999;
 
-  const rawExcerpt = post.excerpt.rendered.replace(/<[^>]*>/g, '').trim();
+  const rawExcerpt = post.excerpt?.rendered
+    ? post.excerpt.rendered.replace(/<[^>]*>/g, '').trim()
+    : '';
   const shortDesc = str(acf.short_description) ||
     (rawExcerpt.length > 10 ? rawExcerpt :
       `${post.title.rendered} — manufactured with precision for consistent performance.`);
