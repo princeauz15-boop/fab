@@ -71,7 +71,7 @@ export default function WhyChooseHomSection() {
                 key={f.title}
                 variants={fadeUp}
                 custom={i}
-                className="group flex flex-col items-start p-6 border border-[#e5e5e5] rounded-lg hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 bg-white hover:border-[#8B7355]/30"
+                className="group flex flex-col items-center text-center p-6 border border-[#e5e5e5] rounded-lg hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 bg-white hover:border-[#8B7355]/30"
               >
                 {/* Round gold icon - matches the screenshot icons exactly */}
                 <div

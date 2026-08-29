@@ -88,7 +88,7 @@ export default function CTASection() {
             </motion.div>
 
             {/* Buttons */}
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-3 justify-center lg:justify-start">
+            <motion.div variants={fadeUp} className="flex flex-row gap-3 justify-center lg:justify-start flex-wrap">
               <Link
                 href="/contact"
                 className="group inline-flex items-center gap-2.5 text-white font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300"
