@@ -7,7 +7,7 @@ const WP_API_URL =
 async function wpFetch<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${WP_API_URL}${endpoint}`;
   const res = await fetch(url, {
-    next: { revalidate: 3600 }, // ISR: revalidate every hour
+    next: { revalidate: 60 }, // revalidate every 60 seconds
     ...options,
   });
   if (!res.ok) {
@@ -94,11 +94,14 @@ function parseProduct(post: WPPost): Product {
       ? post.menu_order
       : 999;
 
-  // short_description: prefer ACF field, fall back to excerpt
+  // short_description: prefer ACF field, fall back to excerpt, then title
+  const rawExcerpt = post.excerpt.rendered.replace(/<[^>]*>/g, '').trim();
   const shortDesc =
     typeof acf.short_description === 'string' && acf.short_description.trim()
       ? acf.short_description.trim()
-      : post.excerpt.rendered.replace(/<[^>]*>/g, '').trim();
+      : rawExcerpt.length > 10
+      ? rawExcerpt
+      : `${post.title.rendered} — manufactured with precision for consistent performance.`;
 
   // video: product_video is the actual ACF field name
   const rawVideo = acf.product_video ?? acf.video_url;
