@@ -24,7 +24,7 @@ function OrganizationSchema() {
     foundingDate: '2013',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Shed No. 14, Star Gold Industrial Park, Opp. Ghardaghar Kothiya Bus Stand, Indore Highway, Kuha',
+      streetAddress: 'Shed No. 14, STAR GOLD INDUSTRIAL PARK, bus stand, Indore - Ahmedabad Hwy, opp. Ghardaghar Kothiya, Kuha',
       addressLocality: 'Ahmedabad',
       addressRegion: 'Gujarat',
       postalCode: '382433',
