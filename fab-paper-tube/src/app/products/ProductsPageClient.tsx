@@ -36,11 +36,6 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             <div className="w-16 h-24 rounded-full bg-gradient-to-b from-[#c8922a] to-[#a67520] opacity-30 group-hover:opacity-50 transition-opacity" />
           </div>
         )}
-        <div className="absolute top-3 left-3">
-          <span className="bg-[#1a1a1a]/80 text-white text-xs font-medium px-2.5 py-1 rounded backdrop-blur-sm">
-            Paper Tube
-          </span>
-        </div>
       </div>
 
       {/* Info */}

@@ -48,15 +48,6 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             <Package size={48} style={{ color: '#c8d8f0', opacity: 0.6 }} />
           </div>
         )}
-        {/* Category badge */}
-        <div className="absolute top-3 left-3">
-          <span
-            className="text-white text-xs font-semibold px-2.5 py-1 rounded-md"
-            style={{ background: 'rgba(26,74,158,0.85)', backdropFilter: 'blur(4px)', fontSize: '11px' }}
-          >
-            Paper Tube
-          </span>
-        </div>
       </div>
 
       {/* Content */}

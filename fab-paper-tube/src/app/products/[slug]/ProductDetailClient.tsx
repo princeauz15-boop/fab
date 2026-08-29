@@ -281,7 +281,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Props)
                   className="font-bold tracking-widest uppercase"
                   style={{ color: '#c8922a', fontSize: '11px' }}
                 >
-                  Paper Tube
+                  FAB Paper Tube
                 </span>
               </motion.div>
 
@@ -401,32 +401,47 @@ export default function ProductDetailClient({ product, relatedProducts }: Props)
 
       {/* ── Full Description ── */}
       {product.description && product.description.replace(/<[^>]*>/g, '').trim() && (
-        <section className="section-padding" style={{ background: '#f4f6fb', paddingTop: '0' }}>
+        <section style={{ background: '#ffffff', padding: '72px 0 0' }}>
           <div className="container-custom">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportConfig}
               transition={{ duration: 0.55 }}
-              className="bg-white rounded-2xl p-8 md:p-10"
-              style={{ border: '1px solid #e8edf5', boxShadow: '0 4px 20px rgba(26,74,158,0.06)' }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <span
-                  className="font-bold tracking-widest uppercase"
-                  style={{ color: '#c8922a', fontSize: '11px' }}
+              {/* Section header */}
+              <div className="flex items-start gap-5 mb-8">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: 'linear-gradient(135deg, #1a4a9e, #2a5fc0)' }}
                 >
-                  About This Product
-                </span>
+                  <Package size={22} className="text-white" />
+                </div>
+                <div>
+                  <div className="font-bold tracking-widest uppercase mb-1" style={{ color: '#c8922a', fontSize: '11px' }}>
+                    About This Product
+                  </div>
+                  <h2 className="font-black leading-tight" style={{ color: '#0d1f3c', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)' }}>
+                    Product Description
+                  </h2>
+                </div>
               </div>
-              <h2 className="font-black mb-5" style={{ color: '#0d1f3c', fontSize: '1.4rem' }}>
-                Product Description
-              </h2>
+
+              {/* Content card */}
               <div
-                className="wp-content prose max-w-none"
-                style={{ color: '#4a5a7a' }}
-                dangerouslySetInnerHTML={{ __html: product.description }}
-              />
+                className="rounded-2xl overflow-hidden"
+                style={{ border: '1px solid #e8edf5', boxShadow: '0 4px 24px rgba(26,74,158,0.06)' }}
+              >
+                {/* Blue top stripe */}
+                <div className="h-[4px]" style={{ background: 'linear-gradient(90deg, #1a4a9e, #c8922a)' }} />
+                <div className="p-8 md:p-10 bg-white">
+                  <div
+                    className="wp-content prose max-w-none leading-relaxed"
+                    style={{ color: '#4a5a7a', fontSize: '15.5px', lineHeight: '1.85' }}
+                    dangerouslySetInnerHTML={{ __html: product.description }}
+                  />
+                </div>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -434,45 +449,72 @@ export default function ProductDetailClient({ product, relatedProducts }: Props)
 
       {/* ── Applications / Used For ── */}
       {(product.applications.length > 0 || product.usedFor.length > 0) && (
-        <section className="section-padding bg-white">
+        <section style={{ background: '#ffffff', padding: '56px 0 72px' }}>
           <div className="container-custom">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportConfig}
               transition={{ duration: 0.55 }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <span
-                  className="font-bold tracking-widest uppercase"
-                  style={{ color: '#c8922a', fontSize: '11px' }}
+              {/* Section header */}
+              <div className="flex items-start gap-5 mb-8">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: 'linear-gradient(135deg, #c8922a, #e0a83b)' }}
                 >
-                  Application / Used For
-                </span>
+                  <CheckCircle2 size={22} className="text-white" />
+                </div>
+                <div>
+                  <div className="font-bold tracking-widest uppercase mb-1" style={{ color: '#c8922a', fontSize: '11px' }}>
+                    Application / Used For
+                  </div>
+                  <h2 className="font-black leading-tight" style={{ color: '#0d1f3c', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)' }}>
+                    Where This Tube Is Used
+                  </h2>
+                </div>
               </div>
-              <h2 className="font-black mb-8" style={{ color: '#0d1f3c', fontSize: '1.4rem' }}>
-                Where This Tube Is Used
-              </h2>
 
+              {/* Application cards */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[...product.usedFor, ...product.applications]
                   .filter((v, i, arr) => arr.indexOf(v) === i)
-                  .map((app) => (
-                    <div
+                  .map((app, idx) => (
+                    <motion.div
                       key={app}
-                      className="flex items-center gap-3 rounded-xl p-4"
-                      style={{ background: '#f4f6fb', border: '1px solid #e8edf5' }}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={viewportConfig}
+                      transition={{ duration: 0.4, delay: idx * 0.07 }}
+                      className="group flex items-center gap-4 rounded-xl p-5 transition-all duration-300 hover:-translate-y-1"
+                      style={{
+                        background: '#f8faff',
+                        border: '1.5px solid #e8edf5',
+                        boxShadow: '0 2px 8px rgba(26,74,158,0.04)',
+                      }}
+                      onMouseEnter={e => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.borderColor = 'rgba(26,74,158,0.30)';
+                        el.style.boxShadow = '0 8px 24px rgba(26,74,158,0.10)';
+                        el.style.background = '#f0f5ff';
+                      }}
+                      onMouseLeave={e => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.borderColor = '#e8edf5';
+                        el.style.boxShadow = '0 2px 8px rgba(26,74,158,0.04)';
+                        el.style.background = '#f8faff';
+                      }}
                     >
                       <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-300"
                         style={{ background: 'rgba(26,74,158,0.10)' }}
                       >
-                        <CheckCircle2 size={15} style={{ color: '#1a4a9e' }} />
+                        <CheckCircle2 size={18} style={{ color: '#1a4a9e' }} />
                       </div>
-                      <span className="font-medium" style={{ color: '#0d1f3c', fontSize: '14px' }}>
+                      <span className="font-semibold leading-snug" style={{ color: '#0d1f3c', fontSize: '14.5px' }}>
                         {app}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
               </div>
             </motion.div>
