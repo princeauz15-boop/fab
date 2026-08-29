@@ -34,7 +34,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       }}
     >
       {/* Image */}
-      <div className="relative overflow-hidden bg-[#f4f6fb]" style={{ aspectRatio: '4/3' }}>
+      <div className="relative overflow-hidden bg-[#f4f6fb]" style={{ aspectRatio: '4/3', position: 'relative' }}>
         {product.featuredImage ? (
           <Image
             src={product.featuredImage.url}

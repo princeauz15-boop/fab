@@ -85,8 +85,13 @@ function parseProduct(post: WPPost): Product {
   const allSpecs = specs.length > 0 ? specs : legacySpecs;
 
   const productOrder =
-    typeof acf.product_order === 'number' ? acf.product_order :
-    typeof post.menu_order === 'number' ? post.menu_order : 999;
+    typeof acf.product_order === 'number' && acf.product_order > 0
+      ? acf.product_order
+      : typeof acf.product_order === 'string' && acf.product_order.trim() !== '' && !isNaN(Number(acf.product_order))
+      ? Number(acf.product_order)
+      : typeof post.menu_order === 'number' && post.menu_order > 0
+      ? post.menu_order
+      : 9999;
 
   const rawExcerpt = post.excerpt?.rendered
     ? post.excerpt.rendered.replace(/<[^>]*>/g, '').trim()
@@ -235,8 +240,14 @@ export function getFallbackProducts(): Product[] {
 
 function getFallbackTestimonials(): Testimonial[] {
   return [
-    { id: 1, clientName: 'Rajesh Patel', designation: 'Production Manager', company: 'Textile Unit', review: 'FAB Paper Tube has been our trusted supplier. Precision and consistency is outstanding.', rating: 5 },
-    { id: 2, clientName: 'Suresh Mehta', designation: 'Purchase Manager', company: 'Cracker Manufacturing', review: 'Excellent quality tubes. Very reliable supply and on-time delivery.', rating: 5 },
+    { id: 1, clientName: 'Rajesh Patel', designation: 'Production Manager', company: 'Textile Manufacturing Unit', review: 'FAB Paper Tube has been our trusted supplier for sewing thread tubes. Precision and consistency in manufacturing has significantly improved our production efficiency.', rating: 5 },
+    { id: 2, clientName: 'Suresh Mehta', designation: 'Purchase Manager', company: 'Cracker Manufacturing Company', review: 'Excellent quality paper tubes for our cracker manufacturing needs. The small-size precision is outstanding. Very reliable supply and on-time delivery.', rating: 5 },
+    { id: 3, clientName: 'Priya Shah', designation: 'Operations Head', company: 'Paper Converting Unit', review: 'We have been using FAB Paper Tube products for thermal rolls and notebook covers. Quality is consistent and the team is very responsive to custom requirements.', rating: 5 },
+    { id: 4, clientName: 'Amit Kumar', designation: 'Director', company: 'Packaging Solutions', review: 'Their stretch film tubes are exactly what we needed. Strong, consistent and delivered on time. FAB Paper Tube understands industrial requirements very well.', rating: 5 },
+    { id: 5, clientName: 'Dinesh Sharma', designation: 'Factory Manager', company: 'Candle Manufacturing Unit', review: 'The birthday cake sparkle candle tubes from FAB are perfect. Precise dimensions, good quality paper and reliable supply. Highly recommended for candle manufacturers.', rating: 5 },
+    { id: 6, clientName: 'Vikram Desai', designation: 'Purchase Head', company: 'Stationery Products Ltd', review: 'FAB Paper Tube delivers consistent quality batch after batch. Their custom sizing service has been extremely helpful for our unique notebook cover requirements.', rating: 5 },
+    { id: 7, clientName: 'Meena Joshi', designation: 'Operations Manager', company: 'Thread Winding Industries', review: 'We switched to FAB Paper Tube two years ago and have never looked back. The quality of sewing thread tubes is exceptional and supply is always on time.', rating: 5 },
+    { id: 8, clientName: 'Harish Nair', designation: 'Production Director', company: 'Fireworks Manufacturing Co.', review: 'For our firecracker manufacturing, we need precise and consistent paper tubes. FAB Paper Tube has been our go-to supplier for years. Excellent quality and service.', rating: 5 },
   ];
 }
 
