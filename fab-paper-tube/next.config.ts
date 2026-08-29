@@ -7,9 +7,11 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: '*.wp.com' },
       { protocol: 'http',  hostname: 'localhost' },
       { protocol: 'https', hostname: 'your-wordpress-site.com' },
+      // Pantheon WordPress hosting
+      { protocol: 'https', hostname: 'dev-fab-paper-tube.pantheonsite.io' },
+      { protocol: 'https', hostname: '*.pantheonsite.io' },
       // Allow any HTTPS hostname for WordPress images
       { protocol: 'https', hostname: '**' },
-      { protocol: 'http',  hostname: '**' },
     ],
     formats: ['image/avif', 'image/webp'],
   },

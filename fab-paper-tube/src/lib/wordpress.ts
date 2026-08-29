@@ -50,42 +50,36 @@ function parseProduct(post: WPPost): Product {
   const featuredImage = media ? parseMedia(media) : null;
   const acf = (post.acf || {}) as Record<string, unknown>;
 
+  // ACF field: used_for (multiline text → array)
   const usedFor =
     typeof acf.used_for === 'string'
       ? acf.used_for.split('\n').map((s) => s.trim()).filter(Boolean)
       : [];
 
+  // ACF field: applications (multiline text → array)
   const applications =
     typeof acf.applications === 'string'
       ? acf.applications.split('\n').map((s) => s.trim()).filter(Boolean)
+      : typeof acf.usage_application === 'string' && acf.usage_application.trim()
+      ? [acf.usage_application.trim()]
       : [];
 
-  // Build specifications from individual ACF fields + legacy specs array
+  // Build specifications from ACF fields — only include if non-empty
   const specsList: Product['specifications'] = [];
-  if (typeof acf.thickness === 'string' && acf.thickness.trim()) {
-    specsList.push({ label: 'Thickness', value: acf.thickness.trim() });
-  }
-  if (typeof acf.diameter === 'string' && acf.diameter.trim()) {
-    specsList.push({ label: 'Diameter', value: acf.diameter.trim() });
-  }
-  if (typeof acf.length === 'string' && acf.length.trim()) {
-    specsList.push({ label: 'Length', value: acf.length.trim() });
-  }
-  if (typeof acf.size === 'string' && acf.size.trim()) {
-    specsList.push({ label: 'Size', value: acf.size.trim() });
-  }
-  if (typeof acf.weight === 'string' && acf.weight.trim()) {
-    specsList.push({ label: 'Weight', value: acf.weight.trim() });
-  }
-  if (typeof acf.usage === 'string' && acf.usage.trim()) {
-    specsList.push({ label: 'Usage / Application', value: acf.usage.trim() });
-  }
-  if (typeof acf.material === 'string' && acf.material.trim()) {
-    specsList.push({ label: 'Material', value: acf.material.trim() });
-  }
-  if (typeof acf.quality === 'string' && acf.quality.trim()) {
-    specsList.push({ label: 'Quality / Features', value: acf.quality.trim() });
-  }
+  const addSpec = (label: string, val: unknown) => {
+    if (typeof val === 'string' && val.trim()) {
+      specsList.push({ label, value: val.trim() });
+    }
+  };
+  addSpec('Thickness', acf.thickness);
+  addSpec('Diameter', acf.diameter);
+  addSpec('Length', acf.length);
+  addSpec('Size', acf.size);
+  addSpec('Weight', acf.weight);
+  // usage_application is the correct ACF field name in WordPress
+  addSpec('Usage / Application', acf.usage_application ?? acf.usage);
+  addSpec('Material', acf.material);
+  addSpec('Quality / Features', acf.quality);
 
   // Merge with legacy specifications array if provided
   const legacySpecs = Array.isArray(acf.specifications)
@@ -100,14 +94,22 @@ function parseProduct(post: WPPost): Product {
       ? post.menu_order
       : 999;
 
+  // short_description: prefer ACF field, fall back to excerpt
+  const shortDesc =
+    typeof acf.short_description === 'string' && acf.short_description.trim()
+      ? acf.short_description.trim()
+      : post.excerpt.rendered.replace(/<[^>]*>/g, '').trim();
+
+  // video: product_video is the actual ACF field name
+  const rawVideo = acf.product_video ?? acf.video_url;
+  const videoUrl =
+    typeof rawVideo === 'string' && rawVideo.trim() ? rawVideo.trim() : undefined;
+
   return {
     id: post.id,
     slug: post.slug,
     title: post.title.rendered,
-    shortDescription:
-      typeof acf.short_description === 'string' && acf.short_description.trim()
-        ? acf.short_description.trim()
-        : post.excerpt.rendered.replace(/<[^>]*>/g, '').trim(),
+    shortDescription: shortDesc,
     description: post.content.rendered,
     featuredImage,
     gallery: [],
@@ -117,14 +119,13 @@ function parseProduct(post: WPPost): Product {
     seoTitle: post.yoast_head_json?.title || post.title.rendered,
     seoDescription: post.yoast_head_json?.description || '',
     acf: acf as Product['acf'],
-    // New fields
-    videoUrl: typeof acf.video_url === 'string' && acf.video_url.trim() ? acf.video_url.trim() : undefined,
+    videoUrl,
     thickness: typeof acf.thickness === 'string' && acf.thickness.trim() ? acf.thickness.trim() : undefined,
     diameter: typeof acf.diameter === 'string' && acf.diameter.trim() ? acf.diameter.trim() : undefined,
     length: typeof acf.length === 'string' && acf.length.trim() ? acf.length.trim() : undefined,
     size: typeof acf.size === 'string' && acf.size.trim() ? acf.size.trim() : undefined,
     weight: typeof acf.weight === 'string' && acf.weight.trim() ? acf.weight.trim() : undefined,
-    usage: typeof acf.usage === 'string' && acf.usage.trim() ? acf.usage.trim() : undefined,
+    usage: typeof acf.usage_application === 'string' && acf.usage_application.trim() ? acf.usage_application.trim() : undefined,
     material: typeof acf.material === 'string' && acf.material.trim() ? acf.material.trim() : undefined,
     quality: typeof acf.quality === 'string' && acf.quality.trim() ? acf.quality.trim() : undefined,
     productOrder,
