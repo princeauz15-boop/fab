@@ -25,21 +25,21 @@ function TestimonialCard({ t }: { t: Testimonial }) {
       style={{ border: '1px solid #e8edf5', padding: '24px', boxShadow: '0 2px 12px rgba(26,74,158,0.05)' }}
     >
       <Quote size={26} style={{ color: 'rgba(200,146,42,0.18)' }} className="mb-3 flex-shrink-0" />
-      <p className="italic leading-relaxed flex-1 mb-5" style={{ color: '#4a5a7a', fontSize: '14px' }}>
+      <p className="italic leading-relaxed flex-1 mb-5 text-center" style={{ color: '#4a5a7a', fontSize: '14px' }}>
         &ldquo;{t.review}&rdquo;
       </p>
-      <div className="flex items-center gap-3 pt-4" style={{ borderTop: '1px solid #f0f5ff' }}>
+      <div className="flex items-center gap-3 pt-4 justify-center" style={{ borderTop: '1px solid #f0f5ff' }}>
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-black"
           style={{ background: 'rgba(26,74,158,0.10)', color: '#1a4a9e', fontSize: '15px' }}
         >
           {t.clientName.charAt(0)}
         </div>
-        <div>
+        <div className="text-center">
           <div className="font-bold" style={{ color: '#0d1f3c', fontSize: '13.5px' }}>{t.clientName}</div>
           <div style={{ color: '#9aaacc', fontSize: '11.5px' }}>{t.designation}</div>
           {t.company && <div className="font-medium" style={{ color: '#c8922a', fontSize: '11.5px' }}>{t.company}</div>}
-          <div className="mt-1"><StarRating rating={t.rating} /></div>
+          <div className="mt-1 flex justify-center"><StarRating rating={t.rating} /></div>
         </div>
       </div>
     </div>

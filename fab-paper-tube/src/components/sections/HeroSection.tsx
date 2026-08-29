@@ -107,19 +107,18 @@ export default function HeroSection() {
               to customer requirements, ensuring consistent quality and timely delivery.
             </motion.p>
 
-            {/* CTA buttons — white outlined, exact match screenshot */}
+            {/* CTA buttons */}
             <motion.div
               variants={heroButtons}
-              style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', paddingTop: '4px', justifyContent: 'center' }}
-              className="lg:justify-start"
+              className="flex flex-row gap-3 justify-center lg:justify-start w-full"
             >
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 bg-transparent text-white font-bold rounded-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 bg-transparent text-white font-bold rounded-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300 flex-1 lg:flex-initial"
                 style={{
                   border: '2px solid rgba(255,255,255,0.9)',
                   fontSize: '15px',
-                  padding: '12px 28px',
+                  padding: '12px 20px',
                 }}
               >
                 Get Free Quote
@@ -127,11 +126,11 @@ export default function HeroSection() {
               </Link>
               <Link
                 href="/products"
-                className="group inline-flex items-center gap-2 bg-transparent text-white font-bold rounded-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 bg-transparent text-white font-bold rounded-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300 flex-1 lg:flex-initial"
                 style={{
                   border: '2px solid rgba(255,255,255,0.9)',
                   fontSize: '15px',
-                  padding: '12px 28px',
+                  padding: '12px 20px',
                 }}
               >
                 View Products

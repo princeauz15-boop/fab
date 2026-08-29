@@ -273,14 +273,11 @@ export default function ProductDetailClient({ product, relatedProducts }: Props)
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="flex flex-col gap-5"
+              className="flex flex-col gap-5 items-center text-center lg:items-start lg:text-left"
             >
               {/* Eyebrow */}
-              <motion.div variants={fadeUp} className="flex items-center gap-2">
-                <span
-                  className="font-bold tracking-widest uppercase"
-                  style={{ color: '#c8922a', fontSize: '11px' }}
-                >
+              <motion.div variants={fadeUp} className="flex items-center gap-2 justify-center lg:justify-start">
+                <span className="font-bold tracking-widest uppercase" style={{ color: '#c8922a', fontSize: '11px' }}>
                   FAB Paper Tube
                 </span>
               </motion.div>
@@ -307,26 +304,18 @@ export default function ProductDetailClient({ product, relatedProducts }: Props)
               {product.usedFor.length > 0 && (
                 <motion.div
                   variants={fadeUp}
-                  className="rounded-xl p-4"
+                  className="rounded-xl p-4 w-full"
                   style={{ background: '#f4f6fb', border: '1px solid #e8edf5' }}
                 >
-                  <div
-                    className="font-bold tracking-widest uppercase mb-3"
-                    style={{ color: '#9aaacc', fontSize: '10px' }}
-                  >
+                  <div className="font-bold tracking-widest uppercase mb-3" style={{ color: '#9aaacc', fontSize: '10px' }}>
                     Used For
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                     {product.usedFor.map((use) => (
                       <span
                         key={use}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium"
-                        style={{
-                          background: 'white',
-                          border: '1px solid #dde8f5',
-                          color: '#1a4a9e',
-                          fontSize: '13px',
-                        }}
+                        style={{ background: 'white', border: '1px solid #dde8f5', color: '#1a4a9e', fontSize: '13px' }}
                       >
                         <CheckCircle2 size={12} style={{ color: '#c8922a' }} />
                         {use}
@@ -339,11 +328,8 @@ export default function ProductDetailClient({ product, relatedProducts }: Props)
               {/* Custom size note */}
               <motion.div
                 variants={fadeUp}
-                className="flex items-start gap-3 rounded-xl p-4"
-                style={{
-                  background: 'rgba(200,146,42,0.05)',
-                  border: '1px solid rgba(200,146,42,0.18)',
-                }}
+                className="flex items-start gap-3 rounded-xl p-4 w-full text-left"
+                style={{ background: 'rgba(200,146,42,0.05)', border: '1px solid rgba(200,146,42,0.18)' }}
               >
                 <Package size={16} className="flex-shrink-0 mt-0.5" style={{ color: '#c8922a' }} />
                 <p style={{ color: '#4a5a7a', fontSize: '13.5px' }}>
@@ -352,34 +338,31 @@ export default function ProductDetailClient({ product, relatedProducts }: Props)
                 </p>
               </motion.div>
 
-              {/* CTA Buttons */}
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-3 pt-1">
-                {/* WhatsApp */}
+              {/* CTA Buttons — full width on mobile, auto on desktop */}
+              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3 pt-1 w-full lg:w-auto">
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 text-white font-bold rounded-lg hover:-translate-y-0.5 transition-all duration-300"
+                  className="group inline-flex items-center justify-center gap-2 text-white font-bold rounded-lg hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto"
                   style={{
                     background: 'linear-gradient(135deg, #25d366, #20c060)',
                     fontSize: '14px',
-                    padding: '13px 24px',
+                    padding: '14px 24px',
                     boxShadow: '0 4px 18px rgba(37,211,102,0.30)',
                   }}
                 >
                   <MessageCircle size={16} />
                   Enquire on WhatsApp
                 </a>
-
-                {/* Contact */}
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 font-bold rounded-lg hover:-translate-y-0.5 transition-all duration-300"
+                  className="group inline-flex items-center justify-center gap-2 font-bold rounded-lg hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto"
                   style={{
                     background: 'linear-gradient(135deg, #1a4a9e, #2a5fc0)',
                     color: 'white',
                     fontSize: '14px',
-                    padding: '13px 24px',
+                    padding: '14px 24px',
                     boxShadow: '0 4px 18px rgba(26,74,158,0.28)',
                   }}
                 >
