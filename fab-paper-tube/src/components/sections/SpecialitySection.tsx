@@ -6,44 +6,19 @@ import { Target, Layers, Shield, RefreshCw } from 'lucide-react';
 import { fadeUp, staggerContainer, viewportConfig } from '@/lib/animations';
 
 const features = [
-  {
-    icon: Target,
-    title: 'Small Diameter',
-    description: 'Expert manufacturing of small-diameter paper tubes where precision matters most.',
-  },
-  {
-    icon: Layers,
-    title: 'Precision',
-    description: 'Every tube is manufactured with tight dimensional tolerances and consistent wall thickness.',
-  },
-  {
-    icon: Shield,
-    title: 'Strength',
-    description: 'High-quality kraft paper ensures structural integrity and resistance to compression.',
-  },
-  {
-    icon: RefreshCw,
-    title: 'Consistency',
-    description: 'Batch after batch, every tube meets the same precise specifications your production demands.',
-  },
+  { icon: Target, title: 'Small Diameter', description: 'Expert manufacturing of small-diameter paper tubes where precision matters most.' },
+  { icon: Layers, title: 'Precision', description: 'Every tube is manufactured with tight dimensional tolerances and consistent wall thickness.' },
+  { icon: Shield, title: 'Strength', description: 'High-quality kraft paper ensures structural integrity and resistance to compression.' },
+  { icon: RefreshCw, title: 'Consistency', description: 'Batch after batch, every tube meets the same precise specifications your production demands.' },
 ];
 
 export default function SpecialitySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
   const textX = useTransform(scrollYProgress, [0, 1], ['-3%', '3%']);
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.04, 1]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="section-padding bg-[#0f0f0f] overflow-hidden relative"
-    >
-      {/* Background pattern */}
+    <section ref={sectionRef} className="section-padding bg-[#0f0f0f] overflow-hidden relative">
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
@@ -53,11 +28,7 @@ export default function SpecialitySection() {
       />
 
       <div className="container-custom relative z-10">
-        {/* Large background text */}
-        <motion.div
-          style={{ x: textX }}
-          className="overflow-hidden mb-8"
-        >
+        <motion.div style={{ x: textX }} className="overflow-hidden mb-8">
           <div
             className="text-[10rem] md:text-[14rem] lg:text-[18rem] font-black leading-none select-none whitespace-nowrap text-white/[0.02]"
             aria-hidden="true"
@@ -66,7 +37,6 @@ export default function SpecialitySection() {
           </div>
         </motion.div>
 
-        {/* Main content */}
         <div className="relative -mt-16 md:-mt-28 lg:-mt-40">
           {/* Section header */}
           <motion.div
@@ -74,11 +44,11 @@ export default function SpecialitySection() {
             whileInView="visible"
             viewport={viewportConfig}
             variants={staggerContainer}
-            className="mb-12"
+            className="mb-12 flex flex-col items-center text-center lg:items-start lg:text-left"
           >
             <motion.span
               variants={fadeUp}
-              className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-3 mb-4"
+              className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-3 mb-4 justify-center lg:justify-start"
             >
               <span className="w-8 h-0.5 bg-[#c8922a]" />
               Our Core Speciality
@@ -116,7 +86,7 @@ export default function SpecialitySection() {
                   key={feature.title}
                   variants={fadeUp}
                   custom={i}
-                  className="group p-6 border border-white/8 rounded hover:border-[#c8922a]/40 transition-all duration-400 hover:bg-white/[0.02]"
+                  className="group p-6 border border-white/8 rounded hover:border-[#c8922a]/40 transition-all duration-400 hover:bg-white/[0.02] flex flex-col items-center text-center"
                 >
                   <div className="w-11 h-11 bg-[#c8922a]/10 border border-[#c8922a]/20 rounded flex items-center justify-center mb-4 group-hover:bg-[#c8922a]/20 transition-colors duration-300">
                     <Icon size={20} className="text-[#c8922a]" />
@@ -128,7 +98,6 @@ export default function SpecialitySection() {
             })}
           </motion.div>
 
-          {/* Bottom accent */}
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}

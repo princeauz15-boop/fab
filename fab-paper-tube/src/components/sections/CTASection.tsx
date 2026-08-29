@@ -6,8 +6,6 @@ import { motion } from 'framer-motion';
 import { ArrowRight, MessageSquare, Phone, CheckCircle2 } from 'lucide-react';
 import { staggerContainer, fadeUp, slideRight, viewportConfig } from '@/lib/animations';
 
-const tags = ['Custom Sizes', 'Small Diameter Tubes', 'Fast Delivery', 'Pan India Supply'];
-
 const features = [
   'Any diameter — small or large',
   'Custom length cutting',
@@ -21,10 +19,7 @@ export default function CTASection() {
       className="relative overflow-hidden"
       style={{ background: '#ffffff', padding: '88px 0' }}
     >
-      {/* Subtle top separator */}
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: '#e8edf5' }} />
-
-      {/* Light grid background */}
       <div
         className="absolute inset-0 opacity-[0.018]"
         style={{
@@ -37,21 +32,18 @@ export default function CTASection() {
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* ── Left: Text content ── */}
+          {/* Left: Text content */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
             variants={staggerContainer}
-            className="text-center lg:text-left"
+            className="flex flex-col items-center text-center lg:items-start lg:text-left"
           >
             {/* Eyebrow */}
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-5 justify-center lg:justify-start">
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-5">
               <span className="block h-[2px] w-8 rounded" style={{ background: '#c8922a' }} />
-              <span
-                className="font-bold tracking-[0.25em] uppercase"
-                style={{ color: '#c8922a', fontSize: '12px' }}
-              >
+              <span className="font-bold tracking-[0.25em] uppercase" style={{ color: '#c8922a', fontSize: '12px' }}>
                 Start Your Order
               </span>
             </motion.div>
@@ -70,7 +62,7 @@ export default function CTASection() {
             {/* Description */}
             <motion.p
               variants={fadeUp}
-              className="leading-relaxed mb-7 mx-auto lg:mx-0"
+              className="leading-relaxed mb-7"
               style={{ color: '#5a6a8a', fontSize: '16px', lineHeight: '1.8', maxWidth: '460px' }}
             >
               Tell us your required{' '}
@@ -81,7 +73,7 @@ export default function CTASection() {
             </motion.p>
 
             {/* Feature list */}
-            <motion.div variants={fadeUp} className="space-y-2.5 mb-9 text-left">
+            <motion.div variants={fadeUp} className="space-y-2.5 mb-9 w-full max-w-sm">
               {features.map((f) => (
                 <div key={f} className="flex items-center gap-2.5">
                   <div
@@ -90,13 +82,13 @@ export default function CTASection() {
                   >
                     <CheckCircle2 size={12} style={{ color: '#1a4a9e' }} />
                   </div>
-                  <span className="font-medium" style={{ color: '#3a4a6a', fontSize: '14px' }}>{f}</span>
+                  <span className="font-medium text-left" style={{ color: '#3a4a6a', fontSize: '14px' }}>{f}</span>
                 </div>
               ))}
             </motion.div>
 
             {/* Buttons */}
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-3 justify-center lg:justify-start">
               <Link
                 href="/contact"
                 className="group inline-flex items-center gap-2.5 text-white font-bold rounded-md hover:-translate-y-0.5 transition-all duration-300"
@@ -139,7 +131,7 @@ export default function CTASection() {
             </motion.div>
           </motion.div>
 
-          {/* ── Right: Product image ── */}
+          {/* Right: Product image */}
           <motion.div
             initial="hidden"
             whileInView="visible"

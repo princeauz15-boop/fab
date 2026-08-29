@@ -26,9 +26,9 @@ export default function TrustedManufacturerSection() {
             whileInView="visible"
             viewport={viewportConfig}
             variants={staggerContainer}
-            className="flex flex-col gap-5"
+            className="flex flex-col items-center text-center lg:items-start lg:text-left gap-5"
           >
-            <motion.div variants={slideLeft} className="flex items-center gap-3">
+            <motion.div variants={slideLeft} className="flex items-center gap-3 justify-center lg:justify-start">
               <span className="w-8 h-0.5 bg-[#c8922a]" />
               <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: '#c8922a' }}>
                 About Us
@@ -56,9 +56,9 @@ export default function TrustedManufacturerSection() {
             </motion.p>
 
             {/* Highlights */}
-            <motion.ul variants={staggerContainer} className="space-y-2.5 mt-1">
+            <motion.ul variants={staggerContainer} className="space-y-2.5 mt-1 w-full">
               {highlights.map((item) => (
-                <motion.li key={item} variants={fadeUp} className="flex items-start gap-3">
+                <motion.li key={item} variants={fadeUp} className="flex items-start gap-3 text-left">
                   <div
                     className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                     style={{ background: 'rgba(26,74,158,0.10)' }}
@@ -95,13 +95,10 @@ export default function TrustedManufacturerSection() {
             variants={slideRight}
             className="relative"
           >
-            {/* Decorative offset border behind */}
             <div
               className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl -z-10"
               style={{ border: '2px solid rgba(200,146,42,0.30)', borderRadius: '16px' }}
             />
-
-            {/* Image */}
             <div
               className="relative rounded-2xl overflow-hidden"
               style={{
@@ -117,13 +114,9 @@ export default function TrustedManufacturerSection() {
                 className="w-full h-auto object-cover"
                 style={{ display: 'block' }}
               />
-
-              {/* Subtle overlay gradient at bottom */}
               <div
                 className="absolute bottom-0 left-0 right-0 h-16"
-                style={{
-                  background: 'linear-gradient(to top, rgba(13,31,60,0.18), transparent)',
-                }}
+                style={{ background: 'linear-gradient(to top, rgba(13,31,60,0.18), transparent)' }}
               />
             </div>
           </motion.div>

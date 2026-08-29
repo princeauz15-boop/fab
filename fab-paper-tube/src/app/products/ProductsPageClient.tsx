@@ -246,6 +246,7 @@ export default function ProductsPageClient({ products }: Props) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportConfig}
               transition={{ duration: 0.5 }}
+              className="text-center sm:text-left"
             >
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="h-[2px] w-6 rounded" style={{ background: '#c8922a' }} />

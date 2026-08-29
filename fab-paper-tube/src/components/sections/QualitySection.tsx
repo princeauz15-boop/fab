@@ -15,26 +15,23 @@ const qualityPoints = [
 
 export default function QualitySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
   const imageY = useTransform(scrollYProgress, [0, 1], ['5%', '-5%']);
 
   return (
     <section ref={sectionRef} className="section-padding bg-[#1a1a1a] overflow-hidden">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
+
           {/* Left: Content */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
             variants={staggerContainer}
-            className="flex flex-col gap-6"
+            className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6"
           >
-            <motion.div variants={slideLeft} className="flex items-center gap-3">
+            <motion.div variants={slideLeft} className="flex items-center gap-3 justify-center lg:justify-start">
               <span className="w-8 h-0.5 bg-[#c8922a]" />
               <span className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase">Quality Commitment</span>
             </motion.div>
@@ -48,7 +45,7 @@ export default function QualitySection() {
             </motion.h2>
 
             <motion.p variants={slideLeft} className="text-gray-400 text-base md:text-lg leading-relaxed">
-              We understand that a paper tube is not just a component. It supports your winding, handling and production process. That's why we focus on strength, dimensions, finishing and consistent manufacturing.
+              We understand that a paper tube is not just a component. It supports your winding, handling and production process. That&apos;s why we focus on strength, dimensions, finishing and consistent manufacturing.
             </motion.p>
 
             <motion.p variants={slideLeft} className="text-gray-500 leading-relaxed">
@@ -56,18 +53,11 @@ export default function QualitySection() {
             </motion.p>
 
             {/* Quality Points */}
-            <motion.div
-              variants={staggerContainer}
-              className="grid grid-cols-2 gap-3"
-            >
+            <motion.div variants={staggerContainer} className="grid grid-cols-2 gap-3 w-full">
               {qualityPoints.map((point) => (
-                <motion.div
-                  key={point}
-                  variants={slideLeft}
-                  className="flex items-center gap-2.5"
-                >
+                <motion.div key={point} variants={slideLeft} className="flex items-center gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8922a] flex-shrink-0" />
-                  <span className="text-gray-300 text-sm">{point}</span>
+                  <span className="text-gray-300 text-sm text-left">{point}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -82,26 +72,18 @@ export default function QualitySection() {
             className="relative"
           >
             <motion.div style={{ y: imageY }}>
-              {/* Quality visual with industrial design */}
               <div className="relative aspect-square max-w-md mx-auto">
-                {/* Outer border */}
                 <div className="absolute inset-0 border border-[#c8922a]/20 rounded" />
-
-                {/* Inner content */}
                 <div className="absolute inset-4 bg-[#0f0f0f] rounded flex flex-col items-center justify-center gap-6 p-8">
-                  {/* Center diamond */}
                   <div className="w-24 h-24 bg-[#c8922a]/10 border-2 border-[#c8922a]/30 rotate-45 flex items-center justify-center">
                     <div className="w-12 h-12 bg-[#c8922a] rotate-0 flex items-center justify-center">
                       <span className="text-white font-black text-xl -rotate-45">Q</span>
                     </div>
                   </div>
-
                   <div className="text-center">
                     <div className="text-white font-black text-2xl mb-1">Quality First</div>
                     <div className="text-gray-500 text-xs tracking-widest uppercase">Manufacturing Standard</div>
                   </div>
-
-                  {/* Quality bars */}
                   <div className="w-full space-y-3">
                     {[
                       { label: 'Dimensional Accuracy', width: '95%' },
@@ -126,8 +108,6 @@ export default function QualitySection() {
                     ))}
                   </div>
                 </div>
-
-                {/* Corner accents */}
                 {['top-0 left-0', 'top-0 right-0', 'bottom-0 left-0', 'bottom-0 right-0'].map((pos) => (
                   <div
                     key={pos}
@@ -141,6 +121,7 @@ export default function QualitySection() {
               </div>
             </motion.div>
           </motion.div>
+
         </div>
       </div>
     </section>

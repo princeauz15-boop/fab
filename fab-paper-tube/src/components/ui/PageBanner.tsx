@@ -73,11 +73,11 @@ export default function PageBanner({
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
-          className="max-w-3xl"
+          className="max-w-3xl mx-auto text-center lg:mx-0 lg:text-left"
         >
           {/* Eyebrow */}
           {eyebrow && (
-            <motion.div variants={fadeUp} className="flex items-center gap-3 mb-4">
+            <motion.div variants={fadeUp} className="flex items-center gap-3 mb-4 justify-center lg:justify-start">
               <span
                 className="block h-[3px] w-10 rounded-sm"
                 style={{ background: '#4db8ff' }}
@@ -116,7 +116,7 @@ export default function PageBanner({
             <motion.nav
               variants={fadeUp}
               aria-label="Breadcrumb"
-              className="flex items-center flex-wrap gap-1 mt-5"
+              className="flex items-center flex-wrap gap-1 mt-5 justify-center lg:justify-start"
               style={{ fontSize: '13px' }}
             >
               {breadcrumbs.map((crumb, i) => (

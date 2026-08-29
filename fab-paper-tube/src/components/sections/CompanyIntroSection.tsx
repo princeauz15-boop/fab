@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { CheckCircle2, Award, Package, Users } from 'lucide-react';
+import { CheckCircle2, Award, Package } from 'lucide-react';
 import { slideLeft, slideRight, viewportConfig, staggerContainer, fadeUp } from '@/lib/animations';
 
 const stats = [
@@ -20,17 +20,14 @@ const highlights = [
 
 export default function CompanyIntroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
   const imageY = useTransform(scrollYProgress, [0, 1], ['5%', '-5%']);
 
   return (
     <section ref={sectionRef} className="section-padding bg-white overflow-hidden">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
           {/* Left: Visual */}
           <motion.div
             initial="hidden"
@@ -39,17 +36,12 @@ export default function CompanyIntroSection() {
             variants={slideLeft}
             className="relative"
           >
-            {/* Main image container */}
             <div className="relative">
-              {/* Image box */}
               <motion.div
                 style={{ y: imageY }}
                 className="relative z-10 rounded overflow-hidden bg-[#1a1a1a] aspect-[4/5]"
               >
-                {/* Paper tube visual representation */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-[#2d2d2d] to-[#0f0f0f]" />
-
-                {/* Industrial grid */}
                 <div
                   className="absolute inset-0 opacity-[0.06]"
                   style={{
@@ -57,10 +49,7 @@ export default function CompanyIntroSection() {
                     backgroundSize: '40px 40px',
                   }}
                 />
-
-                {/* Centered content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
-                  {/* Multiple tube circles */}
                   <div className="relative flex gap-4 mb-6">
                     {[60, 80, 60].map((size, i) => (
                       <motion.div
@@ -76,13 +65,11 @@ export default function CompanyIntroSection() {
                       </motion.div>
                     ))}
                   </div>
-
                   <div className="text-center">
                     <div className="text-[#c8922a] font-black text-4xl mb-1">FAB</div>
                     <div className="text-white font-bold text-lg tracking-widest">PAPER TUBE</div>
                     <div className="text-gray-500 text-xs tracking-widest mt-1 uppercase">Ahmedabad · Gujarat · India</div>
                   </div>
-
                   <div className="mt-8 flex items-center gap-2">
                     <div className="w-8 h-0.5 bg-[#c8922a]" />
                     <span className="text-gray-400 text-xs tracking-widest uppercase">Since 2013</span>
@@ -90,11 +77,7 @@ export default function CompanyIntroSection() {
                   </div>
                 </div>
               </motion.div>
-
-              {/* Decorative offset box */}
               <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-[#c8922a]/20 rounded z-0" />
-
-              {/* Year badge */}
               <div className="absolute -top-4 -left-4 z-20 bg-[#c8922a] text-white px-5 py-3 rounded-sm shadow-lg">
                 <div className="text-2xl font-black leading-none">10+</div>
                 <div className="text-xs font-medium opacity-80 mt-0.5">Years of Excellence</div>
@@ -108,9 +91,9 @@ export default function CompanyIntroSection() {
             whileInView="visible"
             viewport={viewportConfig}
             variants={staggerContainer}
-            className="flex flex-col gap-6"
+            className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6"
           >
-            <motion.div variants={slideRight} className="flex items-center gap-3">
+            <motion.div variants={slideRight} className="flex items-center gap-3 justify-center lg:justify-start">
               <span className="w-8 h-0.5 bg-[#c8922a]" />
               <span className="text-[#c8922a] text-xs font-bold tracking-[0.2em] uppercase">About FAB Paper Tube</span>
             </motion.div>
@@ -133,13 +116,9 @@ export default function CompanyIntroSection() {
             </motion.p>
 
             {/* Highlights */}
-            <motion.ul variants={staggerContainer} className="space-y-3">
+            <motion.ul variants={staggerContainer} className="space-y-3 w-full">
               {highlights.map((item, i) => (
-                <motion.li
-                  key={i}
-                  variants={fadeUp}
-                  className="flex items-start gap-3"
-                >
+                <motion.li key={i} variants={fadeUp} className="flex items-start gap-3 text-left">
                   <CheckCircle2 size={18} className="text-[#c8922a] flex-shrink-0 mt-0.5" />
                   <span className="text-[#4a4a4a] text-sm">{item}</span>
                 </motion.li>
@@ -147,10 +126,7 @@ export default function CompanyIntroSection() {
             </motion.ul>
 
             {/* Stats */}
-            <motion.div
-              variants={fadeUp}
-              className="grid grid-cols-3 gap-4 pt-6 border-t border-[#e5e5e5]"
-            >
+            <motion.div variants={fadeUp} className="grid grid-cols-3 gap-4 pt-6 border-t border-[#e5e5e5] w-full">
               {stats.map((stat) => {
                 const Icon = stat.icon;
                 return (
