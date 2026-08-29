@@ -9,7 +9,7 @@ interface FormData {
   name: string; company: string; phone: string; email: string;
   product: string; quantity: string; message: string;
 }
-interface Errors { name?: string; phone?: string; message?: string; }
+interface Errors { name?: string; phone?: string; message?: string; submitError?: string; }
 
 const productOptions = [
   'White Sewing Thread Paper Tube', 'Brown Notebook Cover Paper Tube',
@@ -37,10 +37,25 @@ export default function ContactFormSection() {
     if (!form.phone.trim()) errs.phone = 'Phone is required';
     if (!form.message.trim()) errs.message = 'Requirement is required';
     if (Object.keys(errs).length) { setErrors(errs); return; }
+
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1000));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, formId: 1144 }),
+      });
+      const data = await res.json() as { ok: boolean; message: string };
+      if (data.ok) {
+        setSubmitted(true);
+      } else {
+        setErrors({ message: data.message || 'Submission failed. Please try again.' });
+      }
+    } catch {
+      setErrors({ message: 'Network error. Please try again.' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClass = (err?: string) =>
