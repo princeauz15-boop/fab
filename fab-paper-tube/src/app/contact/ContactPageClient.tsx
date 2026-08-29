@@ -111,10 +111,23 @@ export default function ContactPageClient() {
       return;
     }
     setLoading(true);
-    // Simulate API call — replace with your real endpoint
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, formId: 1144 }),
+      });
+      const data = await res.json() as { ok: boolean; message: string };
+      if (data.ok) {
+        setSubmitted(true);
+      } else {
+        setErrors({ message: data.message || 'Submission failed. Please try again.' });
+      }
+    } catch {
+      setErrors({ message: 'Network error. Please check your connection and try again.' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
