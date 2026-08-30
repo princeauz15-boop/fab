@@ -29,16 +29,28 @@ export async function POST(req: NextRequest) {
 
     const formId = body.formId ?? FORM_ID_MAIN;
 
-    // Build FormData matching EXACT CF7 field names from the WordPress form template
-    // Field names visible in the email: your-company, product-type, quantity, tel-phone
+    // Build FormData matching EXACT CF7 field names
+    // Phone field — send under all common CF7 tel field name variations
+    // so it works regardless of what name is set in the CF7 form template
     const fd = new FormData();
     fd.append('your-name',     body.name.trim());
     fd.append('your-email',    body.email?.trim() ?? '');
-    fd.append('tel-phone',     body.phone.trim());
+
+    // Try all common phone field names — CF7 only uses the one that matches its template
+    fd.append('tel-phone',      body.phone.trim());
+    fd.append('your-phone',     body.phone.trim());
+    fd.append('phone',          body.phone.trim());
+    fd.append('your-tel',       body.phone.trim());
+    fd.append('tel',            body.phone.trim());
+    fd.append('phone-number',   body.phone.trim());
+
     fd.append('your-company',  body.company?.trim() ?? '');
     fd.append('product-type',  body.product?.trim() ?? '');
     fd.append('quantity',      body.quantity?.trim() ?? '');
-    fd.append('your-message',  body.message.trim());
+
+    // Message — keep clean, phone also included as fallback line
+    const phoneBackup = body.phone?.trim() ? `\nPhone: ${body.phone.trim()}` : '';
+    fd.append('your-message',  body.message.trim() + phoneBackup);
 
     // Required CF7 unit tag
     fd.append('_wpcf7_unit_tag', `wpcf7-f${formId}-p0-o1`);
