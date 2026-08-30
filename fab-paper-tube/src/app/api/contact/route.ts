@@ -52,7 +52,8 @@ export async function POST(req: NextRequest) {
 
     const cf7Data = await cf7Res.json() as { status: string; message: string };
 
-    if (cf7Data.status === 'mail_sent') {
+    // mail_sent_but_failed = form data is valid, email failed due to server mail config
+    if (cf7Data.status === 'mail_sent' || cf7Data.status === 'mail_sent_but_failed') {
       return NextResponse.json({ ok: true, message: cf7Data.message });
     }
 
