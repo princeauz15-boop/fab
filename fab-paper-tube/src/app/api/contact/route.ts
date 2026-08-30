@@ -48,9 +48,8 @@ export async function POST(req: NextRequest) {
     fd.append('product-type',  body.product?.trim() ?? '');
     fd.append('quantity',      body.quantity?.trim() ?? '');
 
-    // Message — keep clean, phone also included as fallback line
-    const phoneBackup = body.phone?.trim() ? `\nPhone: ${body.phone.trim()}` : '';
-    fd.append('your-message',  body.message.trim() + phoneBackup);
+    // Message — clean, no phone backup needed since phone field now works
+    fd.append('your-message',  body.message.trim());
 
     // Required CF7 unit tag
     fd.append('_wpcf7_unit_tag', `wpcf7-f${formId}-p0-o1`);
