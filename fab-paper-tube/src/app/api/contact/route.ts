@@ -37,7 +37,11 @@ export async function POST(req: NextRequest) {
     fd.append('your-phone',       body.phone.trim());
     fd.append('your-email',       body.email?.trim() ?? '');
     fd.append('product-type',     body.product?.trim() ?? '');
-    fd.append('quantity',         body.quantity?.trim() ?? '');
+
+    // CF7 quantity field is type="number" — extract numeric value from strings like "1 Ton", "50 Ton"
+    const rawQty = body.quantity?.trim() ?? '';
+    const numericQty = rawQty ? (rawQty.match(/\d+/)?.[0] ?? '1') : '';
+    fd.append('quantity', numericQty);
     fd.append('your-requirement', body.message.trim());
 
     // Required CF7 unit tag
