@@ -18,6 +18,22 @@ const productOptions = [
   'Mirchi Bomb Paper Tube', 'Stretch Film Roll Paper Tube', 'Custom Requirement',
 ];
 
+const quantityOptions = [
+  '0.5 Ton (Minimum Order)',
+  '1 Ton',
+  '2 Ton',
+  '3 Ton',
+  '5 Ton',
+  '10 Ton',
+  '15 Ton',
+  '20 Ton',
+  '25 Ton',
+  '50 Ton',
+  '100 Ton (Bulk Order)',
+  'More than 100 Ton',
+  'Custom Quantity — Contact Us',
+];
+
 export default function ContactFormSection() {
   const [form, setForm] = useState<FormData>({ name: '', company: '', phone: '', email: '', product: '', quantity: '', message: '' });
   const [errors, setErrors] = useState<Errors>({});
@@ -189,8 +205,11 @@ export default function ContactFormSection() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-[#4a4a4a] mb-1.5">Quantity</label>
-                        <input name="quantity" value={form.quantity} onChange={handleChange} placeholder="e.g. 10,000 pcs" className={inputClass()} />
+                        <label className="block text-xs font-semibold text-[#4a4a4a] mb-1.5">Quantity (Approx.)</label>
+                        <select name="quantity" value={form.quantity} onChange={handleChange} className={inputClass() + ' cursor-pointer'}>
+                          <option value="">Select quantity</option>
+                          {quantityOptions.map(o => <option key={o} value={o}>{o}</option>)}
+                        </select>
                       </div>
                     </div>
                     <div>

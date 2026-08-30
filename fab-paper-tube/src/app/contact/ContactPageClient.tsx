@@ -64,6 +64,22 @@ const productOptions = [
   'Custom / Other Requirement',
 ];
 
+const quantityOptions = [
+  '0.5 Ton (Minimum Order)',
+  '1 Ton',
+  '2 Ton',
+  '3 Ton',
+  '5 Ton',
+  '10 Ton',
+  '15 Ton',
+  '20 Ton',
+  '25 Ton',
+  '50 Ton',
+  '100 Ton (Bulk Order)',
+  'More than 100 Ton',
+  'Custom Quantity — Contact Us',
+];
+
 function validate(data: FormData): FormErrors {
   const errors: FormErrors = {};
   if (!data.name.trim()) errors.name = 'Name is required';
@@ -389,17 +405,20 @@ export default function ContactPageClient() {
                             htmlFor="quantity"
                             className="block text-xs font-semibold text-[#4a4a4a] uppercase tracking-wider mb-1.5"
                           >
-                            Quantity
+                            Quantity (Approx.)
                           </label>
-                          <input
+                          <select
                             id="quantity"
                             name="quantity"
-                            type="text"
                             value={form.quantity}
                             onChange={handleChange}
-                            placeholder="e.g. 10,000 pieces"
-                            className="w-full px-4 py-3 bg-white border border-[#e5e5e5] rounded text-sm text-[#1a1a1a] placeholder:text-[#c0c0c0] focus:outline-none focus:ring-2 focus:ring-[#c8922a]/30 focus:border-[#c8922a] transition-colors"
-                          />
+                            className="w-full px-4 py-3 bg-white border border-[#e5e5e5] rounded text-sm text-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-[#c8922a]/30 focus:border-[#c8922a] transition-colors appearance-none cursor-pointer"
+                          >
+                            <option value="">Select quantity</option>
+                            {quantityOptions.map((opt) => (
+                              <option key={opt} value={opt}>{opt}</option>
+                            ))}
+                          </select>
                         </div>
                       </div>
 
@@ -447,9 +466,7 @@ export default function ContactPageClient() {
                         )}
                       </button>
 
-                      <p className="text-xs text-[#9a9a9a] text-center">
-                        Fields marked with <span className="text-[#c8922a]">*</span> are required
-                      </p>
+
                     </form>
                   </>
                 )}
